@@ -1,2 +1,2 @@
 # BackEnd
-"# ion-rental-backend" 
+"Repository for rental project" 
