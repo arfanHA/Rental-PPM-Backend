@@ -13,9 +13,9 @@ router.register(r'master_pelanggan', views.master_pelanggan)
 router.register(r'master_barang', views.master_barang)
 router.register(r'receiving_detail', views.receiving_detail)
 router.register(r'receiving_header', views.receiving_header)
-router.register(r'inven_header', views.inven_header)
-router.register(r'inven_detail', views.inven_detail)
-router.register(r'inven_sn', views.inven_sn)
+# router.register(r'inven_header', views.inven_header)
+# router.register(r'inven_detail', views.inven_detail)
+# router.register(r'inven_sn', views.inven_sn)
 
 urlpatterns = [
     url(r'^', include(router.urls)),
