@@ -10,4 +10,6 @@ admin.site.register(master_vendor)
 admin.site.register(master_customer)
 admin.site.register(receiving_detail)
 admin.site.register(receiving_header)
+admin.site.register(master_user)
+admin.site.register(master_employee)
 

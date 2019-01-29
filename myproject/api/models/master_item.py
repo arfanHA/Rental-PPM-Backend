@@ -9,7 +9,7 @@ class master_item(models.Model):
     code = models.CharField(max_length=100)
     barcode = models.CharField(max_length=100, blank=True)
     name = models.CharField(max_length=200)
-    alias_name = models.CharField(max_length=200)
+    alias_name = models.CharField(max_length=200, blank=True)
     master_group_id = models.ForeignKey(master_group_item, on_delete=models.DO_NOTHING)
     uom_id = models.ForeignKey(master_uom, on_delete=models.DO_NOTHING)
     merk_id = models.ForeignKey(master_merk, on_delete=models.DO_NOTHING)
@@ -21,4 +21,4 @@ class master_item(models.Model):
         db_table = 'MasterItem'
 
     def __str__(self):
-        return self.master_item_id
+        return self.name

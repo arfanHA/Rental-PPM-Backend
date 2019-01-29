@@ -3,13 +3,18 @@ from .serializers import *
 
 
 class master_kategori(viewsets.ModelViewSet):
-    queryset = master_item.objects.all()
-    serializer_class = KategoriSerializer
+    queryset = master_group_item.objects.all()
+    serializer_class = CategorySerializer
 
 
 class master_unit(viewsets.ModelViewSet):
     queryset = master_uom.objects.all()
-    serializer_class = UnitSerializer
+    serializer_class = UOMSerializer
+
+
+class master_user(viewsets.ModelViewSet):
+    queryset = master_user.objects.all()
+    serializer_class = UserSerializer
 
 
 class master_merk(viewsets.ModelViewSet):
@@ -29,12 +34,16 @@ class master_vendor(viewsets.ModelViewSet):
 
 class master_pelanggan(viewsets.ModelViewSet):
     queryset = master_customer.objects.all()
-    serializer_class = PelangganSerializer
+    serializer_class = CustomerSerializer
+
+class master_employee(viewsets.ModelViewSet):
+    queryset = master_employee.objects.all()
+    serializer_class = EmployeeSerializer
 
 
-class master_barang(viewsets.ModelViewSet):
+class master_item(viewsets.ModelViewSet):
     queryset = master_item.objects.all()
-    serializer_class = BarangSerializer
+    serializer_class = ItemSerializer
 
 
 class receiving_detail(viewsets.ModelViewSet):
