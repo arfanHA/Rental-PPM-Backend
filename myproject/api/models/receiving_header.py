@@ -22,4 +22,4 @@ class receiving_header(models.Model):
         db_table = 'ReceivingHeader'
 
     def __str__(self):
-        return self.receiving_header_id
+        return str(self.receiving_header_id)

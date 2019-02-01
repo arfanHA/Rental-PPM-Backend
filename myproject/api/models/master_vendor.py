@@ -10,4 +10,4 @@ class master_vendor(models.Model):
         db_table = 'MasterVendor'
 
     def __str__(self):
-        return self.vendor_id
+        return self.name

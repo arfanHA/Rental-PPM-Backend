@@ -16,4 +16,4 @@ class receiving_detail(models.Model):
         db_table = 'ReceivingDetail'
 
     def __str__(self):
-        return self.receiving_detail_id
+        return str(self.receiving_detail_id)

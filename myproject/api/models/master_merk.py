@@ -9,4 +9,4 @@ class master_merk(models.Model):
         db_table = 'MasterMerk'
 
     def __str__(self):
-        return self.merk_id
+        return self.name

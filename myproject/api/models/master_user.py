@@ -13,4 +13,4 @@ class master_user(models.Model):
         db_table = 'MasterUser'
 
     def __str__(self):
-        return self.user_id
+        return self.username

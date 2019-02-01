@@ -19,4 +19,4 @@ class master_customer(models.Model):
         db_table = 'MasterCustomer'
 
     def __str__(self):
-        return self.customer_id
+        return self.name

@@ -9,4 +9,4 @@ class master_uom(models.Model):
         db_table = 'MasterUOM'
 
     def __str__(self):
-        return self.uom_id
+        return self.name

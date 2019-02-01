@@ -10,4 +10,4 @@ class master_group_item(models.Model):
         db_table = 'MasterGroupItem'
 
     def __str__(self):
-        return self.group_id
+        return self.name
