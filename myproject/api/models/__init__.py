@@ -9,3 +9,4 @@ from .master_user import master_user
 from .receiving_header import receiving_header
 from .receiving_detail import receiving_detail
 from .master_employee import master_employee
+from .receiving_detail_sn import receiving_detail_sn

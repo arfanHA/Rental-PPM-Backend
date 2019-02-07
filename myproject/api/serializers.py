@@ -76,6 +76,12 @@ class EmployeeSerializer(serializers.ModelSerializer):
         model = master_employee
         fields = '__all__'
 
+
+class ReceivingDetailSNSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = receiving_detail_sn
+        fields = '__all__'
+
 # class InvenHeaderSerializer(serializers.ModelSerializer):
 #     class Meta:
 #         model = inven_header

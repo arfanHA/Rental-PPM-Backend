@@ -36,6 +36,7 @@ class master_pelanggan(viewsets.ModelViewSet):
     queryset = master_customer.objects.all()
     serializer_class = CustomerSerializer
 
+
 class master_employee(viewsets.ModelViewSet):
     queryset = master_employee.objects.all()
     serializer_class = EmployeeSerializer
@@ -54,6 +55,11 @@ class receiving_detail(viewsets.ModelViewSet):
 class receiving_header(viewsets.ModelViewSet):
     queryset = receiving_header.objects.all()
     serializer_class = ReceivingHeaderSerializer
+
+
+class receiving_detail_sn(viewsets.ModelViewSet):
+    queryset = receiving_detail_sn.objects.all()
+    serializer_class = ReceivingDetailSNSerializer
 
 # class inven_header(viewsets.ModelViewSet):
 #     queryset = inven_header.objects.all()
