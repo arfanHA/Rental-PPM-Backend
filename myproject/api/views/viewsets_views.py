@@ -1,5 +1,5 @@
 from rest_framework import viewsets
-from .serializers import *
+from myproject.api.serializers import *
 
 
 class master_kategori(viewsets.ModelViewSet):
