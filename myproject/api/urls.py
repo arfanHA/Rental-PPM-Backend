@@ -1,7 +1,7 @@
 from rest_framework import routers
 from django.conf.urls import include
 from django.conf.urls import url
-from myproject.api.views import viewsets_views
+from myproject.api.views import viewsets_views, generatePDF_views
 
 router = routers.DefaultRouter()
 router.register(r'master_kategori', viewsets_views.master_kategori)
@@ -22,5 +22,6 @@ router.register(r'receiving_detail_sn', viewsets_views.receiving_detail_sn)
 
 urlpatterns = [
     url(r'^', include(router.urls)),
+    url(r'^generatePDF/$', generatePDF_views.GeneratePdf.as_view()),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]
