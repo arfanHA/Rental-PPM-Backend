@@ -3,14 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="8660eb00-8fae-4ce9-a8e6-d5eaaecd21f7" name="Default Changelist" comment="Remove reportlab dependency&#10;Add xhtml2pdf dependency&#10;Add views to generate PDF&#10;Add template file to support generating PDF">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/myproject/api/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/myproject/api/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/myproject/api/models/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/myproject/api/models/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/myproject/api/models/master_cuustomer.py" beforeDir="false" afterPath="$PROJECT_DIR$/myproject/api/models/master_customer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/myproject/api/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/myproject/api/serializers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/myproject/api/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/myproject/api/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/myproject/api/views/viewsets_views.py" beforeDir="false" afterPath="$PROJECT_DIR$/myproject/api/views/viewsets_views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/invoice.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/invoice.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/myproject/api/models/master_user.py" beforeDir="false" afterPath="$PROJECT_DIR$/myproject/api/models/master_user.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -23,7 +16,20 @@
     <favorites_list name="myproject" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="master_user.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/myproject/api/models/master_user.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="187">
+              <caret line="11" column="109" selection-start-line="11" selection-start-column="109" selection-end-line="11" selection-end-column="109" />
+              <folding>
+                <element signature="e#0#28#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -62,7 +68,6 @@
         <option value="$PROJECT_DIR$/myproject/api/models/master_group_item.py" />
         <option value="$PROJECT_DIR$/myproject/api/models/master_vendor.py" />
         <option value="$PROJECT_DIR$/myproject/api/models/receiving_header.py" />
-        <option value="$PROJECT_DIR$/myproject/api/models/master_user.py" />
         <option value="$PROJECT_DIR$/myproject/api/models/master_cuustomer.py" />
         <option value="$PROJECT_DIR$/myproject/api/models/receiving_detail.py" />
         <option value="$PROJECT_DIR$/myproject/api/models/receiving_detail_sn.py" />
@@ -83,6 +88,7 @@
         <option value="$PROJECT_DIR$/myproject/api/serializers.py" />
         <option value="$PROJECT_DIR$/myproject/api/views/viewsets_views.py" />
         <option value="$PROJECT_DIR$/myproject/api/urls.py" />
+        <option value="$PROJECT_DIR$/myproject/api/models/master_user.py" />
       </list>
     </option>
   </component>
@@ -126,6 +132,13 @@
               <item name="BackEnd" type="462c0819:PsiDirectoryNode" />
               <item name="myproject" type="462c0819:PsiDirectoryNode" />
               <item name="api" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="BackEnd" type="b2602c69:ProjectViewProjectNode" />
+              <item name="BackEnd" type="462c0819:PsiDirectoryNode" />
+              <item name="myproject" type="462c0819:PsiDirectoryNode" />
+              <item name="api" type="462c0819:PsiDirectoryNode" />
+              <item name="migrations" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="BackEnd" type="b2602c69:ProjectViewProjectNode" />
@@ -272,14 +285,16 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3289689" />
+      <window_info anchor="bottom" id="Messages" order="7" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5007474" side_tool="true" weight="0.39836067" />
       <window_info anchor="bottom" id="Database Changes" order="12" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32838285" />
-      <window_info anchor="bottom" id="Python Console" order="10" weight="0.32733223" />
+      <window_info anchor="bottom" id="Python Console" order="10" weight="0.32673267" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49925262" weight="0.3019802" />
+      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49925262" weight="0.2739274" />
       <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4950495" visible="true" weight="0.25642964" />
       <window_info anchor="right" id="R Packages" order="3" />
       <window_info anchor="bottom" id="Docker" order="11" show_stripe_button="false" />
@@ -289,15 +304,30 @@
       <window_info id="Structure" order="1" sideWeight="0.5049505" side_tool="true" weight="0.22087745" />
       <window_info id="Favorites" order="2" sideWeight="0.5049505" side_tool="true" weight="0.22087745" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Docker" order="11" show_stripe_button="false" />
+      <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4950495" visible="true" weight="0.25642964" />
+      <window_info anchor="right" id="SciView" order="4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.3289689" />
+      <window_info anchor="bottom" id="Version Control" order="7" weight="0.32838285" />
+      <window_info anchor="bottom" id="Run" order="2" />
       <window_info active="true" anchor="bottom" id="Inspection Results" order="13" visible="true" weight="0.32974428" />
-      <window_info anchor="bottom" id="Messages" order="7" />
+      <window_info anchor="right" id="R Packages" order="3" />
+      <window_info anchor="bottom" id="Database Changes" order="12" />
+      <window_info id="Structure" order="1" sideWeight="0.5049505" side_tool="true" weight="0.22087745" />
+      <window_info anchor="right" id="R Graphics" order="3" />
       <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5007474" side_tool="true" weight="0.39836067" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info id="Favorites" order="2" sideWeight="0.5049505" side_tool="true" weight="0.22087745" />
       <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49925262" weight="0.3019802" />
+      <window_info anchor="bottom" id="Python Console" order="10" weight="0.32733223" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -317,13 +347,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="Remove reportlab dependency&#10;Add xhtml2pdf dependency&#10;Add views to generate PDF&#10;Add template file to support generating PDF" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/myproject/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2346">
-          <caret line="138" column="23" selection-start-line="138" selection-start-column="23" selection-end-line="138" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/myproject/api/serializers.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="714">
@@ -374,11 +397,6 @@
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/myproject/api/models.py" />
-    <entry file="file://$PROJECT_DIR$/myproject/api/migrations/0001_initial.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-255" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/myproject/api/migrations/__init__.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -407,13 +425,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
           <caret line="12" column="24" selection-start-line="12" selection-start-column="24" selection-end-line="12" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/myproject/api/models/master_user.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="28" selection-start-line="15" selection-start-column="28" selection-end-line="15" selection-end-column="28" />
         </state>
       </provider>
     </entry>
@@ -538,36 +549,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/myproject/api/models/rental_detail_sn.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="44" selection-start-line="15" selection-start-column="44" selection-end-line="15" selection-end-column="44" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/myproject/api/models/rental_header.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="36" column="41" selection-start-line="36" selection-start-column="41" selection-end-line="36" selection-end-column="41" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/myproject/api/models/rental_detail.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="41" selection-start-line="21" selection-start-column="41" selection-end-line="21" selection-end-column="41" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/myproject/api/models/rental_detail_sn.py" />
+    <entry file="file://$PROJECT_DIR$/myproject/api/models/rental_header.py" />
+    <entry file="file://$PROJECT_DIR$/myproject/api/models/rental_detail.py" />
     <entry file="file://$PROJECT_DIR$/myproject/api/models/rental_order_header.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="541">
@@ -623,6 +607,22 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
           <caret line="71" column="50" selection-start-line="71" selection-start-column="50" selection-end-line="71" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/myproject/api/migrations/0001_initial.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/myproject/api/migrations/0006_master_user_employee_id.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/myproject/api/models/master_user.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="109" selection-start-line="11" selection-start-column="109" selection-end-line="11" selection-end-column="109" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
