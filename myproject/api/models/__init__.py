@@ -3,10 +3,12 @@ from .master_group_item import master_group_item
 from .master_uom import master_uom
 from .master_merk import master_merk
 from .master_item import master_item
-from .master_cuustomer import master_customer
+from .master_customer import master_customer
 from .master_vendor import master_vendor
 from .master_user import master_user
 from .receiving_header import receiving_header
 from .receiving_detail import receiving_detail
 from .master_employee import master_employee
 from .receiving_detail_sn import receiving_detail_sn
+from .rental_order_header import rental_order_header
+from .rental_order_detail import rental_order_detail

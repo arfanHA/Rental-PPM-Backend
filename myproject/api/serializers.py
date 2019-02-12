@@ -82,6 +82,18 @@ class ReceivingDetailSNSerializer(serializers.ModelSerializer):
         model = receiving_detail_sn
         fields = '__all__'
 
+
+class RentalOrderHeaderSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = rental_order_header
+        fields = '__all__'
+
+
+class RentalOrderDetailSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = rental_order_detail
+        fields = '__all__'
+
 # class InvenHeaderSerializer(serializers.ModelSerializer):
 #     class Meta:
 #         model = inven_header

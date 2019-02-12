@@ -61,6 +61,16 @@ class receiving_detail_sn(viewsets.ModelViewSet):
     queryset = receiving_detail_sn.objects.all()
     serializer_class = ReceivingDetailSNSerializer
 
+
+class rental_order_header(viewsets.ModelViewSet):
+    queryset = rental_order_header.objects.all()
+    serializer_class = RentalOrderHeaderSerializer
+
+
+class rental_order_detail(viewsets.ModelViewSet):
+    queryset = rental_order_detail.objects.all()
+    serializer_class = RentalOrderDetailSerializer
+
 # class inven_header(viewsets.ModelViewSet):
 #     queryset = inven_header.objects.all()
 #     serializer_class = InvenHeaderSerializer
