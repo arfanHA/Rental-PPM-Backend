@@ -71,6 +71,35 @@ class rental_order_detail(viewsets.ModelViewSet):
     queryset = rental_order_detail.objects.all()
     serializer_class = RentalOrderDetailSerializer
 
+
+class rental_header(viewsets.ModelViewSet):
+    queryset = rental_header.objects.all()
+    serializer_class = RentalHeaderSerializer
+
+
+class rental_detail(viewsets.ModelViewSet):
+    queryset = rental_detail.objects.all()
+    serializer_class = RentalDetailSerializer
+
+
+class rental_detail_sn(viewsets.ModelViewSet):
+    queryset = rental_detail_sn.objects.all()
+    serializer_class = RentalDetailSNSerializer
+
+
+class rental_stock_card(viewsets.ModelViewSet):
+    queryset = rental_stock_card.objects.all()
+    serializer_class = RentalStockCardSerializer
+
+
+class rental_stock_sn(viewsets.ModelViewSet):
+    queryset = rental_stock_sn.objects.all()
+    serializer_class = RentalStockSNSerializer
+
+
+class stock_sn_history(viewsets.ModelViewSet):
+    queryset = stock_sn_history.objects.all()
+    serializer_class = StockSNHistorySerializer
 # class inven_header(viewsets.ModelViewSet):
 #     queryset = inven_header.objects.all()
 #     serializer_class = InvenHeaderSerializer

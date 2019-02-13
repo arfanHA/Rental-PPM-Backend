@@ -18,6 +18,12 @@ router.register(r'master_employee', viewsets_views.master_employee)
 router.register(r'receiving_detail_sn', viewsets_views.receiving_detail_sn)
 router.register(r'rental_order_header', viewsets_views.rental_order_header)
 router.register(r'rental_order_detail', viewsets_views.rental_order_detail)
+router.register(r'rental_header', viewsets_views.rental_header) # Rental management starts here
+router.register(r'rental_detail', viewsets_views.rental_detail)
+router.register(r'rental_detail_sn', viewsets_views.rental_detail_sn)
+router.register(r'rental_stock_card', viewsets_views.rental_stock_card) # Stock management starts here
+router.register(r'rental_stock_sn', viewsets_views.rental_stock_sn)
+router.register(r'stock_sn_history', viewsets_views.stock_sn_history)
 # router.register(r'inven_header', views.inven_header)
 # router.register(r'inven_detail', views.inven_detail)
 # router.register(r'inven_sn', views.inven_sn)

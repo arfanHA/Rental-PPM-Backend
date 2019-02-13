@@ -94,17 +94,41 @@ class RentalOrderDetailSerializer(serializers.ModelSerializer):
         model = rental_order_detail
         fields = '__all__'
 
-# class InvenHeaderSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = inven_header
-#         fields = '__all__'
-#
-# class InvenDetailSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = inven_detail
-#         fields = '__all__'
-#
-# class InvenSnSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = inven_sn
-#         fields = '__all__'
+
+# Rental Management
+
+class RentalHeaderSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = rental_header
+        fields = '__all__'
+
+
+class RentalDetailSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = rental_detail
+        fields = '__all__'
+
+
+class RentalDetailSNSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = rental_detail_sn
+        fields = '__all__'
+
+# Stock Management
+
+class RentalStockCardSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = rental_stock_card
+        fields = '__all__'
+
+
+class RentalStockSNSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = rental_stock_sn
+        fields = '__all__'
+
+
+class StockSNHistorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = stock_sn_history
+        fields = '__all__'
