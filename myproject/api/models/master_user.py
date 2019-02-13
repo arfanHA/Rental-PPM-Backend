@@ -6,8 +6,8 @@ class master_user(models.Model):
     user_id = models.BigAutoField(primary_key=True)
     username = models.CharField(max_length=10)
     password = models.CharField(max_length=10)
-    user_level = models.IntegerField()
-    user_type = models.IntegerField()
+    user_level = models.CharField(max_length=2)
+    user_type = models.CharField(max_length=2)
     last_login_date = models.DateField()
     employee_id = models.OneToOneField(master_employee, on_delete=models.DO_NOTHING, blank=True, default=None)
 
