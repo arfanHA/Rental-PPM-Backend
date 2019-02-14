@@ -20,7 +20,6 @@ router.register(r'rental_order_header', viewsets_views.rental_order_header)
 router.register(r'rental_order_detail', viewsets_views.rental_order_detail)
 router.register(r'rental_header', viewsets_views.rental_header)  # Rental management starts here
 router.register(r'rental_detail', viewsets_views.rental_detail)
-router.register(r'rental_detail_sn', viewsets_views.rental_detail_sn)
 router.register(r'rental_stock_card', viewsets_views.rental_stock_card)  # Stock management starts here
 router.register(r'rental_stock_sn', viewsets_views.rental_stock_sn)
 router.register(r'stock_sn_history', viewsets_views.stock_sn_history)
@@ -30,9 +29,9 @@ router.register(r'stock_sn_history', viewsets_views.stock_sn_history)
 
 urlpatterns = [
     url(r'^', include(router.urls)),
-    url(r'^generateInvoice/$', generatePDF_views.generateInvoice.as_view()),
-    url(r'^generateKwitansi/$', generatePDF_views.generateKwitansi.as_view()),
-    url(r'^generateReceiving/$', generatePDF_views.generateReceiving.as_view()),
-    url(r'^generateSuratjalan/$', generatePDF_views.generateSuratJalan.as_view()),
+    url(r'^generateInvoice/(?P<pk>[0-9]+)/$', generatePDF_views.generateInvoice.as_view()),
+    url(r'^generateKwitansi/(?P<pk>[0-9]+)/$', generatePDF_views.generateKwitansi.as_view()),
+    url(r'^generateReceiving/(?P<pk>[0-9]+)/$', generatePDF_views.generateReceiving.as_view()),
+    url(r'^generateSuratjalan/(?P<pk>[0-9]+)/$', generatePDF_views.generateSuratJalan.as_view()),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]

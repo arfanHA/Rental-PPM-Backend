@@ -109,11 +109,6 @@ class RentalDetailSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class RentalDetailSNSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = rental_detail_sn
-        fields = '__all__'
-
 # Stock Management
 
 class RentalStockCardSerializer(serializers.ModelSerializer):

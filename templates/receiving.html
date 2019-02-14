@@ -52,31 +52,31 @@
     <table style="width:100%" class="aw4l">
         <tr>
             <td width="20%">Vendor</td>
-            <td width="30%">: data vendor name</td>
+            <td width="30%">: {{header.vendor_id}}</td>
             <td width="20%">Receive In</td>
-            <td width="30%">: location data nama</td>
+            <td width="30%">: {{header.location_id}}</td>
         </tr>
         <tr>
             <td>Address</td>
-            <td>: vendor data alamat</td>
+            <td>: {{header.vendor_id.address}}</td>
             <td>Doc Number</td>
-            <td>: document number</td>
+            <td>: {{header.number}}</td>
         </tr>
         <tr>
             <td>DO Number</td>
-            <td colspan="3">:</td>
+            <td colspan="3">: ?</td>
         </tr>
         <tr>
             <td>Inv Number</td>
-            <td colspan="3">:</td>
+            <td colspan="3">: ?</td>
         </tr>
         <tr>
             <td>Date</td>
-            <td colspan="3">: tanggal pembuatan dokumen</td>
+            <td colspan="3">: {{header.date}}</td>
         </tr>
         <tr>
             <td>Note</td>
-            <td colspan="3">: text pada noted</td>
+            <td colspan="3">: {{header.note}}</td>
         </tr>
     </table>
 
@@ -89,17 +89,26 @@
             <th colspan="2">Nama Item</th>
             <th>Qty</th>
         </tr>
+        {% for d in detail%}
         <tr>
-            <td rowspan="5" style="text-align: center; vertical-align: center">1</td>
-            <td rowspan="5" style="text-align: center; vertical-align: center">Data Barcode</td>
-            <td colspan="2">master item data nama</td>
-            <td rowspan="5"></td>
+            <td rowspan="10" style="text-align: center; vertical-align: center">{{forloop.counter}}</td>
+            <td rowspan="10" style="text-align: center; vertical-align: center">{{d.master_item_id.barcode}}</td>
+            <td colspan="2">{{d.master_item_id.name}}</td>
+            <td rowspan="10" style="text-align: center; vertical-align: center">{{d.qty}}</td>
         </tr>
         <tr>
             <td>SN Lama</td>
             <td>SN Baru</td>
         </tr>
         <tr>
+            <td>{{d.receiving_detail_id.first_serial_number}}</td>
+            <td>{{d.receiving_detail_id.new_serial_number}}</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
             <td></td>
             <td></td>
         </tr>
@@ -111,6 +120,19 @@
             <td></td>
             <td></td>
         </tr>
+        <tr>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+        </tr>
+        {% endfor %}
     </table>
 
     <br>
@@ -125,10 +147,6 @@
             </td>
         </tr>
     </table>
-
-    <br>
-
-    <br>
 
     <br>
 
