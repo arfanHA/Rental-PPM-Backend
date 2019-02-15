@@ -82,11 +82,6 @@ class rental_detail(viewsets.ModelViewSet):
     serializer_class = RentalDetailSerializer
 
 
-class rental_detail_sn(viewsets.ModelViewSet):
-    queryset = rental_detail_sn.objects.all()
-    serializer_class = RentalDetailSNSerializer
-
-
 class rental_stock_card(viewsets.ModelViewSet):
     queryset = rental_stock_card.objects.all()
     serializer_class = RentalStockCardSerializer

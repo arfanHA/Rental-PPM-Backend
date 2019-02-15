@@ -34,12 +34,18 @@ class generateKwitansi(View):
 
 class generateReceiving(View):
     def get(self, request, pk, *args, **kwargs):
+        sns = []
         receivingHeader = receiving_header.objects.get(pk=pk)
         receivingDetail = receiving_detail.objects.filter(receiving_header_id=pk)
 
+        for a in receivingDetail:
+            temp = receiving_detail_sn.objects.filter(receiving_detail_id=a.receiving_detail_id)
+            sns.append(temp)
+
         data = {
             'header': receivingHeader,
-            'detail': receivingDetail
+            'detail': receivingDetail,
+            'SN': sns
         }
 
         pdf = render_to_pdf('receiving.html', data)
