@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8660eb00-8fae-4ce9-a8e6-d5eaaecd21f7" name="Default Changelist" comment="Remove rental_detail_sn models and views&#10;Add template for incoming/receiving modules">
+    <list default="true" id="8660eb00-8fae-4ce9-a8e6-d5eaaecd21f7" name="Default Changelist" comment="Remove rental_detail_sn models and views&#10;Update on receiving template for export to pdf functions">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/myproject/api/models/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/myproject/api/models/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/myproject/api/views/generatePDF_views.py" beforeDir="false" afterPath="$PROJECT_DIR$/myproject/api/views/generatePDF_views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/myproject/api/views/viewsets_views.py" beforeDir="false" afterPath="$PROJECT_DIR$/myproject/api/views/viewsets_views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/receiving.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/receiving.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/myproject/api/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/myproject/api/migrations/0002_master_employee.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/myproject/api/migrations/0003_auto_20190207_1330.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/myproject/api/migrations/0004_receiving_detail_sn.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/myproject/api/migrations/0005_auto_20190212_1413.py" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -23,31 +24,7 @@
     <favorites_list name="myproject" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="receiving.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/templates/receiving.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="50" column="25" selection-start-line="50" selection-start-column="25" selection-end-line="50" selection-end-column="25" />
-              <folding>
-                <element signature="n#style#0;n#td#0;n#tr#1;n#table#1;n#center#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#1;n#tr#1;n#table#1;n#center#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#3;n#tr#1;n#table#1;n#center#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="generatePDF_views.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/myproject/api/views/generatePDF_views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="524">
-              <caret line="41" column="95" selection-start-line="41" selection-start-column="95" selection-end-line="41" selection-end-column="95" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -383,7 +360,14 @@
       <option name="project" value="LOCAL" />
       <updated>1550135123903</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Remove rental_detail_sn models and views&#10;Update on receiving template for export to pdf functions">
+      <created>1550210939950</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1550210939950</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -400,7 +384,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3289689" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5007474" side_tool="true" weight="0.39768976" />
@@ -408,8 +391,8 @@
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32838285" />
       <window_info anchor="bottom" id="Python Console" order="14" weight="0.32673267" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32838285" />
-      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.49925262" weight="0.3019802" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49339935" visible="true" weight="0.28895614" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" sideWeight="0.49925262" visible="true" weight="0.3019802" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49339935" visible="true" weight="0.2934947" />
       <window_info anchor="right" id="R Packages" order="3" />
       <window_info anchor="bottom" id="Docker" order="11" show_stripe_button="false" />
       <window_info anchor="right" id="R Graphics" order="3" />
@@ -429,12 +412,11 @@
       <window_info anchor="bottom" id="Find" order="1" />
     </layout>
     <layout-to-restore>
-      <window_info anchor="bottom" id="Version Control" order="7" weight="0.32838285" />
+      <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Docker" order="11" show_stripe_button="false" />
-      <window_info anchor="right" id="Database" order="5" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32838285" />
-      <window_info id="Favorites" order="2" sideWeight="0.5066007" side_tool="true" weight="0.27987897" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49339935" visible="true" weight="0.28441754" />
       <window_info id="Structure" order="1" sideWeight="0.5066007" side_tool="true" weight="0.27987897" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -443,17 +425,18 @@
       <window_info anchor="right" id="R Graphics" order="3" />
       <window_info active="true" anchor="bottom" id="Inspection Results" order="13" visible="true" weight="0.32974428" />
       <window_info anchor="right" id="R Packages" order="4" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Database Changes" order="12" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.49925262" weight="0.3019802" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5007474" side_tool="true" weight="0.39768976" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="right" id="SciView" order="6" weight="0.32980332" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Messages" order="8" />
       <window_info anchor="bottom" id="Python Console" order="14" weight="0.32673267" />
+      <window_info anchor="bottom" id="Database Changes" order="12" />
+      <window_info anchor="right" id="Database" order="5" />
+      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.49925262" weight="0.3019802" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="Version Control" order="7" weight="0.32838285" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5007474" side_tool="true" weight="0.39768976" />
+      <window_info anchor="right" id="SciView" order="6" weight="0.32980332" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Messages" order="8" />
+      <window_info id="Favorites" order="2" sideWeight="0.5066007" side_tool="true" weight="0.27987897" />
     </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -475,7 +458,8 @@
     <MESSAGE value="Add models and views of stock managements module and rental management module&#10;Add (rental_header, rental_detail, rentail_detail_sn) models and views&#10;Add (rental_stock_card, rental_stock_sn, stock_sn_history) models and views" />
     <MESSAGE value="Add templates for kwitansi, receiving, invoice and surat jalan&#10;Completed template(s) = receiving&#10;Add generatePDF views into urls" />
     <MESSAGE value="Remove rental_detail_sn models and views&#10;Add template for incoming/receiving modules" />
-    <option name="LAST_COMMIT_MESSAGE" value="Remove rental_detail_sn models and views&#10;Add template for incoming/receiving modules" />
+    <MESSAGE value="Remove rental_detail_sn models and views&#10;Update on receiving template for export to pdf functions" />
+    <option name="LAST_COMMIT_MESSAGE" value="Remove rental_detail_sn models and views&#10;Update on receiving template for export to pdf functions" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/django/db/models/fields/mixins.py" />
@@ -579,9 +563,6 @@
           <caret line="20" column="40" selection-start-line="20" selection-start-column="40" selection-end-line="20" selection-end-column="40" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/myproject/api/migrations/0001_initial.py">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/myproject/api/migrations/0006_master_user_employee_id.py">
       <provider selected="true" editor-type-id="text-editor" />
@@ -726,13 +707,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/myproject/api/views/generatePDF_views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="524">
-          <caret line="41" column="95" selection-start-line="41" selection-start-column="95" selection-end-line="41" selection-end-column="95" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/myproject/api/models/receiving_detail_sn.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -747,15 +721,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/myproject/api/migrations/0001_initial.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/templates/receiving.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="50" column="25" selection-start-line="50" selection-start-column="25" selection-end-line="50" selection-end-column="25" />
-          <folding>
-            <element signature="n#style#0;n#td#0;n#tr#1;n#table#1;n#center#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#1;n#tr#1;n#table#1;n#center#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#3;n#tr#1;n#table#1;n#center#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
+        <state relative-caret-position="218">
+          <caret line="48" selection-start-line="48" selection-end-line="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/myproject/api/views/generatePDF_views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="65">
+          <caret line="41" column="95" selection-start-line="41" selection-start-column="95" selection-end-line="41" selection-end-column="95" />
         </state>
       </provider>
     </entry>
