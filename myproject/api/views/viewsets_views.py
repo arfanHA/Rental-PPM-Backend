@@ -95,14 +95,3 @@ class rental_stock_sn(viewsets.ModelViewSet):
 class stock_sn_history(viewsets.ModelViewSet):
     queryset = stock_sn_history.objects.all()
     serializer_class = StockSNHistorySerializer
-# class inven_header(viewsets.ModelViewSet):
-#     queryset = inven_header.objects.all()
-#     serializer_class = InvenHeaderSerializer
-#
-# class inven_detail(viewsets.ModelViewSet):
-#     queryset = inven_detail.objects.all()
-#     serializer_class = InvenDetailSerializer
-#
-# class inven_sn(viewsets.ModelViewSet):
-#     queryset = inven_sn.objects.all()
-#     serializer_class = InvenSnSerializer

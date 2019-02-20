@@ -47,11 +47,8 @@
     </center>
 </header>
 
-
-<h1>{{z.first_serial_number}}</h1>
-
-
 <!--End Header-->
+
 <center>
     <table style="width:100%" class="aw4l">
         <tr>
@@ -86,72 +83,37 @@
 
     <br>
 
+    {% for d in detail %}
     <table style="width:100%" class="it3m">
         <tr>
-            <th width="10%">No</th>
             <th>Barcode</th>
-            <th colspan="2">Nama Item</th>
+            <td>{{d.master_item_id.barcode}}</td>
+        </tr>
+        <tr>
+            <th>Nama Item</th>
+            <td>{{d.master_item_id.name}}</td>
+        </tr>
+        <tr>
             <th>Qty</th>
-        </tr>
-        {% for d in detail%}
-        <tr>
-            <td rowspan="10" style="text-align: center; vertical-align: center">
-                {{forloop.counter}}
-                <!--{{d.receiving_detail_id}}-->
-            </td>
-            <td rowspan="10" style="text-align: center; vertical-align: center">
-                {{d.master_item_id.barcode}}
-            </td>
-            <td colspan="2">
-                {{d.master_item_id.name}}
-            </td>
-            <td rowspan="10" style="text-align: center; vertical-align: center">
-                {{d.qty}}
-            </td>
+            <td>{{d.qty}}</td>
         </tr>
         <tr>
-            <td>SN Lama</td>
-            <td>SN Baru</td>
+            <th>SN Lama</th>
+            <th>SN Baru</th>
         </tr>
-        {% for a in SN %}
-            {% for z in a%}
-                <tr>
-                    <td>
-                        {% if z.receiving_detail_id != d.receiving_detail_id %}
-                        {{z.first_serial_number}}
-                        {% endif %}
-                    </td>
-                    <td>
-                        {% if z.receiving_detail_id != d.receiving_detail_id %}
-                        {{z.new_serial_number}}
-                        {% endif %}
-                    </td>
-                </tr>
-            {% endfor %}
-        {% endfor %}
+        {% for a in SN.1 %}
         <tr>
-            <td></td>
-            <td></td>
+            <td>{{a.first_serial_number}}</td>
+            <td>{{a.new_serial_number}}</td>
         </tr>
-        <tr>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-        </tr>
+        {% empty %}
         <tr>
             <td></td>
             <td></td>
         </tr>
         {% endfor %}
     </table>
-
+    {% endfor %}
     <br>
 
     <table style="width:100%" class="fo0ter">

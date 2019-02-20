@@ -36,10 +36,12 @@ class generateReceiving(View):
     def get(self, request, pk, *args, **kwargs):
         sns = []
         receivingHeader = receiving_header.objects.get(pk=pk)
-        receivingDetail = receiving_detail.objects.filter(receiving_header_id=pk)
+        # receivingDetail = receiving_detail.objects.filter(receiving_header_id=pk)
+        receivingDetail = receivingHeader.RDHeader.all()
 
         for a in receivingDetail:
-            temp = receiving_detail_sn.objects.filter(receiving_detail_id=a.receiving_detail_id)
+            # temp = receiving_detail_sn.objects.filter(receiving_detail_id=a.receiving_detail_id)
+            temp = a.RDISN.all()
             sns.append(temp)
 
         data = {
