@@ -8,7 +8,7 @@ class stock_sn_history(models.Model):
     date = models.DateField()
     status = models.IntegerField()
     ref_id = models.BigIntegerField(null=True, blank=True)
-    stock_code_id = models.ForeignKey(rental_stock_sn, on_delete=models.DO_NOTHING, blank=True, null=True)
+    stock_code_id = models.ForeignKey(rental_stock_sn, on_delete=models.DO_NOTHING, blank=True, null=True, related_name='StockSNHistory')
 
     class Meta:
         db_table = 'StockSNHistory'

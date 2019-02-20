@@ -11,10 +11,14 @@ class rental_stock_card(models.Model):
     item_master_id = models.BigIntegerField()
     location_id = models.BigIntegerField()
     qty = models.IntegerField()
-    rental_header_id = models.ForeignKey(rental_header, on_delete=models.DO_NOTHING, blank=True, null=True)
-    rental_detail_id = models.ForeignKey(rental_detail, on_delete=models.DO_NOTHING, blank=True, null=True)
-    receiving_header_id = models.ForeignKey(receiving_header, on_delete=models.DO_NOTHING, blank=True, null=True)
-    receiving_detail_id = models.ForeignKey(receiving_detail, on_delete=models.DO_NOTHING, blank=True, null=True)
+    rental_header_id = models.ForeignKey(rental_header, on_delete=models.DO_NOTHING, blank=True, null=True, related_name='RSCRenH')
+    # RSCRenH stands for Rental Stock Card from Rental Header
+    rental_detail_id = models.ForeignKey(rental_detail, on_delete=models.DO_NOTHING, blank=True, null=True, related_name='RSCRenD')
+    # RSCRenH stands for Rental Stock Card from Rental Detail
+    receiving_header_id = models.ForeignKey(receiving_header, on_delete=models.DO_NOTHING, blank=True, null=True, related_name='RSCRH')
+    # RSCRenH stands for Rental Stock Card from Receiving Header
+    receiving_detail_id = models.ForeignKey(receiving_detail, on_delete=models.DO_NOTHING, blank=True, null=True, related_name='RSCRD')
+    # RSCRenH stands for Rental Stock Card from Receiving Detail
 
     class Meta:
         db_table = 'RentalStockCard'

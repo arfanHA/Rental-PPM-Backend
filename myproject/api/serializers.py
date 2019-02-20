@@ -144,4 +144,18 @@ class StockSNHistorySerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class NestedStockSNSerializer(WritableNestedModelSerializer):
+    StockSNHistory = StockSNHistorySerializer(many=True)
 
+    class Meta:
+        model = rental_stock_sn
+        fields = ['stock_code_id', 'first_sn', 'new_sn', 'receiving_detail_sn_id', 'stock_card_id', 'StockSNHistory']
+
+
+class NestedStockCardSerializer(WritableNestedModelSerializer):
+    StockSNFromRSC = NestedStockSNSerializer(many=True)
+
+    class Meta:
+        model = rental_stock_card
+        fields = ['stock_card_id', 'item_master_id', 'location_id', 'qty', 'rental_header_id', 'rental_detail_id',
+                  'receiving_header_id', 'receiving_detail_id', 'StockSNFromRSC']

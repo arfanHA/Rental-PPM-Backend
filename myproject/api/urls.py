@@ -32,5 +32,6 @@ urlpatterns = [
     url(r'^generateReceiving/(?P<pk>[0-9]+)/$', generatePDF_views.generateReceiving.as_view()),
     url(r'^generateSuratjalan/(?P<pk>[0-9]+)/$', generatePDF_views.generateSuratJalan.as_view()),
     url(r'^receivingHeader_Nested', another_views.NestedReceivingManagement.as_view()),
+    url(r'^stockCard_Nested', another_views.NestedStockManagement.as_view()),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]
