@@ -23,9 +23,7 @@ router.register(r'rental_detail', viewsets_views.rental_detail)
 router.register(r'rental_stock_card', viewsets_views.rental_stock_card)  # Stock management starts here
 router.register(r'rental_stock_sn', viewsets_views.rental_stock_sn)
 router.register(r'stock_sn_history', viewsets_views.stock_sn_history)
-# router.register(r'inven_header', views.inven_header)
-# router.register(r'inven_detail', views.inven_detail)
-# router.register(r'inven_sn', views.inven_sn)
+
 
 urlpatterns = [
     url(r'^', include(router.urls)),
@@ -33,7 +31,6 @@ urlpatterns = [
     url(r'^generateKwitansi/(?P<pk>[0-9]+)/$', generatePDF_views.generateKwitansi.as_view()),
     url(r'^generateReceiving/(?P<pk>[0-9]+)/$', generatePDF_views.generateReceiving.as_view()),
     url(r'^generateSuratjalan/(?P<pk>[0-9]+)/$', generatePDF_views.generateSuratJalan.as_view()),
-    url(r'^testview', another_views.TestView.as_view()),
-    url(r'^retrieveAllHeader', another_views.RetrieveAllReceivingHeader.as_view()),
+    url(r'^receivingHeader_Nested', another_views.NestedReceivingManagement.as_view()),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]

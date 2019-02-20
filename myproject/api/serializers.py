@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from .models import *
+from drf_writable_nested import WritableNestedModelSerializer
 
 
 # Master Management
@@ -78,42 +79,21 @@ class ReceivingDetailSNSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class ReceivingDetailAllSerializer(serializers.ModelSerializer):
+class NestedReceivingDetailSerializer(WritableNestedModelSerializer):
     RDISN = ReceivingDetailSNSerializer(many=True)
 
     class Meta:
         model = receiving_detail
         fields = ['receiving_detail_id', 'qty', 'note', 'receiving_header_id', 'master_item_id', 'uom_id', 'RDISN']
 
-    # def create(self, validated_data):
-    #     snDetail = validated_data.pop('RDISN')
-    #     detail = receiving_detail.objects.create(**validated_data)
-    #     for sn in snDetail:
-    #         receiving_detail_sn.objects.create(receiving_detail=detail, **sn)
-    #     return detail
 
-
-class ReceivingHeaderAllSerializer(serializers.ModelSerializer):
-    # RDHeader = ReceivingDetailSerializer(many=True)
-    RDHeader = ReceivingDetailAllSerializer(many=True)
-    # RDISN = ReceivingDetailSNSerializer(many=True)
+class NestedReceivingHeaderSerializer(WritableNestedModelSerializer):
+    RDHeader = NestedReceivingDetailSerializer(many=True)
 
     class Meta:
         model = receiving_header
         fields = ['receiving_header_id', 'date', 'number', 'number_preix', 'counter', 'status', 'approval1_date',
                   'approval1', 'note', 'vendor_id', 'location_id', 'user_id', 'RDHeader']
-
-    # first try on writeable multiple nested serializers
-    def create(self, validated_data):
-        detailData = validated_data.pop('RDHeader')
-        header = receiving_header.objects.create(**validated_data)
-        for detail in detailData:
-            aaa = receiving_detail.objects.create(receiving_header_id=header, **detail)
-            snData = validated_data.pop('RDISN')
-            for sn in snData:
-                receiving_detail_sn.objects.create(receiving_detail_id=aaa, **sn)
-                # sn.set(receiving_detail_id=aaa)
-        return header
 
 
 # Rental Order Management
@@ -162,3 +142,6 @@ class StockSNHistorySerializer(serializers.ModelSerializer):
     class Meta:
         model = stock_sn_history
         fields = '__all__'
+
+
+
