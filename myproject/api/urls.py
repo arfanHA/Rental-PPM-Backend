@@ -1,10 +1,11 @@
 from rest_framework import routers
 from django.conf.urls import include
 from django.conf.urls import url
+from django.urls import path
 from myproject.api.views import viewsets_views, generatePDF_views, another_views
 
 router = routers.DefaultRouter()
-router.register(r'master_kategori', viewsets_views.master_kategori) # Master management starts here
+router.register(r'master_kategori', viewsets_views.master_kategori)  # Master management starts here
 router.register(r'master_uom', viewsets_views.master_unit)
 router.register(r'master_merk', viewsets_views.master_merk)
 router.register(r'master_location', viewsets_views.master_location)
@@ -15,7 +16,7 @@ router.register(r'receiving_detail', viewsets_views.receiving_detail)
 router.register(r'receiving_header', viewsets_views.receiving_header)
 router.register(r'master_user', viewsets_views.master_user)
 router.register(r'master_employee', viewsets_views.master_employee)
-router.register(r'receiving_detail_sn', viewsets_views.receiving_detail_sn) # Receiving Management starts here
+router.register(r'receiving_detail_sn', viewsets_views.receiving_detail_sn)  # Receiving Management starts here
 router.register(r'rental_order_header', viewsets_views.rental_order_header)
 router.register(r'rental_order_detail', viewsets_views.rental_order_detail)
 router.register(r'rental_header', viewsets_views.rental_header)  # Rental management starts here
@@ -23,6 +24,7 @@ router.register(r'rental_detail', viewsets_views.rental_detail)
 router.register(r'rental_stock_card', viewsets_views.rental_stock_card)  # Stock management starts here
 router.register(r'rental_stock_sn', viewsets_views.rental_stock_sn)
 router.register(r'stock_sn_history', viewsets_views.stock_sn_history)
+# router.register(r'testingViewset', viewsets_views.testingViewsets)
 
 
 urlpatterns = [
@@ -33,5 +35,7 @@ urlpatterns = [
     url(r'^generateSuratjalan/(?P<pk>[0-9]+)/$', generatePDF_views.generateSuratJalan.as_view()),
     url(r'^receivingHeader_Nested', another_views.NestedReceivingManagement.as_view()),
     url(r'^stockCard_Nested', another_views.NestedStockManagement.as_view()),
+    url(r'^NestedReceivingManagementDetails/(?P<pk>[0-9]+)/$',
+        another_views.NestedReceivingManagementDetails.as_view()),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]

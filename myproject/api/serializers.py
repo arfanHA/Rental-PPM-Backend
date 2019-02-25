@@ -61,9 +61,9 @@ class EmployeeSerializer(serializers.ModelSerializer):
 
 # Receiving Management
 
-class ReceivingHeaderSerializer(serializers.ModelSerializer):
+class ReceivingDetailSNSerializer(serializers.ModelSerializer):
     class Meta:
-        model = receiving_header
+        model = receiving_detail_sn
         fields = '__all__'
 
 
@@ -73,9 +73,9 @@ class ReceivingDetailSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class ReceivingDetailSNSerializer(serializers.ModelSerializer):
+class ReceivingHeaderSerializer(serializers.ModelSerializer):
     class Meta:
-        model = receiving_detail_sn
+        model = receiving_header
         fields = '__all__'
 
 
