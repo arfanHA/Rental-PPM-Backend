@@ -3,111 +3,55 @@
 <head>
     <title>Hello World</title>
     <style>
-        .TableItem {
-            border: 1px solid black;
-            width: 100%;
+        header {
+            font-size: 20px;
+            font-weight: bold;
         }
 
-        .TableItem th {
-            height: 30px;
-            vertical-align: center;
-            text-align: center;
-        }
-        
-        .TableItem td {
-            height: 30px;
-            vertical-align: center;
+        tr {
+            height: 50px;
+            font-size: 15px;
             text-align: left;
         }
 
     </style>
 <body>
-<div style="font-size: 15px">
-    <b style="font-size: 20px">RENMED</b><br>
-    Jl. Taman Mini Indonesia Indah (TMII) Pintu II Atas No. 43 Jakarta Timur<br>
-    Phone : +62-21 841 5976, Fax : +62-21 840 7865
-    <hr>
-</div>
-
-<div style="text-align: center">
-    <b style="font-size:20px">INVOICE</b>
-</div>
-
-<div style="text-align: center; font-size: 15px">
-    No.IN/0002/III/2017
-</div>
-
-<table style="width:100%" class="AnotherTable">
-    <tr>
-        <td>Kepada Yth: Hello World <br> Alamat Customer</td>
-        <td>
-            Tanggal : 2/11/2019 <br>
-            No. Rental : RN/0002/III/2017<br>
-            Tanggal Rental: 2/11/2019<br>
-            Jatuh Tempo: 2/11/2019<br>
-        </td>
-    </tr>
-
-</table>
-
+<center>
+    <header>
+        KWITANSI <br>
+        RECEIPT <br>
+        NPWP : {{npwp}}
+    </header>
+</center>
 
 <br>
 
-<table style="width:100%" class="TableItem">
+<br>
+
+<table>
     <tr>
-        <th>BANYAK</th>
-        <th>NAMA BARANG</th>
-        <th>HARGA @ RP</th>
-        <th>DISKON</th>
-        <th>JUMLAH</th>
+        <td width="40%">No</td>
+        <td>(nomor dokumen transaksi)</td>
     </tr>
     <tr>
-        <td>Jill</td>
-        <td>Smith</td>
-        <td>50</td>
-        <td>Smith</td>
-        <td>50</td>
+        <td>Sudah diterima dari</td>
+        <td>(data customer name data)</td>
     </tr>
     <tr>
-        <td>Jill</td>
-        <td>Smith</td>
-        <td>50</td>
-        <td>Smith</td>
-        <td>50</td>
+        <td>Alamat</td>
+        <td>(customer alamat data)</td>
     </tr>
     <tr>
-        <td>Jill</td>
-        <td>Smith</td>
-        <td>50</td>
-        <td>Smith</td>
-        <td>50</td>
+        <td>Banyaknya Uang</td>
+        <td># (text pada note kwitansi) #</td>
     </tr>
     <tr>
-        <td colspan="3" rowspan="5">1. Pembayaran untuk invoice ini mohon ditransfer ke rekening :
-            Bank MANDIRI A/C 129 000 654 2936 A/N Ahmad Taufik
-            Bank BCA A/C 6870488538 KCP. Pondok Gede Plaza A/N
-            Ahmad Taufik <br>
-            2. Pembayaran dengan cek/giro baru dianggap sah setelah
-            dicairkan
-        </td>
-        <td>Sub Total</td>
-        <td>x</td>
+        <td>Untuk Pembayaran</td>
+        <td>Pembelian (data qty + unit + nama item)</td>
     </tr>
     <tr>
-        <td>Discount</td>
-        <td>x</td>
-    </tr>
-    <tr>
-        <td>PPN 0.00 %</td>
-        <td>x</td>
-    </tr>
-    <tr>
-        <td>Delivery Cost</td>
-        <td>x</td>
-    </tr>
-    <tr>
-        <td>Total</td>
-        <td>x</td>
+        <td>Jumlah</td>
+        <td>Rp (nominal grand total dengan separator (,))</td>
     </tr>
 </table>
 

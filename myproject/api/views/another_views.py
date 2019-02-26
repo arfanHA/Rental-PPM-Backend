@@ -1,16 +1,18 @@
 from django.http import Http404
 
-from myproject.api.models import receiving_header, rental_stock_card
+from myproject.api.models import receiving_header, rental_stock_card, receiving_detail
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from rest_framework import mixins
-from rest_framework import generics
+from django.dispatch import receiver, Signal
 from myproject.api.serializers import NestedReceivingHeaderSerializer, NestedStockCardSerializer, \
-    ReceivingHeaderSerializer
-
+    RentalStockCardSerializer
+import json
 
 # This view is purposely used for testing only
+
+update_on_nested_serializer = Signal(providing_args=['test'])  # custom signal
+
 
 # View for nested serializer on incoming/receiving management
 class NestedReceivingManagement(APIView):
@@ -44,8 +46,46 @@ class NestedReceivingManagementDetails(APIView):
         serializer = NestedReceivingHeaderSerializer(header, data=request.data)
         if serializer.is_valid():
             serializer.save()
+            update_on_nested_serializer.send(sender=receiving_header, test=serializer.data)
             return Response(serializer.data, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@receiver(update_on_nested_serializer)
+def yolo(sender, **kwargs):
+    ReceivingHeaderData = kwargs['test']
+    Detail_from_ReceivingHeaderData = ReceivingHeaderData['RDHeader']
+
+    # print(Detail_from_ReceivingHeaderData[1]['receiving_detail_id'])
+
+    for EachDetail in Detail_from_ReceivingHeaderData:
+        stockCardData = rental_stock_card.objects.create(item_master_id=1,
+                                                         location_id=ReceivingHeaderData['location_id'],
+                                                         qty=EachDetail['qty'],
+                                                         rental_header_id=None,
+                                                         rental_detail_id=None,
+                                                         receiving_header_id=receiving_header(
+                                                             EachDetail['receiving_header_id']),
+                                                         receiving_detail_id=receiving_detail(
+                                                             EachDetail['receiving_detail_id']))
+        if stockCardData:
+            # print("Success create object")
+            print(stockCardData)
+        else:
+            print("Failed create object")
+
+        # a = kwargs['test']
+    # b = a['RDHeader']
+    # c = json.dumps(b, indent=4)
+    # d = json.dumps(a, indent=4)
+    # e = json.loads(c)
+    # # print(e[0])
+    # for x in e:
+    #     temp = []
+    # if "1" is a['status']:
+    #     print('DRAFT')
+    # else:
+    #     print('APPROVED')
 
 
 # View for nested serializer on stock mannagement

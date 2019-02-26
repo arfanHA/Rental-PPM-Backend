@@ -23,10 +23,7 @@ class generateInvoice(View):
 class generateKwitansi(View):
     def get(self, request, *args, **kwargs):
         data = {
-            # 'today': datetime.date.today(),
-            # 'amount': 39.99,
-            # 'customer_name': 'Cooper Mann',
-            # 'order_id': 1233434,
+            'npwp' : '000 000 000'
         }
         pdf = render_to_pdf('kwitansi.html', data)
         return HttpResponse(pdf, content_type='application/pdf')
