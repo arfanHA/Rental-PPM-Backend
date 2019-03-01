@@ -1,7 +1,6 @@
 from rest_framework import routers
 from django.conf.urls import include
 from django.conf.urls import url
-from django.urls import path
 from myproject.api.views import viewsets_views, generatePDF_views, another_views
 
 router = routers.DefaultRouter()
@@ -24,8 +23,6 @@ router.register(r'rental_detail', viewsets_views.rental_detail)
 router.register(r'rental_stock_card', viewsets_views.rental_stock_card)  # Stock management starts here
 router.register(r'rental_stock_sn', viewsets_views.rental_stock_sn)
 router.register(r'stock_sn_history', viewsets_views.stock_sn_history)
-# router.register(r'testingViewset', viewsets_views.testingViewsets)
-
 
 urlpatterns = [
     url(r'^', include(router.urls)),
@@ -33,11 +30,11 @@ urlpatterns = [
     url(r'^generateKwitansi/(?P<pk>[0-9]+)/$', generatePDF_views.generateKwitansi.as_view()),
     url(r'^generateReceiving/(?P<pk>[0-9]+)/$', generatePDF_views.generateReceiving.as_view()),
     url(r'^generateSuratjalan/(?P<pk>[0-9]+)/$', generatePDF_views.generateSuratJalan.as_view()),
-    url(r'^receivingHeader_Nested', another_views.NestedReceivingManagement.as_view()),
-    url(r'^NestedStockManagement', another_views.NestedStockManagement.as_view()),
-    url(r'^NestedReceivingManagementDetails/(?P<pk>[0-9]+/$)',
+    url(r'^NestedReceivingManagement/', another_views.NestedReceivingManagement.as_view()),
+    url(r'^NestedStockManagement/', another_views.NestedStockManagement.as_view()),
+    url(r'^NestedReceivingManagementDetails/(?P<pk>\d+)/$',
         another_views.NestedReceivingManagementDetails.as_view()),
-    url(r'^NestedStockManagementDetails/(?P<pk>[0-9]+)/$',
+    url(r'^NestedStockManagementDetails/(?P<pk>\d+)/$',
         another_views.NestedStockManagementDetails.as_view()),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]

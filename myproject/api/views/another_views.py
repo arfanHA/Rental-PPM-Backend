@@ -1,6 +1,6 @@
 from django.http import Http404
 
-from myproject.api.models import receiving_header, rental_stock_card, receiving_detail, rental_stock_sn, \
+from myproject.api.models import receiving_header, receiving_detail, rental_stock_card, rental_stock_sn, \
     stock_sn_history
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -33,7 +33,7 @@ class NestedReceivingManagement(APIView):
 
 # This view is use to get and update specific object of incoming management module
 class NestedReceivingManagementDetails(APIView):
-    def get_object(selfs, pk):
+    def get_object(self, pk):
         try:
             return receiving_header.objects.get(pk=pk)
         except receiving_header.DoesNotExist:
@@ -49,7 +49,7 @@ class NestedReceivingManagementDetails(APIView):
         serializer = NestedReceivingHeaderSerializer(header, data=request.data)
         if serializer.is_valid():
             serializer.save()
-            update_on_nested_serializer.send(sender=receiving_header, test=serializer.data)
+            # update_on_nested_serializer.send(sender=receiving_header, test=serializer.data)
             return Response(serializer.data, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
@@ -124,13 +124,13 @@ class NestedStockManagement(APIView):
 class NestedStockManagementDetails(APIView):
     def get_object(selfs, pk):
         try:
-            return receiving_header.objects.get(pk=pk)
+            return rental_stock_card.objects.get(pk=pk)
         except receiving_header.DoesNotExist:
             raise Http404
 
     def get(self, request, pk, format=None):
         header = self.get_object(pk)
-        serializer = NestedReceivingHeaderSerializer(header)
+        serializer = NestedStockCardSerializer(header)
         return Response(serializer.data)
     #
     # def put(self, request, pk, format=None):
