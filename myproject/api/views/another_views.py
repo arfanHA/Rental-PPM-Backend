@@ -1,19 +1,22 @@
 from django.http import Http404
 
-from myproject.api.models import receiving_header, rental_stock_card, receiving_detail, rental_stock_sn
+from myproject.api.models import receiving_header, rental_stock_card, receiving_detail, rental_stock_sn, \
+    stock_sn_history
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from django.dispatch import receiver, Signal
 from myproject.api.serializers import NestedReceivingHeaderSerializer, NestedStockCardSerializer
 import time
+import datetime
 
-# This view is purposely used for testing only
+# This view is purposely used for testing only, improvement is considered and might used in further development
 
 update_on_nested_serializer = Signal(providing_args=['test'])  # custom signal
+todaysDate = datetime.datetime.today().strftime('%Y-%m-%d')  # get current date
 
 
-# View for nested serializer on incoming/receiving management
+# This view is used to get and post object of incoming management module
 class NestedReceivingManagement(APIView):
     def get(self, request, format=None):
         headers = receiving_header.objects.all()
@@ -28,6 +31,7 @@ class NestedReceivingManagement(APIView):
         return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+# This view is use to get and update specific object of incoming management module
 class NestedReceivingManagementDetails(APIView):
     def get_object(selfs, pk):
         try:
@@ -45,26 +49,22 @@ class NestedReceivingManagementDetails(APIView):
         serializer = NestedReceivingHeaderSerializer(header, data=request.data)
         if serializer.is_valid():
             serializer.save()
-            START = time.time()
             update_on_nested_serializer.send(sender=receiving_header, test=serializer.data)
-            end = time.time()
-            print(end - START)
             return Response(serializer.data, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+# This is the receiver of signal to add new objects upon updating status in incoming module
 @receiver(update_on_nested_serializer)
-def yolo(sender, **kwargs):
+def addToStock(sender, **kwargs):
     ReceivingHeaderData = kwargs['test']
     Detail_from_ReceivingHeaderData = ReceivingHeaderData['RDHeader']
-
-
-
 
     if "1" is ReceivingHeaderData['status']:
         print('DRAFT, because the status is still DRAFT, so nothing happened XD')
     else:
         print('APPROVED')
+        # Adding each detail in incoming module on selected header to rental stock card
         for EachDetail in Detail_from_ReceivingHeaderData:
             stockCardData = rental_stock_card.objects.create(item_master_id=1,
                                                              location_id=ReceivingHeaderData['location_id'],
@@ -75,8 +75,10 @@ def yolo(sender, **kwargs):
                                                                  EachDetail['receiving_header_id']),
                                                              receiving_detail_id=receiving_detail(
                                                                  EachDetail['receiving_detail_id']))
+            # Check whether the object creation is success or not, if yes, put every SN in each details into
+            # rental stock sn and stock sn history with status equals to 1 or available
             if stockCardData:
-                print(stockCardData)
+                # print(stockCardData)
                 sn = []
 
                 # Move all SN in RDISN of each Detail into a variable called sn, then create rental stock sn objects for each rental stock card
@@ -92,15 +94,18 @@ def yolo(sender, **kwargs):
                     stockSN = rental_stock_sn.objects.create(first_sn=SN['first_serial_number'],
                                                              new_sn=SN['new_serial_number'],
                                                              stock_card_id=stockCardData)
+
                     if stockSN:
-                        print("Create Rental Stock SN object success!! the ID of this object is = ", stockSN)
+                        # print("Create Rental Stock SN object success!! the ID of this object is = ", stockSN)
+                        stock_sn_history.objects.create(date=todaysDate, status=1, stock_code_id=stockSN)
                     else:
                         print("Failed to create Rental Stock SN Object")
             else:
                 print("Failed create object")
 
 
-# View for nested serializer on stock mannagement
+# This view is used to get and post on stock management module including
+# rental stock card, rental stock sn, and stock sn history
 class NestedStockManagement(APIView):
     def get(self, request, format=None):
         stockmanagement = rental_stock_card.objects.all()
@@ -113,3 +118,25 @@ class NestedStockManagement(APIView):
             serializers.save()
             return Response(serializers.data, status=status.HTTP_201_CREATED)
         return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+# This view is used to get rental stock card, rental stock sn, and stock sn history
+class NestedStockManagementDetails(APIView):
+    def get_object(selfs, pk):
+        try:
+            return receiving_header.objects.get(pk=pk)
+        except receiving_header.DoesNotExist:
+            raise Http404
+
+    def get(self, request, pk, format=None):
+        header = self.get_object(pk)
+        serializer = NestedReceivingHeaderSerializer(header)
+        return Response(serializer.data)
+    #
+    # def put(self, request, pk, format=None):
+    #     header = self.get_object(pk)
+    #     serializer = NestedReceivingHeaderSerializer(header, data=request.data)
+    #     if serializer.is_valid():
+    #         serializer.save()
+    #         return Response(serializer.data, status=status.HTTP_200_OK)
+    #     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
