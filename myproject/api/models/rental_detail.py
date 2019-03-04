@@ -12,9 +12,9 @@ class rental_detail(models.Model):
     discount_type = models.CharField(max_length=100, blank=True)
     discount_value = models.CharField(max_length=200, blank=True)
     total = models.CharField(max_length=200)
-    rental_header_id = models.ForeignKey(rental_header, on_delete=models.DO_NOTHING, blank=True, null=True)
-    order_detail_id = models.OneToOneField(rental_order_detail, on_delete=models.DO_NOTHING, blank=True, null=True)
-    master_item_id = models.ForeignKey(master_item, on_delete=models.DO_NOTHING, blank=True, null=True)
+    rental_header_id = models.ForeignKey(rental_header, on_delete=models.DO_NOTHING, blank=True, null=True, related_name='RentalDetailHeader')
+    order_detail_id = models.OneToOneField(rental_order_detail, on_delete=models.DO_NOTHING, blank=True, null=True, related_name='RentalDetailROD')
+    master_item_id = models.ForeignKey(master_item, on_delete=models.DO_NOTHING, blank=True, null=True, related_name='RentalDetailItems')
 
     class Meta:
         db_table = 'RentalDetail'
