@@ -1,7 +1,7 @@
 from django.http import Http404
 
 from myproject.api.models import receiving_header, receiving_detail, rental_stock_card, rental_stock_sn, \
-    stock_sn_history
+    stock_sn_history, master_item
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -66,7 +66,7 @@ def addToStock(sender, **kwargs):
         print('APPROVED')
         # Adding each detail in incoming module on selected header to rental stock card
         for EachDetail in Detail_from_ReceivingHeaderData:
-            stockCardData = rental_stock_card.objects.create(item_master_id=1,
+            stockCardData = rental_stock_card.objects.create(item_master_id=master_item(EachDetail['master_item_id']),
                                                              location_id=ReceivingHeaderData['location_id'],
                                                              qty=EachDetail['qty'],
                                                              rental_header_id=None,
