@@ -110,6 +110,17 @@ class RentalOrderDetailSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class NestedRentalOrderHeaderSerializer(WritableNestedModelSerializer):
+    RODHeader = RentalOrderDetailSerializer(many=True)
+
+    class Meta:
+        model = rental_order_header
+        fields = ['sales_order_id', 'date', 'number', 'number_prefix', 'counter', 'tax', 'discount_type', 'discount',
+                  'delivery_fee', 'amount', 'notes_kwitansi', 'salesman', 'status', 'rental_start_date',
+                  'rental_end_date', 'notes', 'location_id', 'customer_id', 'approved_by', 'approved_date', 'user_id',
+                  'RODHeader']
+
+
 # Rental Register
 
 class RentalHeaderSerializer(serializers.ModelSerializer):

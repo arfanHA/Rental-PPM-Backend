@@ -2,13 +2,13 @@ from django.http import Http404
 from rest_framework.decorators import api_view
 
 from myproject.api.models import receiving_header, receiving_detail, rental_stock_card, rental_stock_sn, \
-    stock_sn_history, master_item, rental_header
+    stock_sn_history, master_item, rental_header, rental_order_header
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from django.dispatch import receiver, Signal
 from myproject.api.serializers import NestedReceivingHeaderSerializer, NestedStockCardSerializer, \
-    NestedRentalHeaderSerializer, ItemSerializer
+    NestedRentalHeaderSerializer, ItemSerializer, NestedRentalOrderHeaderSerializer
 import time
 import datetime
 
@@ -136,7 +136,7 @@ class NestedStockManagementDetails(APIView):
         return Response(serializer.data)
 
 
-# This view is used to GET and POST rental register header and rental register detail objects in nested way
+# Rental Register
 class NestedRentalRegister(APIView):
     def get(self, request, format=None):
         rentalHeader = rental_header.objects.all()
@@ -151,7 +151,7 @@ class NestedRentalRegister(APIView):
         return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-# This view is used to GET and PUT specific rental register header object
+# Rental Register Details
 class NestedRentalRegisterDetails(APIView):
     def get_object(self, pk):
         try:
@@ -167,6 +167,43 @@ class NestedRentalRegisterDetails(APIView):
     def put(self, request, pk, format=None):
         rentalHeader = self.get_object(pk)
         serializers = NestedRentalHeaderSerializer(rentalHeader, data=request.data)
+        if serializers.is_valid():
+            serializers.save()
+            return Response(serializers.data, status=status.HTTP_200_OK)
+        return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+# Rental Order Management
+class NestedRentalOrderManagement(APIView):
+    def get(self, request, format=None):
+        rentalOrderHeader = rental_order_header.objects.all()
+        serializer = NestedRentalOrderHeaderSerializer(rentalOrderHeader, many=True)
+        return Response(serializer.data)
+
+    def post(self, request, format=None):
+        serializer = NestedRentalOrderHeaderSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+# Rental Order Management Details
+class NestedRentalOrderManagementDetails(APIView):
+    def get_object(self, pk):
+        try:
+            return rental_order_header.objects.get(pk=pk)
+        except rental_order_header.DoesNotExist:
+            raise Http404
+
+    def get(self, request, pk, format=None):
+        rentalOrderHeader = self.get_object(pk)
+        serializers = NestedRentalOrderHeaderSerializer(rentalOrderHeader)
+        return Response(serializers.data)
+
+    def put(self, request, pk, format=None):
+        rentalOrderHeader = self.get_object(pk)
+        serializers = NestedRentalOrderHeaderSerializer(rentalOrderHeader, data=request.data)
         if serializers.is_valid():
             serializers.save()
             return Response(serializers.data, status=status.HTTP_200_OK)
