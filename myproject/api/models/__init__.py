@@ -12,8 +12,8 @@ from .master_employee import master_employee
 from .receiving_detail_sn import receiving_detail_sn
 from .rental_order_header import rental_order_header
 from .rental_order_detail import rental_order_detail
-from .rental_header import rental_header
-from .rental_detail import rental_detail
+from .rental_register_header import rental_header
+from .rental_register_detail import rental_detail
 from .rental_stock_card import rental_stock_card
 from .rental_stock_sn import rental_stock_sn
 from .stock_sn_history import stock_sn_history

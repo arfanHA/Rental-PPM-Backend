@@ -2,8 +2,8 @@ from django.db import models
 
 from .receiving_detail import receiving_detail
 from .receiving_header import receiving_header
-from .rental_detail import rental_detail
-from .rental_header import rental_header
+from .rental_register_detail import rental_detail
+from .rental_register_header import rental_header
 
 
 class rental_stock_card(models.Model):

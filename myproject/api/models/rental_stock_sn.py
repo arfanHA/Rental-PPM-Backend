@@ -11,7 +11,9 @@ class rental_stock_sn(models.Model):
     receiving_detail_sn_id = models.OneToOneField(receiving_detail_sn, on_delete=models.DO_NOTHING, null=True,
                                                   blank=True, related_name='StockSNFromRDSN')
     # RDSN stands for Receiving Detail SN
-    stock_card_id = models.ForeignKey(rental_stock_card, on_delete=models.DO_NOTHING, blank=True, null=True, related_name='StockSNFromRSC')
+    stock_card_id = models.ForeignKey(rental_stock_card, on_delete=models.DO_NOTHING, blank=True, null=True,
+                                      related_name='StockSNFromRSC')
+
     # RSC stands for Rental Stock Card
 
     class Meta:

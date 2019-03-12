@@ -136,8 +136,8 @@ class NestedStockManagementDetails(APIView):
         return Response(serializer.data)
 
 
-# This view is used to GET and POST rental order header and rental order detail objects in nested way
-class NestedRentalOrderManagement(APIView):
+# This view is used to GET and POST rental register header and rental register detail objects in nested way
+class NestedRentalRegister(APIView):
     def get(self, request, format=None):
         rentalHeader = rental_header.objects.all()
         serializers = NestedRentalHeaderSerializer(rentalHeader, many=True)
@@ -151,8 +151,8 @@ class NestedRentalOrderManagement(APIView):
         return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-# This view is used to GET and PUT specific rental order header object
-class NestedRentalOrderrManagementDetails(APIView):
+# This view is used to GET and PUT specific rental register header object
+class NestedRentalRegisterDetails(APIView):
     def get_object(self, pk):
         try:
             return rental_header.objects.get(pk=pk)

@@ -31,14 +31,14 @@ urlpatterns = [
     url(r'^generateReceiving/(?P<pk>[0-9]+)/$', generatePDF_views.generateReceiving.as_view()),
     url(r'^generateSuratjalan/(?P<pk>[0-9]+)/$', generatePDF_views.generateSuratJalan.as_view()),
     url(r'^NestedReceivingManagement/', another_views.NestedReceivingManagement.as_view()),
-    url(r'^NestedStockManagement/', another_views.NestedStockManagement.as_view()),
     url(r'^NestedReceivingManagementDetails/(?P<pk>\d+)/$',
         another_views.NestedReceivingManagementDetails.as_view()),
+    url(r'^NestedStockManagement/', another_views.NestedStockManagement.as_view()),
     url(r'^NestedStockManagementDetails/(?P<pk>\d+)/$',
         another_views.NestedStockManagementDetails.as_view()),
-    url(r'^NestedRentalOrderManagement/', another_views.NestedRentalOrderManagement.as_view()),
-    url(r'^NestedRentalOrderManagementDetails/(?P<pk>[0-9]+)/$',
-        another_views.NestedRentalOrderrManagementDetails.as_view()),
+    url(r'^NestedRentalRegister/', another_views.NestedRentalRegister.as_view()),
+    url(r'^NestedRentalRegisterDetails/(?P<pk>[0-9]+)/$',
+        another_views.NestedRentalRegisterDetails.as_view()),
     url(r'getItemByCat/(?P<b>\d+)/$', another_views.getItemByCategory, name='GetItemByCategory'),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]

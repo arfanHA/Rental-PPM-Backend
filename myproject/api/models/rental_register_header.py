@@ -24,12 +24,14 @@ class rental_header(models.Model):
     status = models.CharField(max_length=100)
     rental_start_date = models.DateField()
     rental_end_date = models.DateField()
-    pay_type = models.IntegerField()
     sales_order_id = models.OneToOneField(rental_order_header, on_delete=models.DO_NOTHING, null=True, blank=True)
     customer_id = models.OneToOneField(master_customer, on_delete=models.DO_NOTHING)
     location_id = models.OneToOneField(master_location, on_delete=models.DO_NOTHING)
     approved_by = models.BigIntegerField(blank=True, null=True)
     approved_date = models.DateField(blank=True, null=True)
+    pay_type = models.IntegerField()
+    pay_method = models.IntegerField(default=None)
+    note_kwitansi = models.CharField(max_length=100, blank=True)
 
     class Meta:
         db_table = 'RentalHeader'
