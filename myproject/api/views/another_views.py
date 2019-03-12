@@ -1,4 +1,5 @@
 from django.http import Http404
+from rest_framework.decorators import api_view
 
 from myproject.api.models import receiving_header, receiving_detail, rental_stock_card, rental_stock_sn, \
     stock_sn_history, master_item, rental_header
@@ -7,7 +8,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from django.dispatch import receiver, Signal
 from myproject.api.serializers import NestedReceivingHeaderSerializer, NestedStockCardSerializer, \
-    NestedRentalHeaderSerializer
+    NestedRentalHeaderSerializer, ItemSerializer
 import time
 import datetime
 
@@ -134,6 +135,7 @@ class NestedStockManagementDetails(APIView):
         serializer = NestedStockCardSerializer(header)
         return Response(serializer.data)
 
+
 # This view is used to GET and POST rental order header and rental order detail objects in nested way
 class NestedRentalOrderManagement(APIView):
     def get(self, request, format=None):
@@ -147,6 +149,7 @@ class NestedRentalOrderManagement(APIView):
             serializers.save()
             return Response(serializers.data, status=status.HTTP_201_CREATED)
         return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 # This view is used to GET and PUT specific rental order header object
 class NestedRentalOrderrManagementDetails(APIView):
@@ -168,3 +171,10 @@ class NestedRentalOrderrManagementDetails(APIView):
             serializers.save()
             return Response(serializers.data, status=status.HTTP_200_OK)
         return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['GET'])
+def getItemByCategory(request, b=1):
+    item = master_item.objects.filter(master_group_id=b)
+    serializer = ItemSerializer(item, many=True)
+    return Response(serializer.data)
