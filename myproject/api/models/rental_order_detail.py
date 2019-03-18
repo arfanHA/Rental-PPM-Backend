@@ -12,7 +12,7 @@ class rental_order_detail(models.Model):
     discount_method = models.IntegerField(blank=True, null=True)
     discount = models.CharField(max_length=200, blank=True)
     total = models.CharField(max_length=200)
-    sales_order_id = models.ForeignKey(rental_order_header, on_delete=models.DO_NOTHING, related_name='RODHeader')
+    sales_order_id = models.ForeignKey(rental_order_header, on_delete=models.DO_NOTHING, related_name='RODHeader', blank=True)
 
     class Meta:
         db_table = 'RentalOrderDetail'

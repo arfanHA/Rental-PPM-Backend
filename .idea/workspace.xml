@@ -1,17 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8660eb00-8fae-4ce9-a8e6-d5eaaecd21f7" name="Default Changelist" comment="">
+    <list default="true" id="8660eb00-8fae-4ce9-a8e6-d5eaaecd21f7" name="Default Changelist" comment="Add new view of rental order management&#10;Add new url">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/myproject/api/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/myproject/api/models/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/myproject/api/models/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/myproject/api/models/receiving_detail_sn.py" beforeDir="false" afterPath="$PROJECT_DIR$/myproject/api/models/receiving_detail_sn.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/myproject/api/models/rental_detail.py" beforeDir="false" afterPath="$PROJECT_DIR$/myproject/api/models/rental_register_detail.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/myproject/api/models/rental_header.py" beforeDir="false" afterPath="$PROJECT_DIR$/myproject/api/models/rental_register_header.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/myproject/api/models/rental_stock_card.py" beforeDir="false" afterPath="$PROJECT_DIR$/myproject/api/models/rental_stock_card.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/myproject/api/models/rental_stock_sn.py" beforeDir="false" afterPath="$PROJECT_DIR$/myproject/api/models/rental_stock_sn.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/myproject/api/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/myproject/api/serializers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/myproject/api/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/myproject/api/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/myproject/api/models/master_customer.py" beforeDir="false" afterPath="$PROJECT_DIR$/myproject/api/models/master_customer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/myproject/api/models/rental_order_detail.py" beforeDir="false" afterPath="$PROJECT_DIR$/myproject/api/models/rental_order_detail.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/myproject/api/views/another_views.py" beforeDir="false" afterPath="$PROJECT_DIR$/myproject/api/views/another_views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -30,25 +24,13 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="urls.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/myproject/api/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="354">
-              <caret line="41" column="83" lean-forward="true" selection-start-line="41" selection-start-column="83" selection-end-line="41" selection-end-column="83" />
+            <state relative-caret-position="646">
+              <caret line="41" column="38" selection-start-line="41" selection-start-column="11" selection-end-line="41" selection-end-column="38" />
               <folding>
                 <element signature="e#0#34#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="another_views.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/myproject/api/views/another_views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="154" column="25" lean-forward="true" selection-start-line="154" selection-start-column="6" selection-end-line="154" selection-end-column="33" />
-              <folding>
-                <element signature="e#0#31#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -57,11 +39,53 @@
       <file leaf-file-name="serializers.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/myproject/api/serializers.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="344">
-              <caret line="134" column="92" selection-start-line="134" selection-start-column="92" selection-end-line="134" selection-end-column="92" />
+            <state relative-caret-position="1836">
+              <caret line="110" selection-start-line="110" selection-end-line="110" />
               <folding>
                 <element signature="e#0#38#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="another_views.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/myproject/api/views/another_views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2686">
+              <caret line="170" column="30" lean-forward="true" selection-start-line="170" selection-start-column="30" selection-end-line="170" selection-end-column="30" />
+              <folding>
+                <element signature="e#0#31#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="rental_order_detail.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/myproject/api/models/rental_order_detail.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="238">
+              <caret line="14" column="125" selection-start-line="14" selection-start-column="125" selection-end-line="14" selection-end-column="125" />
+              <folding>
+                <element signature="e#0#28#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="master_customer.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/myproject/api/models/master_customer.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="221">
+              <caret line="13" column="63" lean-forward="true" selection-start-line="13" selection-start-column="63" selection-end-line="13" selection-end-column="63" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="rental_register_detail.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/myproject/api/models/rental_register_detail.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret line="4" column="52" lean-forward="true" selection-start-line="4" selection-start-column="52" selection-end-line="4" selection-end-column="52" />
             </state>
           </provider>
         </entry>
@@ -82,7 +106,13 @@
       <find>one_to_many</find>
       <find>master_ka</find>
       <find>font-size: 15px;</find>
+      <find>RODHEADER</find>
+      <find>RODH</find>
+      <find>RODHeader</find>
     </findStrings>
+    <dirStrings>
+      <dir>D:\ION\BackEnd\myproject\api\models</dir>
+    </dirStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -112,7 +142,6 @@
         <option value="$PROJECT_DIR$/utils.py" />
         <option value="$PROJECT_DIR$/templates/invoice.html" />
         <option value="$PROJECT_DIR$/myproject/api/models/rental_order_header.py" />
-        <option value="$PROJECT_DIR$/myproject/api/models/rental_order_detail.py" />
         <option value="$PROJECT_DIR$/myproject/api/models/master_user.py" />
         <option value="$PROJECT_DIR$/myproject/api/models/rental_header.py" />
         <option value="$PROJECT_DIR$/myproject/api/models/rental_detail_sn.py" />
@@ -137,9 +166,11 @@
         <option value="$PROJECT_DIR$/myproject/api/models/receiving_header.py" />
         <option value="$PROJECT_DIR$/myproject/api/models/receiving_detail_sn.py" />
         <option value="$PROJECT_DIR$/myproject/api/models/rental_stock_sn.py" />
-        <option value="$PROJECT_DIR$/myproject/api/serializers.py" />
         <option value="$PROJECT_DIR$/myproject/api/views/another_views.py" />
         <option value="$PROJECT_DIR$/myproject/api/urls.py" />
+        <option value="$PROJECT_DIR$/myproject/api/serializers.py" />
+        <option value="$PROJECT_DIR$/myproject/api/models/rental_order_detail.py" />
+        <option value="$PROJECT_DIR$/myproject/api/models/master_customer.py" />
       </list>
     </option>
   </component>
@@ -166,6 +197,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -214,7 +246,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -520,7 +551,21 @@
       <option name="project" value="LOCAL" />
       <updated>1552361888675</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="File names Changes&#10;Add few new attribute/fields into models&#10;Update to serializers and url">
+      <created>1552364317854</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1552364317854</updated>
+    </task>
+    <task id="LOCAL-00030" summary="Add new view of rental order management&#10;Add new url">
+      <created>1552366395564</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1552366395564</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -537,7 +582,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3289689" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5015129" side_tool="true" weight="0.5693069" />
@@ -545,8 +589,8 @@
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32838285" />
       <window_info anchor="bottom" id="Python Console" order="13" weight="0.32673267" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32838285" />
-      <window_info anchor="bottom" x="98" y="61" width="1201" height="606" id="Terminal" order="14" sideWeight="0.49848714" visible="true" weight="0.22442244" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49339935" visible="true" weight="0.24432677" />
+      <window_info anchor="bottom" x="98" y="61" width="1201" height="606" id="Terminal" order="14" sideWeight="0.49848714" visible="true" weight="0.2640264" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49339935" visible="true" weight="0.25567323" />
       <window_info anchor="right" id="R Packages" order="3" />
       <window_info anchor="bottom" id="Docker" order="10" show_stripe_button="false" />
       <window_info anchor="right" id="R Graphics" order="3" />
@@ -566,13 +610,12 @@
       <window_info anchor="bottom" id="Find" order="1" />
     </layout>
     <layout-to-restore>
-      <window_info anchor="bottom" id="Version Control" order="7" weight="0.32838285" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Docker" order="10" show_stripe_button="false" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32838285" />
-      <window_info id="Favorites" order="2" sideWeight="0.5066007" side_tool="true" weight="0.27987897" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49339935" weight="0.3260212" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49339935" visible="true" weight="0.24432677" />
       <window_info id="Structure" order="1" sideWeight="0.5066007" side_tool="true" weight="0.27987897" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -580,17 +623,18 @@
       <window_info anchor="right" id="R Graphics" order="3" />
       <window_info active="true" anchor="bottom" id="Inspection Results" order="12" visible="true" weight="0.32974428" />
       <window_info anchor="right" id="R Packages" order="4" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="right" id="Database" order="5" />
-      <window_info active="true" anchor="bottom" x="98" y="61" width="1201" height="606" id="Terminal" order="14" sideWeight="0.49848714" visible="true" weight="0.37458745" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Python Console" order="13" weight="0.32673267" />
       <window_info anchor="bottom" id="Database Changes" order="11" weight="0.32838285" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="right" id="Database" order="5" />
+      <window_info anchor="bottom" x="98" y="61" width="1201" height="606" id="Terminal" order="14" sideWeight="0.49848714" weight="0.22442244" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="Version Control" order="7" weight="0.32838285" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5015129" side_tool="true" weight="0.5693069" />
       <window_info anchor="right" id="SciView" order="6" weight="0.32980332" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Messages" order="8" />
-      <window_info anchor="bottom" id="Python Console" order="13" weight="0.32673267" />
+      <window_info id="Favorites" order="2" sideWeight="0.5066007" side_tool="true" weight="0.27987897" />
     </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -600,8 +644,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Update requirements" />
-    <MESSAGE value="Spltting models into sub models" />
     <MESSAGE value="Models optimization for multiple relation" />
     <MESSAGE value="Splitting views to seperate file between viewsets and function based views" />
     <MESSAGE value="Splitting views into seperate files between viewsets views and function based views" />
@@ -625,7 +667,9 @@
     <MESSAGE value="Add nested serializers to rental order management including rental order header and rental order detail&#10;Add GET and POST request url for nested rental order management&#10;Add GET and PUT request url for specific nested rental order management objects" />
     <MESSAGE value="Minor Fix" />
     <MESSAGE value="Add new view (get item by category)&#10;url : /getItemByCat/b/ where b is the id of category's id" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add new view (get item by category)&#10;url : /getItemByCat/b/ where b is the id of category's id" />
+    <MESSAGE value="File names Changes&#10;Add few new attribute/fields into models&#10;Update to serializers and url" />
+    <MESSAGE value="Add new view of rental order management&#10;Add new url" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add new view of rental order management&#10;Add new url" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/myproject/api/views/__init__.py">
@@ -712,9 +756,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="58" selection-start-line="58" selection-end-line="58" />
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -775,47 +816,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/myproject/api/migrations/0004_auto_20190312_1056.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/myproject/api/migrations/0004_auto_20190312_1056.py" />
     <entry file="file://$PROJECT_DIR$/myproject/api/migrations/__init__.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/myproject/api/migrations/0001_initial.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/myproject/api/models/rental_register_detail.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="26" selection-start-line="26" selection-end-line="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/myproject/api/models/rental_order_header.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="33" column="38" selection-start-line="33" selection-start-column="38" selection-end-line="33" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/myproject/api/models/rental_order_detail.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="20" column="40" selection-start-line="20" selection-start-column="40" selection-end-line="20" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/myproject/api/models/master_uom.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="5" column="34" lean-forward="true" selection-start-line="5" selection-start-column="34" selection-end-line="5" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/myproject/api/models/master_customer.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" selection-start-line="22" selection-end-line="22" />
         </state>
       </provider>
     </entry>
@@ -870,9 +881,10 @@
           </nodes>
           <notes />
           <edges />
-          <settings layout="Hierarchic Group" zoom="1.153197362367735" x="5623.117021276596" y="128.11702127659575" />
+          <settings layout="Hierarchic Group" zoom="1.153197362367735" x="5623.0" y="128.0" />
           <SelectedNodes />
           <Categories />
+          <SCOPE>All</SCOPE>
         </state>
       </provider>
     </entry>
@@ -883,26 +895,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/myproject/api/models/receiving_header.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="23" selection-start-line="15" selection-start-column="23" selection-end-line="15" selection-end-column="23" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/myproject/api/models/receiving_detail.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="34" selection-start-line="3" selection-start-column="34" selection-end-line="3" selection-end-column="34" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/myproject/api/models/receiving_detail_sn.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
@@ -910,16 +902,37 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/myproject/api/models/receiving_header.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="23" selection-start-line="15" selection-start-column="23" selection-end-line="15" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/myproject/api/models/receiving_detail.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="34" selection-start-line="3" selection-start-column="34" selection-end-line="3" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/myproject/api/models/rental_register_header.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="492">
+          <caret line="35" column="15" lean-forward="true" selection-start-line="35" selection-start-column="15" selection-end-line="35" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/myproject/api/models/rental_stock_card.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="19" column="23" selection-start-line="19" selection-start-column="4" selection-end-line="19" selection-end-column="23" />
+        <state relative-caret-position="136">
+          <caret line="13" column="12" lean-forward="true" selection-start-line="13" selection-start-column="12" selection-end-line="13" selection-end-column="12" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/myproject/api/models/rental_stock_sn.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="235">
+        <state relative-caret-position="255">
           <caret line="18" column="15" selection-start-line="18" selection-start-column="15" selection-end-line="18" selection-end-column="15" />
         </state>
       </provider>
@@ -931,43 +944,64 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/myproject/api/models/rental_register_header.py">
+    <entry file="file://$PROJECT_DIR$/myproject/api/models/rental_order_header.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="371">
-          <caret line="35" column="15" lean-forward="true" selection-start-line="35" selection-start-column="15" selection-end-line="35" selection-end-column="15" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="119">
+          <caret line="10" column="27" selection-start-line="10" selection-start-column="27" selection-end-line="10" selection-end-column="27" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/myproject/api/serializers.py">
+    <entry file="file://$PROJECT_DIR$/myproject/api/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="344">
-          <caret line="134" column="92" selection-start-line="134" selection-start-column="92" selection-end-line="134" selection-end-column="92" />
+        <state relative-caret-position="646">
+          <caret line="41" column="38" selection-start-line="41" selection-start-column="11" selection-end-line="41" selection-end-column="38" />
           <folding>
-            <element signature="e#0#38#0" expanded="true" />
+            <element signature="e#0#34#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/myproject/api/views/another_views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="154" column="25" lean-forward="true" selection-start-line="154" selection-start-column="6" selection-end-line="154" selection-end-column="33" />
+        <state relative-caret-position="2686">
+          <caret line="170" column="30" lean-forward="true" selection-start-line="170" selection-start-column="30" selection-end-line="170" selection-end-column="30" />
           <folding>
             <element signature="e#0#31#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/myproject/api/urls.py">
+    <entry file="file://$PROJECT_DIR$/myproject/api/serializers.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="354">
-          <caret line="41" column="83" lean-forward="true" selection-start-line="41" selection-start-column="83" selection-end-line="41" selection-end-column="83" />
+        <state relative-caret-position="1836">
+          <caret line="110" selection-start-line="110" selection-end-line="110" />
           <folding>
-            <element signature="e#0#34#0" expanded="true" />
+            <element signature="e#0#38#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/myproject/api/models/rental_register_detail.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret line="4" column="52" lean-forward="true" selection-start-line="4" selection-start-column="52" selection-end-line="4" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/myproject/api/models/rental_order_detail.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="125" selection-start-line="14" selection-start-column="125" selection-end-line="14" selection-end-column="125" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/myproject/api/models/master_customer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="63" lean-forward="true" selection-start-line="13" selection-start-column="63" selection-end-line="13" selection-end-column="63" />
         </state>
       </provider>
     </entry>
