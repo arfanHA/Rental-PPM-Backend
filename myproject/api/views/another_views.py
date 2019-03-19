@@ -1,4 +1,4 @@
-from django.http import Http404
+from django.http import Http404, HttpResponse
 from rest_framework.decorators import api_view
 
 from myproject.api.models import receiving_header, receiving_detail, rental_stock_card, rental_stock_sn, \
@@ -8,7 +8,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from django.dispatch import receiver, Signal
 from myproject.api.serializers import NestedReceivingHeaderSerializer, NestedStockCardSerializer, \
-    NestedRentalHeaderSerializer, ItemSerializer, NestedRentalOrderHeaderSerializer
+    NestedRentalHeaderSerializer, ItemSerializer, NestedRentalOrderHeaderSerializer, RentalStockSNSerializer
 import time
 import datetime
 
@@ -215,3 +215,78 @@ def getItemByCategory(request, b=1):
     item = master_item.objects.filter(master_group_id=b)
     serializer = ItemSerializer(item, many=True)
     return Response(serializer.data)
+
+
+# @api_view(['GET'])
+# def getItemSNs(request, i=1):
+#     items = rental_stock_card.objects.filter(item_master_id=i)
+#     listOfSN = []
+#     for item in items:
+#         sn = rental_stock_sn.objects.filter(stock_card_id=item)
+#         listOfSN.append(sn)
+#     serializer = RentalStockSNSerializer(listOFSN, many=True)
+#     return Response("Hello")
+
+
+@api_view(['GET'])
+def getDocumentNumber(request, r=1):
+    now = datetime.datetime.now()
+    docNumb = ""
+    if r is "1":
+        # This is for Rental Order Management
+        docNumb += "This is request number 1/" + now.strftime("%y%m") + "/"
+        query = rental_order_header.objects.count()
+        if query < 1:
+            docNumb += "0001"
+        else:
+            query2 = rental_order_header.objects.all().order_by('-counter')[:1].get()
+            j = query2.counter + 1
+            docNumb += str(j).zfill(4)
+    elif r is "2":
+        # This is for Rental Register
+        docNumb += "This is request number 2/" + now.strftime("%y%m") + "/"
+        query = rental_header.objects.count()
+        if query < 1:
+            docNumb += "0001"
+        else:
+            query2 = rental_header.objects.all().order_by('-counter')[:1].get()
+            j = query2.counter + 1
+            docNumb += str(j).zfill(4)
+    elif r is "3":
+        # This is for Incoming or Receiving Management
+        docNumb += "This is request number 3/" + now.strftime("%y%m") + "/"
+        query = receiving_header.objects.count()
+        if query < 1:
+            docNumb += "0001"
+        else:
+            query2 = receiving_header.objects.all().order_by('-counter')[:1].get()
+            j = query2.counter + 1
+            docNumb += str(j).zfill(4)
+    return HttpResponse(docNumb, content_type="text/plain")
+
+
+@api_view(['GET'])
+def getCounter(request, r=1):
+    c = ""
+    if r is "1":
+        query = rental_order_header.objects.count()
+        if query < 1:
+            c += "0"
+        else:
+            query2 = rental_order_header.objects.all().order_by('-counter')[:1].get()
+            c += query2.counter
+    elif r is "2":
+        query = rental_header.objects.count()
+        if query < 1:
+            c += "0"
+        else:
+            query2 = rental_header.objects.all().order_by('-counter')[:1].get()
+            c += query2.counter
+    elif r is "3":
+        query = receiving_header.objects.count()
+        if query < 1:
+            c += "0"
+        else:
+            query2 = receiving_header.objects.all().order_by('-counter')[:1].get()
+            c += query2.counter
+    return HttpResponse(c, content_type="text/plain")

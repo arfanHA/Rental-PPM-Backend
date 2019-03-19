@@ -43,5 +43,8 @@ urlpatterns = [
     url(r'^NestedRentalOrderManagementDetails/(?P<pk>[0-9]+)/$',
         another_views.NestedRentalOrderManagementDetails.as_view()),
     url(r'getItemByCat/(?P<b>\d+)/$', another_views.getItemByCategory, name='GetItemByCategory'),
+    # url(r'getItemSNs/(?P<i>\d+)/$', another_views.getItemSNs, name='GetSNsByItem'),
+    url(r'getDocumentNumber/(?P<r>\d+)/$', another_views.getDocumentNumber, name="GetDocumentNumber"),
+    url(r'getCounter/(?P<r>\d+)/$', another_views.getCounter, name="GetCounter"),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]
