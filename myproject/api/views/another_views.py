@@ -8,7 +8,8 @@ from rest_framework.response import Response
 from rest_framework import status
 from django.dispatch import receiver, Signal
 from myproject.api.serializers import NestedReceivingHeaderSerializer, NestedStockCardSerializer, \
-    NestedRentalHeaderSerializer, ItemSerializer, NestedRentalOrderHeaderSerializer, RentalStockSNSerializer
+    NestedRentalHeaderSerializer, ItemSerializer, NestedRentalOrderHeaderSerializer, RentalStockSNSerializer, \
+    RentalStockCardSerializer
 import time
 import datetime
 
@@ -217,15 +218,11 @@ def getItemByCategory(request, b=1):
     return Response(serializer.data)
 
 
-# @api_view(['GET'])
-# def getItemSNs(request, i=1):
-#     items = rental_stock_card.objects.filter(item_master_id=i)
-#     listOfSN = []
-#     for item in items:
-#         sn = rental_stock_sn.objects.filter(stock_card_id=item)
-#         listOfSN.append(sn)
-#     serializer = RentalStockSNSerializer(listOFSN, many=True)
-#     return Response("Hello")
+@api_view(['GET'])
+def getItemSNs(request, i=1):
+    sns = rental_stock_sn.objects.filter(stock_card_id__in=(rental_stock_card.objects.filter(item_master_id=i)))
+    serializers = RentalStockSNSerializer(sns, many=True)
+    return Response(serializers.data, status=status.HTTP_200_OK)
 
 
 @api_view(['GET'])
