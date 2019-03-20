@@ -234,7 +234,7 @@ def getDocumentNumber(request, r=1):
     docNumb = ""
     if r is "1":
         # This is for Rental Order Management
-        docNumb += "This is request number 1/" + now.strftime("%y%m") + "/"
+        docNumb += "RO/"
         query = rental_order_header.objects.count()
         if query < 1:
             docNumb += "0001"
@@ -244,7 +244,7 @@ def getDocumentNumber(request, r=1):
             docNumb += str(j).zfill(4)
     elif r is "2":
         # This is for Rental Register
-        docNumb += "This is request number 2/" + now.strftime("%y%m") + "/"
+        docNumb += "RN/"
         query = rental_header.objects.count()
         if query < 1:
             docNumb += "0001"
@@ -254,7 +254,7 @@ def getDocumentNumber(request, r=1):
             docNumb += str(j).zfill(4)
     elif r is "3":
         # This is for Incoming or Receiving Management
-        docNumb += "This is request number 3/" + now.strftime("%y%m") + "/"
+        docNumb += "IN/"
         query = receiving_header.objects.count()
         if query < 1:
             docNumb += "0001"
@@ -262,6 +262,7 @@ def getDocumentNumber(request, r=1):
             query2 = receiving_header.objects.all().order_by('-counter')[:1].get()
             j = query2.counter + 1
             docNumb += str(j).zfill(4)
+    docNumb += "/" + now.strftime("%m") + "/" + now.strftime("%Y")
     return HttpResponse(docNumb, content_type="text/plain")
 
 
