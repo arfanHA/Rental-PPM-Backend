@@ -9,7 +9,7 @@ from rest_framework import status
 from django.dispatch import receiver, Signal
 from myproject.api.serializers import NestedReceivingHeaderSerializer, NestedStockCardSerializer, \
     NestedRentalHeaderSerializer, ItemSerializer, NestedRentalOrderHeaderSerializer, RentalStockSNSerializer, \
-    RentalStockCardSerializer
+    RentalStockCardSerializer, StockSNHistorySerializer
 import time
 import datetime
 
@@ -96,6 +96,7 @@ def addToStock(sender, **kwargs):
                 for SN in sn:
                     stockSN = rental_stock_sn.objects.create(first_sn=SN['first_serial_number'],
                                                              new_sn=SN['new_serial_number'],
+                                                             status="1",
                                                              stock_card_id=stockCardData)
 
                     if stockSN:
@@ -226,6 +227,13 @@ def getItemSNs(request, i=1):
 
 
 @api_view(['GET'])
+def getItemSNsAvailable(request, i=1):
+    sns = rental_stock_sn.objects.filter(stock_card_id__in=(rental_stock_card.objects.filter(item_master_id=i))).filter(status="1")
+    serializers = RentalStockSNSerializer(sns, many=True)
+    return Response(serializers.data, status=status.HTTP_200_OK)
+
+
+@api_view(['GET'])
 def getDocumentNumber(request, r=1):
     now = datetime.datetime.now()
     docNumb = ""
@@ -288,3 +296,10 @@ def getCounter(request, r=1):
             query2 = receiving_header.objects.all().order_by('-counter')[:1].get()
             c += query2.counter
     return HttpResponse(c, content_type="text/plain")
+
+
+@api_view(['GET'])
+def getUnapprovedHeader(request, s=1):
+    incomingHeader = receiving_header.objects.filter(status=s)
+    serializers = NestedReceivingHeaderSerializer(incomingHeader, many=True)
+    return Response(serializers.data, status=status.HTTP_200_OK)
