@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8660eb00-8fae-4ce9-a8e6-d5eaaecd21f7" name="Default Changelist" comment="Get SN by Item ID views added">
+    <list default="true" id="8660eb00-8fae-4ce9-a8e6-d5eaaecd21f7" name="Default Changelist" comment="Few updates&#10;Add new views (getSnsByItemAvailable) to get SNs that available to be rented&#10;Add new views (getUnapprovedHeader) to get incoming header that has not been approved&#10;Add new field into rental_stock_sn (status) to determine what sn status currently is&#10;Changes on rental_stock_sn upon status update in receiving_header">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/myproject/api/models/rental_stock_sn.py" beforeDir="false" afterPath="$PROJECT_DIR$/myproject/api/models/rental_stock_sn.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/myproject/api/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/myproject/api/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/myproject/api/views/another_views.py" beforeDir="false" afterPath="$PROJECT_DIR$/myproject/api/views/another_views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -35,29 +33,11 @@
       <file leaf-file-name="another_views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/myproject/api/views/another_views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="98" column="72" selection-start-line="98" selection-start-column="72" selection-end-line="98" selection-end-column="72" />
+            <state relative-caret-position="170">
+              <caret line="298" lean-forward="true" selection-start-line="298" selection-end-line="298" />
               <folding>
                 <element signature="e#0#45#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="rental_stock_sn.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/myproject/api/models/rental_stock_sn.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="10" column="55" selection-start-line="10" selection-start-column="55" selection-end-line="10" selection-end-column="55" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="stock_sn_history.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/myproject/api/models/stock_sn_history.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="10" column="17" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="17" />
             </state>
           </provider>
         </entry>
@@ -554,7 +534,14 @@
       <option name="project" value="LOCAL" />
       <updated>1553115566220</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="Few updates&#10;Add new views (getSnsByItemAvailable) to get SNs that available to be rented&#10;Add new views (getUnapprovedHeader) to get incoming header that has not been approved&#10;Add new field into rental_stock_sn (status) to determine what sn status currently is&#10;Changes on rental_stock_sn upon status update in receiving_header">
+      <created>1553494755578</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1553494755578</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -579,7 +566,7 @@
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32838285" />
       <window_info anchor="bottom" id="Python Console" order="13" weight="0.32673267" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32838285" />
-      <window_info active="true" anchor="bottom" x="98" y="61" width="1201" height="606" id="Terminal" order="14" sideWeight="0.49848714" visible="true" weight="0.17326732" />
+      <window_info active="true" anchor="bottom" x="98" y="61" width="1201" height="606" id="Terminal" order="14" sideWeight="0.49848714" visible="true" weight="0.34818482" />
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49339935" visible="true" weight="0.27912253" />
       <window_info anchor="right" id="R Packages" order="3" />
       <window_info anchor="bottom" id="Docker" order="10" show_stripe_button="false" />
@@ -634,7 +621,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Modify max length of user type and user level on master_user model" />
     <MESSAGE value="Add models and views of stock managements module and rental management module&#10;Add (rental_header, rental_detail, rentail_detail_sn) models and views&#10;Add (rental_stock_card, rental_stock_sn, stock_sn_history) models and views" />
     <MESSAGE value="Add templates for kwitansi, receiving, invoice and surat jalan&#10;Completed template(s) = receiving&#10;Add generatePDF views into urls" />
     <MESSAGE value="Remove rental_detail_sn models and views&#10;Add template for incoming/receiving modules" />
@@ -659,7 +645,8 @@
     <MESSAGE value="Add new API Documentation (Listing all available api to use)" />
     <MESSAGE value="Document number format changed" />
     <MESSAGE value="Get SN by Item ID views added" />
-    <option name="LAST_COMMIT_MESSAGE" value="Get SN by Item ID views added" />
+    <MESSAGE value="Few updates&#10;Add new views (getSnsByItemAvailable) to get SNs that available to be rented&#10;Add new views (getUnapprovedHeader) to get incoming header that has not been approved&#10;Add new field into rental_stock_sn (status) to determine what sn status currently is&#10;Changes on rental_stock_sn upon status update in receiving_header" />
+    <option name="LAST_COMMIT_MESSAGE" value="Few updates&#10;Add new views (getSnsByItemAvailable) to get SNs that available to be rented&#10;Add new views (getUnapprovedHeader) to get incoming header that has not been approved&#10;Add new field into rental_stock_sn (status) to determine what sn status currently is&#10;Changes on rental_stock_sn upon status update in receiving_header" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/README.md">
@@ -983,8 +970,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/myproject/api/views/another_views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="98" column="72" selection-start-line="98" selection-start-column="72" selection-end-line="98" selection-end-column="72" />
+        <state relative-caret-position="170">
+          <caret line="298" lean-forward="true" selection-start-line="298" selection-end-line="298" />
           <folding>
             <element signature="e#0#45#0" expanded="true" />
           </folding>

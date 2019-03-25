@@ -280,21 +280,21 @@ def getCounter(request, r=1):
             c += "0"
         else:
             query2 = rental_order_header.objects.all().order_by('-counter')[:1].get()
-            c += query2.counter
+            c += str(query2.counter)
     elif r is "2":
         query = rental_header.objects.count()
         if query < 1:
             c += "0"
         else:
             query2 = rental_header.objects.all().order_by('-counter')[:1].get()
-            c += query2.counter
+            c += str(query2.counter)
     elif r is "3":
         query = receiving_header.objects.count()
         if query < 1:
             c += "0"
         else:
             query2 = receiving_header.objects.all().order_by('-counter')[:1].get()
-            c += query2.counter
+            c += str(query2.counter)
     return HttpResponse(c, content_type="text/plain")
 
 
