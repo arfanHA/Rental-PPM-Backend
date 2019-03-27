@@ -19,6 +19,69 @@ update_on_nested_serializer = Signal(providing_args=['test'])  # custom signal
 todaysDate = datetime.datetime.today().strftime('%Y-%m-%d')  # get current date
 
 
+def getDocumentNumber(r):
+    now = datetime.datetime.now()
+    docNumb = ""
+    if r == 1:
+        # This is for Rental Order Management
+        docNumb += "RO/"
+        query = rental_order_header.objects.count()
+        if query < 1:
+            docNumb += "0001"
+        else:
+            query2 = rental_order_header.objects.all().order_by('-counter')[:1].get()
+            j = query2.counter + 1
+            docNumb += str(j).zfill(4)
+    elif r == 2:
+        # This is for Rental Register
+        docNumb += "RN/"
+        query = rental_header.objects.count()
+        if query < 1:
+            docNumb += "0001"
+        else:
+            query2 = rental_header.objects.all().order_by('-counter')[:1].get()
+            j = query2.counter + 1
+            docNumb += str(j).zfill(4)
+    elif r == 3:
+        # This is for Incoming or Receiving Management
+        docNumb += "IN/"
+        query = receiving_header.objects.count()
+        if query < 1:
+            docNumb += "0001"
+        else:
+            query2 = receiving_header.objects.all().order_by('-counter')[:1].get()
+            j = query2.counter + 1
+            docNumb += str(j).zfill(4)
+    docNumb += "/" + now.strftime("%m") + "/" + now.strftime("%Y")
+    return docNumb
+
+
+def getCounter(r):
+    c = ""
+    if r == 1:
+        query = rental_order_header.objects.count()
+        if query < 1:
+            c += "0"
+        else:
+            query2 = rental_order_header.objects.all().order_by('-counter')[:1].get()
+            c += str(query2.counter + 1)
+    elif r == 2:
+        query = rental_header.objects.count()
+        if query < 1:
+            c += "0"
+        else:
+            query2 = rental_header.objects.all().order_by('-counter')[:1].get()
+            c += str(query2.counter + 1)
+    elif r == 3:
+        query = receiving_header.objects.count()
+        if query < 1:
+            c += "0"
+        else:
+            query2 = receiving_header.objects.all().order_by('-counter')[:1].get()
+            c += str(query2.counter + 1)
+    return c
+
+
 # This view is used to get and post object of incoming management module
 class NestedReceivingManagement(APIView):
     def get(self, request, format=None):
@@ -27,6 +90,9 @@ class NestedReceivingManagement(APIView):
         return Response(serializers.data)
 
     def post(self, request, format=None):
+        request.data['number'] = getDocumentNumber(3)  # get document number for this request
+        request.data['counter'] = getCounter(3)  # get counter for this request
+
         serializers = NestedReceivingHeaderSerializer(data=request.data)
         if serializers.is_valid():
             serializers.save()
@@ -146,6 +212,9 @@ class NestedRentalRegister(APIView):
         return Response(serializers.data)
 
     def post(self, request, format=None):
+        request.data['number'] = getDocumentNumber(2)  # get document number for this request
+        request.data['counter'] = getCounter(2)  # get counter for this request
+
         serializers = NestedRentalHeaderSerializer(data=request.data)
         if serializers.is_valid():
             serializers.save()
@@ -183,6 +252,9 @@ class NestedRentalOrderManagement(APIView):
         return Response(serializer.data)
 
     def post(self, request, format=None):
+        request.data['number'] = getDocumentNumber(1)  # get document number for this request
+        request.data['counter'] = getCounter(1)  # get counter for this request
+
         serializers = NestedRentalOrderHeaderSerializer(data=request.data)
         if serializers.is_valid():
             serializers.save()
@@ -228,74 +300,10 @@ def getItemSNs(request, i=1):
 
 @api_view(['GET'])
 def getItemSNsAvailable(request, i=1):
-    sns = rental_stock_sn.objects.filter(stock_card_id__in=(rental_stock_card.objects.filter(item_master_id=i))).filter(status="1")
+    sns = rental_stock_sn.objects.filter(stock_card_id__in=(rental_stock_card.objects.filter(item_master_id=i))).filter(
+        status="1")
     serializers = RentalStockSNSerializer(sns, many=True)
     return Response(serializers.data, status=status.HTTP_200_OK)
-
-
-@api_view(['GET'])
-def getDocumentNumber(request, r=1):
-    now = datetime.datetime.now()
-    docNumb = ""
-    if r is "1":
-        # This is for Rental Order Management
-        docNumb += "RO/"
-        query = rental_order_header.objects.count()
-        if query < 1:
-            docNumb += "0001"
-        else:
-            query2 = rental_order_header.objects.all().order_by('-counter')[:1].get()
-            j = query2.counter + 1
-            docNumb += str(j).zfill(4)
-    elif r is "2":
-        # This is for Rental Register
-        docNumb += "RN/"
-        query = rental_header.objects.count()
-        if query < 1:
-            docNumb += "0001"
-        else:
-            query2 = rental_header.objects.all().order_by('-counter')[:1].get()
-            j = query2.counter + 1
-            docNumb += str(j).zfill(4)
-    elif r is "3":
-        # This is for Incoming or Receiving Management
-        docNumb += "IN/"
-        query = receiving_header.objects.count()
-        if query < 1:
-            docNumb += "0001"
-        else:
-            query2 = receiving_header.objects.all().order_by('-counter')[:1].get()
-            j = query2.counter + 1
-            docNumb += str(j).zfill(4)
-    docNumb += "/" + now.strftime("%m") + "/" + now.strftime("%Y")
-    return HttpResponse(docNumb, content_type="text/plain")
-
-
-@api_view(['GET'])
-def getCounter(request, r=1):
-    c = ""
-    if r is "1":
-        query = rental_order_header.objects.count()
-        if query < 1:
-            c += "0"
-        else:
-            query2 = rental_order_header.objects.all().order_by('-counter')[:1].get()
-            c += str(query2.counter)
-    elif r is "2":
-        query = rental_header.objects.count()
-        if query < 1:
-            c += "0"
-        else:
-            query2 = rental_header.objects.all().order_by('-counter')[:1].get()
-            c += str(query2.counter)
-    elif r is "3":
-        query = receiving_header.objects.count()
-        if query < 1:
-            c += "0"
-        else:
-            query2 = receiving_header.objects.all().order_by('-counter')[:1].get()
-            c += str(query2.counter)
-    return HttpResponse(c, content_type="text/plain")
 
 
 @api_view(['GET'])
