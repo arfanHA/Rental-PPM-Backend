@@ -17,3 +17,5 @@ from .rental_register_detail import rental_detail
 from .rental_stock_card import rental_stock_card
 from .rental_stock_sn import rental_stock_sn
 from .stock_sn_history import stock_sn_history
+from .invoice_header import invoice_header
+from .invoice_detail import invoice_detail
