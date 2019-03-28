@@ -96,3 +96,13 @@ class rental_stock_sn(viewsets.ModelViewSet):
 class stock_sn_history(viewsets.ModelViewSet):
     queryset = stock_sn_history.objects.all()
     serializer_class = StockSNHistorySerializer
+
+
+class invoice_header(viewsets.ModelViewSet):
+    queryset = invoice_header.objects.all()
+    serializer_class = InvoiceHeaderSerializer
+
+
+class invoice_detail(viewsets.ModelViewSet):
+    queryset = invoice_detail.objects.all()
+    serializer_class = InvoiceDetailSerializer

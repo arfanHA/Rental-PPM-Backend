@@ -181,3 +181,17 @@ class NestedStockCardSerializer(WritableNestedModelSerializer):
         model = rental_stock_card
         fields = ['stock_card_id', 'item_master_id', 'location_id', 'qty', 'rental_header_id', 'rental_detail_id',
                   'receiving_header_id', 'receiving_detail_id', 'StockSNFromRSC']
+
+
+# Rental Management (Invoicing)
+
+class InvoiceHeaderSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = invoice_header
+        fields = '__all__'
+
+
+class InvoiceDetailSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = invoice_detail
+        fields = '__all__'

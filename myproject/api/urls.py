@@ -23,6 +23,8 @@ router.register(r'rental_detail', viewsets_views.rental_detail)
 router.register(r'rental_stock_card', viewsets_views.rental_stock_card)  # Stock management starts here
 router.register(r'rental_stock_sn', viewsets_views.rental_stock_sn)
 router.register(r'stock_sn_history', viewsets_views.stock_sn_history)
+router.register(r'invoice_header', viewsets_views.invoice_header)
+router.register(r'invoice_detail', viewsets_views.invoice_detail)
 
 urlpatterns = [
     url(r'^', include(router.urls)),
