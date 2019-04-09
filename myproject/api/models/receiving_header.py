@@ -6,7 +6,7 @@ from .master_user import master_user
 
 class receiving_header(models.Model):
     receiving_header_id = models.BigAutoField(primary_key=True)
-    date = models.DateField()
+    date = models.DateField(blank=True)
     number = models.CharField(max_length=100, blank=True)
     number_preix = models.CharField(max_length=100, blank=True)
     counter = models.IntegerField(blank=True, null=True)

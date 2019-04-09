@@ -61,21 +61,21 @@ def getCounter(r):
     if r == 1:
         query = rental_order_header.objects.count()
         if query < 1:
-            c += "0"
+            c += "1"
         else:
             query2 = rental_order_header.objects.all().order_by('-counter')[:1].get()
             c += str(query2.counter + 1)
     elif r == 2:
         query = rental_header.objects.count()
         if query < 1:
-            c += "0"
+            c += "1"
         else:
             query2 = rental_header.objects.all().order_by('-counter')[:1].get()
             c += str(query2.counter + 1)
     elif r == 3:
         query = receiving_header.objects.count()
         if query < 1:
-            c += "0"
+            c += "1"
         else:
             query2 = receiving_header.objects.all().order_by('-counter')[:1].get()
             c += str(query2.counter + 1)
@@ -92,6 +92,7 @@ class NestedReceivingManagement(APIView):
     def post(self, request, format=None):
         request.data['number'] = getDocumentNumber(3)  # get document number for this request
         request.data['counter'] = getCounter(3)  # get counter for this request
+        request.data['date'] = datetime.datetime.today().strftime('%Y-%m-%d')
 
         serializers = NestedReceivingHeaderSerializer(data=request.data)
         if serializers.is_valid():
@@ -115,6 +116,8 @@ class NestedReceivingManagementDetails(APIView):
 
     def put(self, request, pk, format=None):
         header = self.get_object(pk)
+        if request.data['status'] == "APPROVED":
+            request.data['approval1_date'] = datetime.datetime.today().strftime('%Y-%m-%d')
         serializer = NestedReceivingHeaderSerializer(header, data=request.data)
         if serializer.is_valid():
             serializer.save()
@@ -129,7 +132,7 @@ def addToStock(sender, **kwargs):
     ReceivingHeaderData = kwargs['test']
     Detail_from_ReceivingHeaderData = ReceivingHeaderData['RDHeader']
 
-    if "1" is ReceivingHeaderData['status']:
+    if "DRAFT" is ReceivingHeaderData['status']:
         print('DRAFT, because the status is still DRAFT, so nothing happened XD')
     else:
         print('APPROVED')
