@@ -6,9 +6,10 @@ from .master_merk import master_merk
 
 class master_item(models.Model):
     master_item_id = models.BigAutoField(primary_key=True)
-    code = models.CharField(max_length=100)
-    barcode = models.CharField(max_length=100, blank=True)
-    name = models.CharField(max_length=200)
+    code = models.CharField(max_length=100, blank=True, unique=True)
+    counter = models.IntegerField(blank=True, null=True)
+    barcode = models.CharField(max_length=100, blank=True, unique=True)
+    name = models.CharField(max_length=200, unique=True)
     alias_name = models.CharField(max_length=200, blank=True)
     master_group_id = models.ForeignKey(master_group_item, on_delete=models.DO_NOTHING)
     uom_id = models.ForeignKey(master_uom, on_delete=models.DO_NOTHING)

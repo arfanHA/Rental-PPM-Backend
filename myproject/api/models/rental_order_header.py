@@ -22,7 +22,7 @@ class rental_order_header(models.Model):
     rental_end_date = models.DateField()
     notes = models.CharField(max_length=500, blank=True)
     location_id = models.ForeignKey(master_location, on_delete=models.DO_NOTHING)
-    customer_id = models.OneToOneField(master_customer, on_delete=models.DO_NOTHING)
+    customer_id = models.ForeignKey(master_customer, on_delete=models.DO_NOTHING)
     approved_by = models.BigIntegerField(blank=True, null=True)
     approved_date = models.DateField(blank=True, null=True)
     user_id = models.ForeignKey(master_user, on_delete=models.DO_NOTHING, blank=True)
