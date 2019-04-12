@@ -165,12 +165,12 @@ def addToStock(sender, **kwargs):
                 for SN in sn:
                     stockSN = rental_stock_sn.objects.create(first_sn=SN['first_serial_number'],
                                                              new_sn=SN['new_serial_number'],
-                                                             status="1",
+                                                             status="MASUK",
                                                              stock_card_id=stockCardData)
 
                     if stockSN:
                         # print("Create Rental Stock SN object success!! the ID of this object is = ", stockSN)
-                        stock_sn_history.objects.create(date=todaysDate, status=1, stock_code_id=stockSN)
+                        stock_sn_history.objects.create(date=todaysDate, status="MASUK", stock_code_id=stockSN)
                     else:
                         print("Failed to create Rental Stock SN Object")
             else:
