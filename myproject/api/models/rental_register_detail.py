@@ -10,7 +10,8 @@ class rental_detail(models.Model):
     price = models.CharField(max_length=200)
     qty = models.IntegerField()
     discount_type = models.CharField(max_length=100, blank=True)
-    discount_value = models.CharField(max_length=200, blank=True)
+    discount_method = models.IntegerField(blank=True, null=True)
+    discount = models.CharField(max_length=200, blank=True)
     total = models.CharField(max_length=200)
     rental_header_id = models.ForeignKey(rental_header, on_delete=models.DO_NOTHING, blank=True, null=True,
                                          related_name='RentalDetailHeader')
