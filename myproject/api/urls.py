@@ -32,6 +32,7 @@ urlpatterns = [
     url(r'^generateKwitansi/(?P<pk>[0-9]+)/$', generatePDF_views.generateKwitansi.as_view()),
     url(r'^generateReceiving/(?P<pk>[0-9]+)/$', generatePDF_views.generateReceiving.as_view()),
     url(r'^generateSuratjalan/(?P<pk>[0-9]+)/$', generatePDF_views.generateSuratJalan.as_view()),
+    url(r'^testView/', another_views.testView),
     url(r'^NestedReceivingManagement/', another_views.NestedReceivingManagement.as_view()),
     url(r'^NestedReceivingManagementDetails/(?P<pk>\d+)/$',
         another_views.NestedReceivingManagementDetails.as_view()),

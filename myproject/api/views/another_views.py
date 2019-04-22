@@ -2,7 +2,7 @@ from django.http import Http404, HttpResponse
 from rest_framework.decorators import api_view
 
 from myproject.api.models import receiving_header, receiving_detail, rental_stock_card, rental_stock_sn, \
-    stock_sn_history, master_item, rental_header, rental_order_header
+    stock_sn_history, master_item, rental_header, rental_order_header, invoice_header
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -10,12 +10,14 @@ from django.dispatch import receiver, Signal
 from myproject.api.serializers import NestedReceivingHeaderSerializer, NestedStockCardSerializer, \
     NestedRentalHeaderSerializer, ItemSerializer, NestedRentalOrderHeaderSerializer, RentalStockSNSerializer, \
     RentalStockCardSerializer, StockSNHistorySerializer
-import time
 import datetime
+
+from django.contrib.auth.decorators import login_required
 
 # This view is purposely used for testing only, improvement is considered and might used in further development
 
 update_on_nested_serializer = Signal(providing_args=['test'])  # custom signal
+update_on_rental_register = Signal(providing_args=['test'])  # custom signal 2
 todaysDate = datetime.datetime.today().strftime('%Y-%m-%d')  # get current date
 
 
@@ -243,8 +245,27 @@ class NestedRentalRegisterDetails(APIView):
         serializers = NestedRentalHeaderSerializer(rentalHeader, data=request.data)
         if serializers.is_valid():
             serializers.save()
+            update_on_rental_register.send(sender=rental_header, test=serializers.data)
             return Response(serializers.data, status=status.HTTP_200_OK)
         return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@receiver(update_on_rental_register)
+def addToInvoice(sender, **kwargs):
+    RentalRegisterData = kwargs['test']
+
+    print(RentalRegisterData['status'])
+    if "DRAFT" == RentalRegisterData['status']:
+        print("This is DRAFT, nothing happen")
+    else:
+        print("APPROVED")
+
+        timeNow = datetime.datetime.now().strftime('%Y-%m-%d')
+        invoice_header.objects.create(date=timeNow,
+                                      amount=RentalRegisterData['amount'],
+                                      customer=RentalRegisterData['customer_id'],
+                                      pay_method=RentalRegisterData['pay_method'],
+                                      rental_header_id=rental_header(RentalRegisterData['rental_header_id']))
 
 
 # Rental Order Management
@@ -314,3 +335,9 @@ def getUnapprovedHeader(request, s=1):
     incomingHeader = receiving_header.objects.filter(status=s)
     serializers = NestedReceivingHeaderSerializer(incomingHeader, many=True)
     return Response(serializers.data, status=status.HTTP_200_OK)
+
+
+@login_required
+@api_view(['GET'])
+def testView(request):
+    return Response("this is a test view")
