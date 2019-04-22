@@ -7,9 +7,9 @@ from .master_user import master_user
 class rental_order_header(models.Model):
     sales_order_id = models.BigAutoField(primary_key=True)
     date = models.DateField()
-    number = models.CharField(max_length=100)
-    number_prefix = models.CharField(max_length=100)
-    counter = models.IntegerField()
+    number = models.CharField(max_length=100, blank=True)
+    number_prefix = models.CharField(max_length=100, blank=True)
+    counter = models.IntegerField(blank=True)
     tax = models.CharField(max_length=200, blank=True)
     discount_type = models.IntegerField(blank=True, null=True)
     discount = models.CharField(max_length=100, blank=True)
