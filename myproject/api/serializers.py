@@ -44,6 +44,7 @@ class CustomerSerializer(serializers.ModelSerializer):
 class ItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = master_item
+        depth = 1
         fields = '__all__'
 
 
@@ -84,6 +85,7 @@ class NestedReceivingDetailSerializer(WritableNestedModelSerializer):
 
     class Meta:
         model = receiving_detail
+        depth = 2
         fields = ['receiving_detail_id', 'qty', 'note', 'receiving_header_id', 'master_item_id', 'uom_id', 'RDISN']
 
 
@@ -132,6 +134,7 @@ class RentalHeaderSerializer(serializers.ModelSerializer):
 class RentalDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = rental_detail
+        depth = 2
         fields = '__all__'
 
 
