@@ -49,5 +49,6 @@ urlpatterns = [
     url(r'getItemSNs/(?P<i>\d+)/$', another_views.getItemSNs, name='GetSNsByItem'),
     url(r'getItemSNsAvailable/(?P<i>\d+)/$', another_views.getItemSNsAvailable, name='GetSNsByItemAvailable'),
     url(r'^getUnapprovedHeader/(\d+)/', another_views.getUnapprovedHeader, name="GetUnapprovedHeader"),
+    url(r'^getDistinctStocks/', another_views.getDistinctItem, name="GetDistinctStock"),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]

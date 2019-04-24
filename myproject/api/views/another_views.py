@@ -337,6 +337,13 @@ def getUnapprovedHeader(request, s=1):
     return Response(serializers.data, status=status.HTTP_200_OK)
 
 
+@api_view(['GET'])
+def getDistinctItem(request):
+    stocks = rental_stock_card.objects.distinct('item_master_id')
+    serializers = NestedStockCardSerializer(stocks, many=True)
+    return Response(serializers.data, status=status.HTTP_200_OK)
+
+
 @login_required
 @api_view(['GET'])
 def testView(request):
