@@ -7,9 +7,9 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from django.dispatch import receiver, Signal
-from myproject.api.serializers import NestedReceivingHeaderSerializer, NestedStockCardSerializer, \
-    NestedRentalHeaderSerializer, ItemSerializer, NestedRentalOrderHeaderSerializer, RentalStockSNSerializer, \
-    RentalStockCardSerializer, StockSNHistorySerializer
+from myproject.api.serializers import NestedReceivingHeaderWriteSerializer, NestedReceivingHeaderReadSerializer, \
+    NestedStockCardSerializer, NestedRentalHeaderReadSerializer, NestedRentalHeaderWriteSerializer, ItemSerializer, \
+    NestedRentalOrderHeaderSerializer, RentalStockSNSerializer
 import datetime
 
 from django.contrib.auth.decorators import login_required
@@ -88,7 +88,7 @@ def getCounter(r):
 class NestedReceivingManagement(APIView):
     def get(self, request, format=None):
         headers = receiving_header.objects.all()
-        serializers = NestedReceivingHeaderSerializer(headers, many=True)
+        serializers = NestedReceivingHeaderReadSerializer(headers, many=True)
         return Response(serializers.data)
 
     def post(self, request, format=None):
@@ -96,7 +96,7 @@ class NestedReceivingManagement(APIView):
         request.data['counter'] = getCounter(3)  # get counter for this request
         request.data['date'] = datetime.datetime.today().strftime('%Y-%m-%d')
 
-        serializers = NestedReceivingHeaderSerializer(data=request.data)
+        serializers = NestedReceivingHeaderWriteSerializer(data=request.data)
         if serializers.is_valid():
             serializers.save()
             return Response(serializers.data, status=status.HTTP_201_CREATED)
@@ -113,14 +113,14 @@ class NestedReceivingManagementDetails(APIView):
 
     def get(self, request, pk, format=None):
         header = self.get_object(pk)
-        serializer = NestedReceivingHeaderSerializer(header)
+        serializer = NestedReceivingHeaderReadSerializer(header)
         return Response(serializer.data)
 
     def put(self, request, pk, format=None):
         header = self.get_object(pk)
         if request.data['status'] == "APPROVED":
             request.data['approval1_date'] = datetime.datetime.today().strftime('%Y-%m-%d')
-        serializer = NestedReceivingHeaderSerializer(header, data=request.data)
+        serializer = NestedReceivingHeaderWriteSerializer(header, data=request.data)
         if serializer.is_valid():
             serializer.save()
             update_on_nested_serializer.send(sender=receiving_header, test=serializer.data)
@@ -213,14 +213,14 @@ class NestedStockManagementDetails(APIView):
 class NestedRentalRegister(APIView):
     def get(self, request, format=None):
         rentalHeader = rental_header.objects.all()
-        serializers = NestedRentalHeaderSerializer(rentalHeader, many=True)
+        serializers = NestedRentalHeaderReadSerializer(rentalHeader, many=True)
         return Response(serializers.data)
 
     def post(self, request, format=None):
         request.data['number'] = getDocumentNumber(2)  # get document number for this request
         request.data['counter'] = getCounter(2)  # get counter for this request
 
-        serializers = NestedRentalHeaderSerializer(data=request.data)
+        serializers = NestedRentalHeaderWriteSerializer(data=request.data)
         if serializers.is_valid():
             serializers.save()
             return Response(serializers.data, status=status.HTTP_201_CREATED)
@@ -237,12 +237,12 @@ class NestedRentalRegisterDetails(APIView):
 
     def get(self, request, pk, format=None):
         rentalHeader = self.get_object(pk)
-        serializers = NestedRentalHeaderSerializer(rentalHeader)
+        serializers = NestedRentalHeaderReadSerializer(rentalHeader)
         return Response(serializers.data)
 
     def put(self, request, pk, format=None):
         rentalHeader = self.get_object(pk)
-        serializers = NestedRentalHeaderSerializer(rentalHeader, data=request.data)
+        serializers = NestedRentalHeaderWriteSerializer(rentalHeader, data=request.data)
         if serializers.is_valid():
             serializers.save()
             update_on_rental_register.send(sender=rental_header, test=serializers.data)
