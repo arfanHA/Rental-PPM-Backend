@@ -227,6 +227,13 @@ class NestedRentalRegister(APIView):
         return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+@api_view(['GET'])
+def getAllRentalRegisterApproved(request):
+    rentalHeader = rental_header.objects.filter(status="APPROVED")
+    serializers = NestedRentalHeaderReadSerializer(rentalHeader, many=True)
+    return Response(serializers.data)
+
+
 # Rental Register Details
 class NestedRentalRegisterDetails(APIView):
     def get_object(self, pk):

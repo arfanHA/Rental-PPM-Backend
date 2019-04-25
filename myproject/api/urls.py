@@ -47,6 +47,7 @@ urlpatterns = [
         another_views.NestedRentalOrderManagementDetails.as_view()),
     url(r'getItemByCat/(?P<b>\d+)/$', another_views.getItemByCategory, name='GetItemByCategory'),
     url(r'getItemSNs/(?P<i>\d+)/$', another_views.getItemSNs, name='GetSNsByItem'),
+    url(r'getRentalRegisterApproved/', another_views.getAllRentalRegisterApproved, name="GetAllRentalRegisterApproved"),
     url(r'getItemSNsAvailable/(?P<i>\d+)/$', another_views.getItemSNsAvailable, name='GetSNsByItemAvailable'),
     url(r'^getUnapprovedHeader/(\d+)/', another_views.getUnapprovedHeader, name="GetUnapprovedHeader"),
     url(r'^getDistinctStocks/', another_views.getDistinctItem, name="GetDistinctStock"),
