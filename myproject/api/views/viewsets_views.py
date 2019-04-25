@@ -73,14 +73,14 @@ class rental_order_detail(viewsets.ModelViewSet):
     serializer_class = RentalOrderDetailSerializer
 
 
-class rental_header(viewsets.ModelViewSet):
-    queryset = rental_header.objects.all()
-    serializer_class = RentalHeaderSerializer
-
-
-class rental_detail(viewsets.ModelViewSet):
-    queryset = rental_detail.objects.all()
-    serializer_class = RentalDetailSerializer
+# class rental_header(viewsets.ModelViewSet):
+#     queryset = rental_header.objects.all()
+#     serializer_class = RentalHeaderSerializer
+#
+#
+# class rental_detail(viewsets.ModelViewSet):
+#     queryset = rental_detail.objects.all()
+#     serializer_class = RentalDetailSerializer
 
 
 class rental_stock_card(viewsets.ModelViewSet):

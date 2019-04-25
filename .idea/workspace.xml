@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8660eb00-8fae-4ce9-a8e6-d5eaaecd21f7" name="Default Changelist" comment="Change on_delete behaviour on receiving detail sn">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/myproject/api/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/myproject/api/serializers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/myproject/api/views/another_views.py" beforeDir="false" afterPath="$PROJECT_DIR$/myproject/api/views/another_views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/myproject/api/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/myproject/api/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/myproject/api/views/viewsets_views.py" beforeDir="false" afterPath="$PROJECT_DIR$/myproject/api/views/viewsets_views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/myproject/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/myproject/settings.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -23,13 +22,34 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="another_views.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="another_views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/myproject/api/views/another_views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-68">
-              <caret line="242" column="44" lean-forward="true" selection-start-line="242" selection-start-column="44" selection-end-line="242" selection-end-column="44" />
+            <state relative-caret-position="459">
+              <caret line="108" column="12" lean-forward="true" selection-start-line="108" selection-start-column="12" selection-end-line="108" selection-end-column="12" />
               <folding>
                 <element signature="e#0#45#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="urls.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/myproject/api/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="309">
+              <caret line="22" column="77" lean-forward="true" selection-start-line="22" selection-start-column="77" selection-end-line="22" selection-end-column="77" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="viewsets_views.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/myproject/api/views/viewsets_views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="75" selection-start-line="75" selection-start-column="2" selection-end-line="82" selection-end-column="47" />
+              <folding>
+                <element signature="e#0#35#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -38,8 +58,8 @@
       <file leaf-file-name="serializers.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/myproject/api/serializers.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="361">
-              <caret line="173" column="39" selection-start-line="173" selection-start-column="6" selection-end-line="173" selection-end-column="39" />
+            <state relative-caret-position="344">
+              <caret line="166" column="29" lean-forward="true" selection-start-line="166" selection-start-column="29" selection-end-line="166" selection-end-column="29" />
             </state>
           </provider>
         </entry>
@@ -124,12 +144,12 @@
         <option value="$PROJECT_DIR$/myproject/api/models/stock_sn_history.py" />
         <option value="$PROJECT_DIR$/myproject/api/models/rental_register_detail.py" />
         <option value="$PROJECT_DIR$/myproject/api/models/rental_order_header.py" />
-        <option value="$PROJECT_DIR$/myproject/api/views/viewsets_views.py" />
         <option value="$PROJECT_DIR$/myproject/api/admin.py" />
         <option value="$PROJECT_DIR$/myproject/api/models/rental_register_header.py" />
-        <option value="$PROJECT_DIR$/myproject/api/urls.py" />
         <option value="$PROJECT_DIR$/myproject/api/serializers.py" />
         <option value="$PROJECT_DIR$/myproject/api/views/another_views.py" />
+        <option value="$PROJECT_DIR$/myproject/api/views/viewsets_views.py" />
+        <option value="$PROJECT_DIR$/myproject/api/urls.py" />
       </list>
     </option>
   </component>
@@ -322,13 +342,6 @@
       <workItem from="1545353217965" duration="1462000" />
       <workItem from="1545378814720" duration="1649000" />
       <workItem from="1546589541163" duration="759000" />
-    </task>
-    <task id="LOCAL-00004" summary="Models optimization for multiple relation">
-      <created>1549011488386</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1549011488386</updated>
     </task>
     <task id="LOCAL-00005" summary="Splitting views to seperate file between viewsets and function based views">
       <created>1549523449233</created>
@@ -666,7 +679,14 @@
       <option name="project" value="LOCAL" />
       <updated>1556081985543</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="Update on serializer both for write and read on incoming and rental register module">
+      <created>1556170978450</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1556170978451</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -747,7 +767,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Minor Fix" />
     <MESSAGE value="Add new view (get item by category)&#10;url : /getItemByCat/b/ where b is the id of category's id" />
     <MESSAGE value="File names Changes&#10;Add few new attribute/fields into models&#10;Update to serializers and url" />
     <MESSAGE value="Add new view of rental order management&#10;Add new url" />
@@ -772,7 +791,8 @@
     <MESSAGE value="Penambahan depth pada beberapa serializer untuk menampilkan informasi lebih detail terkait suatu foreignkey atau related fields" />
     <MESSAGE value="Perubahan tipe field lokasi dan pelanggan menjadi OneToMany (ForeignKey)" />
     <MESSAGE value="Get distinct item on stocks" />
-    <option name="LAST_COMMIT_MESSAGE" value="Get distinct item on stocks" />
+    <MESSAGE value="Update on serializer both for write and read on incoming and rental register module" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update on serializer both for write and read on incoming and rental register module" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/templates/test.html" />
@@ -1038,13 +1058,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/myproject/api/views/viewsets_views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1411">
-          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/myproject/api/admin.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
@@ -1090,13 +1103,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/myproject/api/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="867">
-          <caret line="51" column="88" selection-start-line="51" selection-start-column="88" selection-end-line="51" selection-end-column="88" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/myproject/api/models/rental_stock_card.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
@@ -1104,20 +1110,37 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/myproject/api/serializers.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="173" column="39" selection-start-line="173" selection-start-column="6" selection-end-line="173" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/myproject/api/views/another_views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-68">
-          <caret line="242" column="44" lean-forward="true" selection-start-line="242" selection-start-column="44" selection-end-line="242" selection-end-column="44" />
+        <state relative-caret-position="459">
+          <caret line="108" column="12" lean-forward="true" selection-start-line="108" selection-start-column="12" selection-end-line="108" selection-end-column="12" />
           <folding>
             <element signature="e#0#45#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/myproject/api/serializers.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="344">
+          <caret line="166" column="29" lean-forward="true" selection-start-line="166" selection-start-column="29" selection-end-line="166" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/myproject/api/views/viewsets_views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="75" selection-start-line="75" selection-start-column="2" selection-end-line="82" selection-end-column="47" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/myproject/api/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="309">
+          <caret line="22" column="77" lean-forward="true" selection-start-line="22" selection-start-column="77" selection-end-line="22" selection-end-column="77" />
         </state>
       </provider>
     </entry>

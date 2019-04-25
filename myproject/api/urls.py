@@ -11,15 +11,15 @@ router.register(r'master_location', viewsets_views.master_location)
 router.register(r'master_vendor', viewsets_views.master_vendor)
 router.register(r'master_customer', viewsets_views.master_pelanggan)
 router.register(r'master_item', viewsets_views.master_item)
-router.register(r'receiving_detail', viewsets_views.receiving_detail)
-router.register(r'receiving_header', viewsets_views.receiving_header)
 router.register(r'master_user', viewsets_views.master_user)
 router.register(r'master_employee', viewsets_views.master_employee)
 router.register(r'receiving_detail_sn', viewsets_views.receiving_detail_sn)  # Receiving Management starts here
+router.register(r'receiving_detail', viewsets_views.receiving_detail)
+router.register(r'receiving_header', viewsets_views.receiving_header)
 router.register(r'rental_order_header', viewsets_views.rental_order_header)
 router.register(r'rental_order_detail', viewsets_views.rental_order_detail)
-router.register(r'rental_header', viewsets_views.rental_header)  # Rental management starts here
-router.register(r'rental_detail', viewsets_views.rental_detail)
+# router.register(r'rental_header', viewsets_views.rental_header)  # Rental management starts here
+# router.register(r'rental_detail', viewsets_views.rental_detail)
 router.register(r'rental_stock_card', viewsets_views.rental_stock_card)  # Stock management starts here
 router.register(r'rental_stock_sn', viewsets_views.rental_stock_sn)
 router.register(r'stock_sn_history', viewsets_views.stock_sn_history)
