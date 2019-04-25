@@ -9,7 +9,7 @@ from rest_framework import status
 from django.dispatch import receiver, Signal
 from myproject.api.serializers import NestedReceivingHeaderWriteSerializer, NestedReceivingHeaderReadSerializer, \
     NestedStockCardSerializer, NestedRentalHeaderReadSerializer, NestedRentalHeaderWriteSerializer, ItemSerializer, \
-    NestedRentalOrderHeaderSerializer, RentalStockSNSerializer
+    NestedRentalOrderHeaderWriteSerializer, NestedRentalOrderHeaderReadSerializer, RentalStockSNSerializer
 import datetime
 
 from django.contrib.auth.decorators import login_required
@@ -279,14 +279,14 @@ def addToInvoice(sender, **kwargs):
 class NestedRentalOrderManagement(APIView):
     def get(self, request, format=None):
         rentalOrderHeader = rental_order_header.objects.all()
-        serializer = NestedRentalOrderHeaderSerializer(rentalOrderHeader, many=True)
+        serializer = NestedRentalOrderHeaderReadSerializer(rentalOrderHeader, many=True)
         return Response(serializer.data)
 
     def post(self, request, format=None):
         request.data['number'] = getDocumentNumber(1)  # get document number for this request
         request.data['counter'] = getCounter(1)  # get counter for this request
 
-        serializers = NestedRentalOrderHeaderSerializer(data=request.data)
+        serializers = NestedRentalOrderHeaderWriteSerializer(data=request.data)
         if serializers.is_valid():
             serializers.save()
             return Response(serializers.data, status=status.HTTP_200_OK)
@@ -303,12 +303,12 @@ class NestedRentalOrderManagementDetails(APIView):
 
     def get(self, request, pk, format=None):
         rentalOrderHeader = self.get_object(pk)
-        serializers = NestedRentalOrderHeaderSerializer(rentalOrderHeader)
+        serializers = NestedRentalOrderHeaderReadSerializer(rentalOrderHeader)
         return Response(serializers.data)
 
     def put(self, request, pk, format=None):
         rentalOrderHeader = self.get_object(pk)
-        serializers = NestedRentalOrderHeaderSerializer(rentalOrderHeader, data=request.data)
+        serializers = NestedRentalOrderHeaderWriteSerializer(rentalOrderHeader, data=request.data)
         if serializers.is_valid():
             serializers.save()
             return Response(serializers.data, status=status.HTTP_200_OK)
@@ -340,7 +340,7 @@ def getItemSNsAvailable(request, i=1):
 @api_view(['GET'])
 def getUnapprovedHeader(request, s=1):
     incomingHeader = receiving_header.objects.filter(status=s)
-    serializers = NestedReceivingHeaderSerializer(incomingHeader, many=True)
+    serializers = NestedReceivingHeaderReadSerializer(incomingHeader, many=True)
     return Response(serializers.data, status=status.HTTP_200_OK)
 
 
