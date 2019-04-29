@@ -247,17 +247,17 @@ class NestedRentalRegister(APIView):
 
         request.data['amount'] = str(amount)
 
-        # sns = request.data['SNS']
-        # now = datetime.datetime.today().strftime('%Y-%m-%d')
-        # for sn in sns:
-        #     print(sn['id'])
-        #     stock_sn_history.objects.create(
-        #         date=now,
-        #         status="KELUAR",
-        #         ref_id=None,
-        #         stock_code_id=rental_stock_sn(sn['id'])
-        #     )
-        #
+        sns = request.data.pop("SNS", None)
+        now = datetime.datetime.today().strftime('%Y-%m-%d')
+        for sn in sns:
+            print(sn['id'])
+            stock_sn_history.objects.create(
+                date=now,
+                status="KELUAR",
+                ref_id=None,
+                stock_code_id=rental_stock_sn(sn['id'])
+            )
+
         # return Response(request.data)
         serializers = NestedRentalHeaderWriteSerializer(data=request.data)
         if serializers.is_valid():

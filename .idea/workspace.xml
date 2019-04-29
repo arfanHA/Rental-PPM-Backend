@@ -26,11 +26,11 @@
       <file leaf-file-name="another_views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/myproject/api/views/another_views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="476">
-              <caret line="265" column="79" lean-forward="true" selection-start-line="261" selection-start-column="8" selection-end-line="265" selection-end-column="79" />
+            <state relative-caret-position="204">
+              <caret line="257" column="43" lean-forward="true" selection-start-line="257" selection-start-column="43" selection-end-line="257" selection-end-column="43" />
               <folding>
                 <element signature="e#0#45#0" expanded="true" />
-                <marker date="1556507129707" expanded="true" signature="17069:17084" ph="..." />
+                <marker date="1556562781931" expanded="true" signature="17050:17065" ph="..." />
               </folding>
             </state>
           </provider>
@@ -40,7 +40,7 @@
         <entry file="file://$PROJECT_DIR$/myproject/api/models/master_item.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="102">
-              <caret line="9" column="10" lean-forward="true" selection-start-line="9" selection-start-column="10" selection-end-line="9" selection-end-column="10" />
+              <caret line="9" column="10" selection-start-line="9" selection-start-column="10" selection-end-line="9" selection-end-column="10" />
             </state>
           </provider>
         </entry>
@@ -48,7 +48,7 @@
       <file leaf-file-name="serializers.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/myproject/api/serializers.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="208">
+            <state relative-caret-position="816">
               <caret line="50" column="33" selection-start-line="50" selection-start-column="33" selection-end-line="50" selection-end-column="33" />
             </state>
           </provider>
@@ -57,7 +57,7 @@
       <file leaf-file-name="viewsets_views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/myproject/api/views/viewsets_views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
+            <state relative-caret-position="782">
               <caret line="48" column="35" selection-start-line="48" selection-start-column="35" selection-end-line="48" selection-end-column="35" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
@@ -196,6 +196,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -239,7 +240,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -369,13 +369,6 @@
       <workItem from="1545353217965" duration="1462000" />
       <workItem from="1545378814720" duration="1649000" />
       <workItem from="1546589541163" duration="759000" />
-    </task>
-    <task id="LOCAL-00011" summary="Add models and views of stock managements module and rental management module&#10;Add (rental_header, rental_detail, rentail_detail_sn) models and views&#10;Add (rental_stock_card, rental_stock_sn, stock_sn_history) models and views">
-      <created>1550042116597</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1550042116597</updated>
     </task>
     <task id="LOCAL-00012" summary="Add templates for kwitansi, receiving, invoice and surat jalan&#10;Completed template(s) = receiving&#10;Add generatePDF views into urls">
       <created>1550049394519</created>
@@ -713,7 +706,14 @@
       <option name="project" value="LOCAL" />
       <updated>1556506914399</updated>
     </task>
-    <option name="localTasksCounter" value="60" />
+    <task id="LOCAL-00060" summary="Minor fix">
+      <created>1556507154908</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1556507154908</updated>
+    </task>
+    <option name="localTasksCounter" value="61" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -729,8 +729,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3289689" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5015129" side_tool="true" weight="0.5693069" />
@@ -738,8 +737,8 @@
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32838285" />
       <window_info anchor="bottom" id="Python Console" order="13" weight="0.32673267" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32838285" />
-      <window_info anchor="bottom" x="98" y="61" width="1201" height="606" id="Terminal" order="14" sideWeight="0.49848714" weight="0.3250825" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49339935" visible="true" weight="0.34114978" />
+      <window_info active="true" anchor="bottom" x="98" y="61" width="1201" height="606" id="Terminal" order="14" sideWeight="0.49848714" visible="true" weight="0.3250825" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49339935" visible="true" weight="0.3464448" />
       <window_info anchor="right" id="R Packages" order="3" />
       <window_info anchor="bottom" id="Docker" order="10" show_stripe_button="false" />
       <window_info anchor="right" id="R Graphics" order="3" />
@@ -760,11 +759,11 @@
       <window_info anchor="right" id="Coverage" order="3" side_tool="true" />
     </layout>
     <layout-to-restore>
-      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Version Control" order="7" weight="0.32838285" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Docker" order="10" show_stripe_button="false" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32838285" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info id="Favorites" order="2" sideWeight="0.5066007" side_tool="true" weight="0.27987897" />
       <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49339935" visible="true" weight="0.32526475" />
       <window_info id="Structure" order="1" sideWeight="0.5066007" side_tool="true" weight="0.27987897" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -773,19 +772,19 @@
       <window_info anchor="right" id="R Graphics" order="3" />
       <window_info active="true" anchor="bottom" id="Inspection Results" order="12" visible="true" weight="0.32974428" />
       <window_info anchor="right" id="R Packages" order="4" />
-      <window_info anchor="bottom" id="Python Console" order="13" weight="0.32673267" />
-      <window_info anchor="bottom" id="Database Changes" order="11" weight="0.32838285" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="right" id="Database" order="5" />
       <window_info anchor="bottom" x="98" y="61" width="1201" height="606" id="Terminal" order="14" sideWeight="0.49848714" weight="0.40264025" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Version Control" order="7" weight="0.32838285" />
+      <window_info anchor="bottom" id="Database Changes" order="11" weight="0.32838285" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5015129" side_tool="true" weight="0.5693069" />
       <window_info anchor="right" id="SciView" order="7" weight="0.32980332" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Messages" order="8" />
       <window_info anchor="right" id="Coverage" order="6" side_tool="true" />
-      <window_info id="Favorites" order="2" sideWeight="0.5066007" side_tool="true" weight="0.27987897" />
+      <window_info anchor="bottom" id="Python Console" order="13" weight="0.32673267" />
     </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -814,13 +813,13 @@
     <MESSAGE value="Perubahan tipe field lokasi dan pelanggan menjadi OneToMany (ForeignKey)" />
     <MESSAGE value="Get distinct item on stocks" />
     <MESSAGE value="Update on serializer both for write and read on incoming and rental register module" />
-    <MESSAGE value="Minor fix" />
     <MESSAGE value="Rental Register Approved Status Only shown on Rental from penawaran" />
     <MESSAGE value="Adding depth into rental order requests" />
     <MESSAGE value="Adding depth into master_item" />
     <MESSAGE value="Kalkulasi amount pada rental register" />
     <MESSAGE value="Change on_delete behaviour on receiving detail sn" />
-    <option name="LAST_COMMIT_MESSAGE" value="Change on_delete behaviour on receiving detail sn" />
+    <MESSAGE value="Minor fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="Minor fix" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/templates/test.html" />
@@ -1140,14 +1139,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/myproject/api/serializers.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
+        <state relative-caret-position="816">
           <caret line="50" column="33" selection-start-line="50" selection-start-column="33" selection-end-line="50" selection-end-column="33" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/myproject/api/views/viewsets_views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
+        <state relative-caret-position="782">
           <caret line="48" column="35" selection-start-line="48" selection-start-column="35" selection-end-line="48" selection-end-column="35" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
@@ -1158,17 +1157,17 @@
     <entry file="file://$PROJECT_DIR$/myproject/api/models/master_item.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
-          <caret line="9" column="10" lean-forward="true" selection-start-line="9" selection-start-column="10" selection-end-line="9" selection-end-column="10" />
+          <caret line="9" column="10" selection-start-line="9" selection-start-column="10" selection-end-line="9" selection-end-column="10" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/myproject/api/views/another_views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="265" column="79" lean-forward="true" selection-start-line="261" selection-start-column="8" selection-end-line="265" selection-end-column="79" />
+        <state relative-caret-position="204">
+          <caret line="257" column="43" lean-forward="true" selection-start-line="257" selection-start-column="43" selection-end-line="257" selection-end-column="43" />
           <folding>
             <element signature="e#0#45#0" expanded="true" />
-            <marker date="1556507129707" expanded="true" signature="17069:17084" ph="..." />
+            <marker date="1556562781931" expanded="true" signature="17050:17065" ph="..." />
           </folding>
         </state>
       </provider>
