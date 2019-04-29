@@ -44,6 +44,7 @@ class CustomerSerializer(serializers.ModelSerializer):
 class ItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = master_item
+        depth = 2
         fields = '__all__'
 
 

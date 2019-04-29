@@ -1,15 +1,17 @@
 from django.http import Http404, HttpResponse
+from django.views.decorators.csrf import csrf_exempt
 from rest_framework.decorators import api_view
 
 from myproject.api.models import receiving_header, receiving_detail, rental_stock_card, rental_stock_sn, \
-    stock_sn_history, master_item, rental_header, rental_order_header, invoice_header
+    stock_sn_history, master_item, rental_header, rental_order_header, invoice_header, master_uom
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from django.dispatch import receiver, Signal
 from myproject.api.serializers import NestedReceivingHeaderWriteSerializer, NestedReceivingHeaderReadSerializer, \
     NestedStockCardSerializer, NestedRentalHeaderReadSerializer, NestedRentalHeaderWriteSerializer, ItemSerializer, \
-    NestedRentalOrderHeaderWriteSerializer, NestedRentalOrderHeaderReadSerializer, RentalStockSNSerializer
+    NestedRentalOrderHeaderWriteSerializer, NestedRentalOrderHeaderReadSerializer, RentalStockSNSerializer, \
+    UOMSerializer, StockSNHistorySerializer
 import datetime
 
 from django.contrib.auth.decorators import login_required
@@ -351,7 +353,26 @@ def getDistinctItem(request):
     return Response(serializers.data, status=status.HTTP_200_OK)
 
 
-@login_required
+# @login_required
 @api_view(['GET'])
 def testView(request):
-    return Response("this is a test view")
+
+    # this is to pop out item from a dict / request body
+    # print("This is inside request body : ")
+    # print(request.data)
+    #
+    # a = request.data.pop("world", None)
+    #
+    # for idx,x in enumerate(a):
+    #     print(idx)
+    #     print(" ")
+    #     print(x['test'])
+    #
+    # print("This is the poped out dict : ")
+    # print(a)
+    # return Response(request.data)
+
+    # this is to get the latest data
+    # stocks = stock_sn_history.objects.latest('date')
+    # serializers = StockSNHistorySerializer(stocks)
+    return Response("Test")
