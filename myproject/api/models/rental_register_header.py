@@ -17,7 +17,7 @@ class rental_header(models.Model):
     discount = models.CharField(max_length=100, blank=True)
     tax = models.CharField(max_length=200, blank=True)
     delivery_cost = models.CharField(max_length=100, blank=True)
-    amount = models.CharField(max_length=100)
+    amount = models.CharField(max_length=100, blank=True)
     notes = models.CharField(max_length=500, blank=True)
     salesman = models.BigIntegerField(blank=True, null=True)
     notes_kwitansi = models.CharField(max_length=300, blank=True)

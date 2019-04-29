@@ -140,6 +140,7 @@ class NestedRentalOrderHeaderReadSerializer(WritableNestedModelSerializer):
                   'rental_end_date', 'notes', 'location_id', 'customer_id', 'approved_by', 'approved_date', 'user_id',
                   'RODHeader']
 
+
 class NestedRentalOrderHeaderWriteSerializer(WritableNestedModelSerializer):
     RODHeader = RentalOrderDetailSerializer(many=True)
 
@@ -156,6 +157,12 @@ class NestedRentalOrderHeaderWriteSerializer(WritableNestedModelSerializer):
 class RentalHeaderSerializer(serializers.ModelSerializer):
     class Meta:
         model = rental_header
+        fields = '__all__'
+
+
+class RentalDetailSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = rental_detail
         fields = '__all__'
 
 
