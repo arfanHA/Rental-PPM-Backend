@@ -9,9 +9,9 @@ from rest_framework.response import Response
 from rest_framework import status
 from django.dispatch import receiver, Signal
 from myproject.api.serializers import NestedReceivingHeaderWriteSerializer, NestedReceivingHeaderReadSerializer, \
-    NestedStockCardSerializer, NestedRentalHeaderReadSerializer, NestedRentalHeaderWriteSerializer, ItemSerializer, \
+    NestedStockCardSerializer, NestedRentalHeaderReadSerializer, NestedRentalHeaderWriteSerializer, \
     NestedRentalOrderHeaderWriteSerializer, NestedRentalOrderHeaderReadSerializer, RentalStockSNSerializer, \
-    UOMSerializer, StockSNHistorySerializer
+    UOMSerializer, StockSNHistorySerializer, ItemReadSerializer
 import datetime
 
 from django.contrib.auth.decorators import login_required
@@ -229,24 +229,36 @@ class NestedRentalRegister(APIView):
         for x in RDH:
             if x['discount_method'] == "By Item":
                 if x['discount_type'] == "Percent":
-                    print("Percent is used from By Item")
+                    # print("Percent is used from By Item")
                     subTotal = float(x['price']) * (discount / 100)
                     x['total'] = (float(x['price']) - subTotal) * x['qty']
                 elif x['discount_type'] == "Value":
-                    print("Value is used from By Item")
+                    # print("Value is used from By Item")
                     x['total'] = (float(x['price']) - discount) * x['qty']
             elif x['discount_method'] == "By Total Item":
                 if x['discount_type'] == "Percent":
-                    print("Percent is used from By Total Item")
+                    # print("Percent is used from By Total Item")
                     subTotal = float(x['price']) * (discount / 100)
                     x['total'] = (float(x['price']) * x['qty']) - subTotal
                 elif x['discount_type'] == "Value":
-                    print("Value is used from By Total Item")
+                    # print("Value is used from By Total Item")
                     x['total'] = (float(x['price']) * x['qty']) - discount
             amount = amount + float(x['total'])
 
         request.data['amount'] = str(amount)
 
+        # sns = request.data['SNS']
+        # now = datetime.datetime.today().strftime('%Y-%m-%d')
+        # for sn in sns:
+        #     print(sn['id'])
+        #     stock_sn_history.objects.create(
+        #         date=now,
+        #         status="KELUAR",
+        #         ref_id=None,
+        #         stock_code_id=rental_stock_sn(sn['id'])
+        #     )
+        #
+        # return Response(request.data)
         serializers = NestedRentalHeaderWriteSerializer(data=request.data)
         if serializers.is_valid():
             serializers.save()
@@ -345,7 +357,7 @@ class NestedRentalOrderManagementDetails(APIView):
 @api_view(['GET'])
 def getItemByCategory(request, b=1):
     item = master_item.objects.filter(master_group_id=b)
-    serializer = ItemSerializer(item, many=True)
+    serializer = ItemReadSerializer(item, many=True)
     return Response(serializer.data)
 
 

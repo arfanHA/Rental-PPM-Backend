@@ -4,9 +4,7 @@
     <list default="true" id="8660eb00-8fae-4ce9-a8e6-d5eaaecd21f7" name="Default Changelist" comment="Change on_delete behaviour on receiving detail sn">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/myproject/api/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/myproject/api/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/myproject/api/serializers.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/myproject/api/views/another_views.py" beforeDir="false" afterPath="$PROJECT_DIR$/myproject/api/views/another_views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/myproject/api/views/viewsets_views.py" beforeDir="false" afterPath="$PROJECT_DIR$/myproject/api/views/viewsets_views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/myproject/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/myproject/settings.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -25,13 +23,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="another_views.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="another_views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/myproject/api/views/another_views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="13" column="43" selection-start-line="13" selection-start-column="43" selection-end-line="13" selection-end-column="43" />
+            <state relative-caret-position="476">
+              <caret line="265" column="79" lean-forward="true" selection-start-line="261" selection-start-column="8" selection-end-line="265" selection-end-column="79" />
               <folding>
-                <marker date="1556506612651" expanded="true" signature="17048:17063" ph="..." />
+                <element signature="e#0#45#0" expanded="true" />
+                <marker date="1556507129707" expanded="true" signature="17069:17084" ph="..." />
               </folding>
             </state>
           </provider>
@@ -40,8 +39,8 @@
       <file leaf-file-name="master_item.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/myproject/api/models/master_item.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="8" column="55" selection-start-line="8" selection-start-column="55" selection-end-line="8" selection-end-column="55" />
+            <state relative-caret-position="102">
+              <caret line="9" column="10" lean-forward="true" selection-start-line="9" selection-start-column="10" selection-end-line="9" selection-end-column="10" />
             </state>
           </provider>
         </entry>
@@ -55,7 +54,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="viewsets_views.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="viewsets_views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/myproject/api/views/viewsets_views.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="153">
@@ -168,9 +167,9 @@
         <option value="$PROJECT_DIR$/myproject/api/urls.py" />
         <option value="$PROJECT_DIR$/myproject/api/models/rental_register_detail.py" />
         <option value="$PROJECT_DIR$/myproject/api/models/stock_sn_history.py" />
-        <option value="$PROJECT_DIR$/myproject/api/views/another_views.py" />
         <option value="$PROJECT_DIR$/myproject/api/serializers.py" />
         <option value="$PROJECT_DIR$/myproject/api/views/viewsets_views.py" />
+        <option value="$PROJECT_DIR$/myproject/api/views/another_views.py" />
       </list>
     </option>
   </component>
@@ -370,13 +369,6 @@
       <workItem from="1545353217965" duration="1462000" />
       <workItem from="1545378814720" duration="1649000" />
       <workItem from="1546589541163" duration="759000" />
-    </task>
-    <task id="LOCAL-00010" summary="Add models and views of stock managements module and rental management module&#10;Add (rental_header, rental_detail, rentail_detail_sn) models and views&#10;Add (rental_stock_card, rental_stock_sn, stock_sn_history) models and views">
-      <created>1550041711268</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1550041711268</updated>
     </task>
     <task id="LOCAL-00011" summary="Add models and views of stock managements module and rental management module&#10;Add (rental_header, rental_detail, rentail_detail_sn) models and views&#10;Add (rental_stock_card, rental_stock_sn, stock_sn_history) models and views">
       <created>1550042116597</created>
@@ -714,7 +706,14 @@
       <option name="project" value="LOCAL" />
       <updated>1556503249873</updated>
     </task>
-    <option name="localTasksCounter" value="59" />
+    <task id="LOCAL-00059" summary="Change on_delete behaviour on receiving detail sn">
+      <created>1556506914399</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1556506914399</updated>
+    </task>
+    <option name="localTasksCounter" value="60" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -739,7 +738,7 @@
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32838285" />
       <window_info anchor="bottom" id="Python Console" order="13" weight="0.32673267" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32838285" />
-      <window_info active="true" anchor="bottom" x="98" y="61" width="1201" height="606" id="Terminal" order="14" sideWeight="0.49848714" visible="true" weight="0.3250825" />
+      <window_info anchor="bottom" x="98" y="61" width="1201" height="606" id="Terminal" order="14" sideWeight="0.49848714" weight="0.3250825" />
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49339935" visible="true" weight="0.34114978" />
       <window_info anchor="right" id="R Packages" order="3" />
       <window_info anchor="bottom" id="Docker" order="10" show_stripe_button="false" />
@@ -804,7 +803,6 @@
     <MESSAGE value="Improved 'getDocumentNumber' and 'getCounter on each header(receiving, rental register, rental order)" />
     <MESSAGE value="Add new models (invoice_header, invoice_detail)" />
     <MESSAGE value="Add new serializer, views, and url for rental management invoicing" />
-    <MESSAGE value="Change on_delete behaviour on receiving detail sn" />
     <MESSAGE value="Change fields attribute" />
     <MESSAGE value="Field automation upon update" />
     <MESSAGE value="Changing field attribute and update on incoming to stock" />
@@ -821,7 +819,8 @@
     <MESSAGE value="Adding depth into rental order requests" />
     <MESSAGE value="Adding depth into master_item" />
     <MESSAGE value="Kalkulasi amount pada rental register" />
-    <option name="LAST_COMMIT_MESSAGE" value="Kalkulasi amount pada rental register" />
+    <MESSAGE value="Change on_delete behaviour on receiving detail sn" />
+    <option name="LAST_COMMIT_MESSAGE" value="Change on_delete behaviour on receiving detail sn" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/templates/test.html" />
@@ -1139,23 +1138,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/myproject/api/views/another_views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="13" column="43" selection-start-line="13" selection-start-column="43" selection-end-line="13" selection-end-column="43" />
-          <folding>
-            <marker date="1556506612651" expanded="true" signature="17048:17063" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/myproject/api/models/master_item.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="8" column="55" selection-start-line="8" selection-start-column="55" selection-end-line="8" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/myproject/api/serializers.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="208">
@@ -1169,6 +1151,24 @@
           <caret line="48" column="35" selection-start-line="48" selection-start-column="35" selection-end-line="48" selection-end-column="35" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/myproject/api/models/master_item.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="9" column="10" lean-forward="true" selection-start-line="9" selection-start-column="10" selection-end-line="9" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/myproject/api/views/another_views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="265" column="79" lean-forward="true" selection-start-line="261" selection-start-column="8" selection-end-line="265" selection-end-column="79" />
+          <folding>
+            <element signature="e#0#45#0" expanded="true" />
+            <marker date="1556507129707" expanded="true" signature="17069:17084" ph="..." />
           </folding>
         </state>
       </provider>
