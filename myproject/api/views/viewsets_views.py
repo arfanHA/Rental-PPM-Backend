@@ -45,7 +45,12 @@ class master_employee(viewsets.ModelViewSet):
 
 class master_item(viewsets.ModelViewSet):
     queryset = master_item.objects.all()
-    serializer_class = ItemSerializer
+
+    def get_serializer_class(self):
+        if self.action == 'list' or self.action =='retrieve':
+            return ItemReadSerializer
+        if self.action == 'create' or self.action == 'update' or self.action == 'partial_update':
+            return ItemWriteSerializer
 
 
 class receiving_detail(viewsets.ModelViewSet):

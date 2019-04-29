@@ -41,10 +41,16 @@ class CustomerSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class ItemSerializer(serializers.ModelSerializer):
+class ItemReadSerializer(serializers.ModelSerializer):
     class Meta:
         model = master_item
         depth = 2
+        fields = '__all__'
+
+
+class ItemWriteSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = master_item
         fields = '__all__'
 
 
