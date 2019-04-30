@@ -11,7 +11,7 @@ from django.dispatch import receiver, Signal
 from myproject.api.serializers import NestedReceivingHeaderWriteSerializer, NestedReceivingHeaderReadSerializer, \
     NestedStockCardSerializer, NestedRentalHeaderReadSerializer, NestedRentalHeaderWriteSerializer, \
     NestedRentalOrderHeaderWriteSerializer, NestedRentalOrderHeaderReadSerializer, RentalStockSNSerializer, \
-    UOMSerializer, StockSNHistorySerializer, ItemReadSerializer
+    UOMSerializer, StockSNHistorySerializer, ItemReadSerializer, NestedInvoiceSerializer
 import datetime
 
 from django.contrib.auth.decorators import login_required
@@ -348,6 +348,42 @@ class NestedRentalOrderManagementDetails(APIView):
     def put(self, request, pk, format=None):
         rentalOrderHeader = self.get_object(pk)
         serializers = NestedRentalOrderHeaderWriteSerializer(rentalOrderHeader, data=request.data)
+        if serializers.is_valid():
+            serializers.save()
+            return Response(serializers.data, status=status.HTTP_200_OK)
+        return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+# Invoice Management
+class NestedInvoiceManagement(APIView):
+    def get(self, request, format=None):
+        invoiceHeader = invoice_header.objects.all()
+        serializer = NestedInvoiceSerializer(invoiceHeader, many=True)
+        return Response(serializer.data)
+
+    def post(self, request, format=None):
+        serializer = NestedInvoiceSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class NestedInvoiceManagementDetails(APIView):
+    def get_object(self, pk):
+        try:
+            return invoice_header.objects.get(pk=pk)
+        except invoice_header.DoesNotExists:
+            raise Http404
+
+    def get(self, request, pk, format=None):
+        invoiceHeader = self.get_object(pk)
+        serializer = NestedInvoiceSerializer(invoiceHeader)
+        return Response(serializer.data)
+
+    def put(self, request, pk, format=None):
+        invoiceHeader = self.get_object(pk)
+        serializers = NestedInvoiceSerializer(invoiceHeader, data=request.data)
         if serializers.is_valid():
             serializers.save()
             return Response(serializers.data, status=status.HTTP_200_OK)

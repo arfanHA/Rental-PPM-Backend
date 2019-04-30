@@ -45,6 +45,8 @@ urlpatterns = [
     url(r'^NestedRentalOrderManagement/', another_views.NestedRentalOrderManagement.as_view()),
     url(r'^NestedRentalOrderManagementDetails/(?P<pk>[0-9]+)/$',
         another_views.NestedRentalOrderManagementDetails.as_view()),
+    url(r'^NestedInvoiceManagement/', another_views.NestedInvoiceManagement.as_view()),
+    url(r'^NestedInvoiceManagementDetails/(?P<pk>[0-9]+)/$', another_views.NestedInvoiceManagementDetails.as_view()),
     url(r'getItemByCat/(?P<b>\d+)/$', another_views.getItemByCategory, name='GetItemByCategory'),
     url(r'getItemSNs/(?P<i>\d+)/$', another_views.getItemSNs, name='GetSNsByItem'),
     url(r'getRentalRegisterApproved/', another_views.getAllRentalRegisterApproved, name="GetAllRentalRegisterApproved"),

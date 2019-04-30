@@ -10,7 +10,7 @@ class invoice_detail(models.Model):
     type_payment = models.CharField(max_length=50, blank=True)
     pay_amount = models.CharField(max_length=100, blank=True)
     noted = models.TextField(blank=True)
-    invoice_header_id = models.ForeignKey(invoice_header, on_delete=models.DO_NOTHING, blank=True, null=True)
+    invoice_header_id = models.ForeignKey(invoice_header, on_delete=models.DO_NOTHING, blank=True, null=True, related_name="InvoiceDetails")
     status = models.CharField(max_length=50, blank=True)
     user_id = models.ForeignKey(master_user, on_delete=models.DO_NOTHING, blank=True, null=True)
 
