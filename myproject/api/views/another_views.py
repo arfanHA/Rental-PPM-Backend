@@ -267,9 +267,9 @@ class NestedRentalRegister(APIView):
 
 
 @api_view(['GET'])
-def getAllRentalRegisterApproved(request):
-    rentalHeader = rental_header.objects.filter(status="APPROVED")
-    serializers = NestedRentalHeaderReadSerializer(rentalHeader, many=True)
+def getAllRentalOrderApproved(request):
+    rentalOrderHeader = rental_order_header.objects.filter(status="APPROVED")
+    serializers = NestedRentalOrderHeaderReadSerializer(rentalOrderHeader, many=True)
     return Response(serializers.data)
 
 
