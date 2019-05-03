@@ -135,8 +135,16 @@ class RentalOrderDetailSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class RentalOrderDetailReadSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = rental_order_detail
+        depth = 2
+        fields = '__all__'
+
+
+
 class NestedRentalOrderHeaderReadSerializer(WritableNestedModelSerializer):
-    RODHeader = RentalOrderDetailSerializer(many=True)
+    RODHeader = RentalOrderDetailReadSerializer(many=True)
 
     class Meta:
         model = rental_order_header
