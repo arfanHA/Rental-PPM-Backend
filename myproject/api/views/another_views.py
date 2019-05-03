@@ -174,7 +174,7 @@ def addToStock(sender, **kwargs):
 
                     if stockSN:
                         # print("Create Rental Stock SN object success!! the ID of this object is = ", stockSN)
-                        stock_sn_history.objects.create(date=todaysDate, status="MASUK", stock_code_id=stockSN)
+                        stock_sn_history.objects.create(date=todaysDate, status="MASUK", ref_id=ReceivingHeaderData['receiving_header_id'], stock_code_id=stockSN)
                     else:
                         print("Failed to create Rental Stock SN Object")
             else:
@@ -247,16 +247,16 @@ class NestedRentalRegister(APIView):
 
         request.data['amount'] = str(amount)
 
-        sns = request.data.pop("SNS", None)
-        now = datetime.datetime.today().strftime('%Y-%m-%d')
-        for sn in sns:
-            print(sn['id'])
-            stock_sn_history.objects.create(
-                date=now,
-                status="KELUAR",
-                ref_id=None,
-                stock_code_id=rental_stock_sn(sn['id'])
-            )
+        # sns = request.data.pop("SNS", None)
+        # now = datetime.datetime.today().strftime('%Y-%m-%d')
+        # for sn in sns:
+        #     print(sn['id'])
+        #     stock_sn_history.objects.create(
+        #         date=now,
+        #         status="KELUAR",
+        #         ref_id=None,
+        #         stock_code_id=rental_stock_sn(sn['id'])
+        #     )
 
         # return Response(request.data)
         serializers = NestedRentalHeaderWriteSerializer(data=request.data)
