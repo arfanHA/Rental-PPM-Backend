@@ -288,6 +288,22 @@ class NestedRentalRegisterDetails(APIView):
 
     def put(self, request, pk, format=None):
         rentalHeader = self.get_object(pk)
+
+        sns = request.data.pop("SNS", None)
+        now = datetime.datetime.today().strftime('%Y-%m-%d')
+
+        rentalHeaderId = request.data['sales_order_id']
+
+        if request.data['status'] == "APPROVED":
+            for sn in sns:
+                print(sn['id'])
+                stock_sn_history.objects.create(
+                    date=now,
+                    status="KELUAR",
+                    ref_id=rentalHeaderId,
+                    stock_code_id=rental_stock_sn(sn['id'])
+                )
+
         serializers = NestedRentalHeaderWriteSerializer(rentalHeader, data=request.data)
         if serializers.is_valid():
             serializers.save()
