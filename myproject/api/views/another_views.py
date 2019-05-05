@@ -3,7 +3,8 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework.decorators import api_view
 
 from myproject.api.models import receiving_header, receiving_detail, rental_stock_card, rental_stock_sn, \
-    stock_sn_history, master_item, rental_header, rental_order_header, invoice_header, master_uom
+    stock_sn_history, master_item, rental_header, rental_order_header, invoice_header, master_uom, master_customer, \
+    master_location, rental_order_detail, rental_detail
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -20,6 +21,7 @@ from django.contrib.auth.decorators import login_required
 
 update_on_nested_serializer = Signal(providing_args=['test'])  # custom signal
 update_on_rental_register = Signal(providing_args=['test'])  # custom signal 2
+update_on_rental_order = Signal(providing_args=['test'])  # custom signal 3
 todaysDate = datetime.datetime.today().strftime('%Y-%m-%d')  # get current date
 
 
@@ -174,7 +176,9 @@ def addToStock(sender, **kwargs):
 
                     if stockSN:
                         # print("Create Rental Stock SN object success!! the ID of this object is = ", stockSN)
-                        stock_sn_history.objects.create(date=todaysDate, status="MASUK", ref_id=ReceivingHeaderData['receiving_header_id'], stock_code_id=stockSN)
+                        stock_sn_history.objects.create(date=todaysDate, status="MASUK",
+                                                        ref_id=ReceivingHeaderData['receiving_header_id'],
+                                                        stock_code_id=stockSN)
                     else:
                         print("Failed to create Rental Stock SN Object")
             else:
@@ -316,7 +320,7 @@ class NestedRentalRegisterDetails(APIView):
 def addToInvoice(sender, **kwargs):
     RentalRegisterData = kwargs['test']
 
-    print(RentalRegisterData['status'])
+    # print(RentalRegisterData['status'])
     if "DRAFT" == RentalRegisterData['status']:
         print("This is DRAFT, nothing happen")
     else:
@@ -366,8 +370,62 @@ class NestedRentalOrderManagementDetails(APIView):
         serializers = NestedRentalOrderHeaderWriteSerializer(rentalOrderHeader, data=request.data)
         if serializers.is_valid():
             serializers.save()
+            update_on_rental_order.send(sender=rental_order_header, test=serializers.data)
             return Response(serializers.data, status=status.HTTP_200_OK)
         return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@receiver(update_on_rental_order)
+def addToRentalRegister(sender, **kwargs):
+    dataRental = kwargs['test']
+
+    if dataRental['status'] == "APPROVED":
+        timeNow = datetime.datetime.now().strftime('%Y-%m-%d')
+        numberRR = getDocumentNumber(2)
+        counterRR = getCounter(2)
+
+        # print(dataRental)
+
+        rentalHeader = rental_header.objects.create(
+            date=timeNow,
+            number = numberRR,
+            number_prefix = "",
+            counter = counterRR,
+            tax = dataRental['tax'],
+            discount_type = dataRental['discount_type'],
+            discount = dataRental['discount'],
+            delivery_cost = dataRental['delivery_fee'],
+            amount = dataRental['amount'],
+            notes = dataRental['notes'],
+            salesman = dataRental['salesman'],
+            notes_kwitansi = "",
+            status = "DRAFT",
+            rental_start_date = dataRental['rental_start_date'],
+            rental_end_date = dataRental['rental_end_date'],
+            sales_order_id = rental_order_header(dataRental['sales_order_id']),
+            customer_id = master_customer(dataRental['customer_id']),
+            location_id = master_location(dataRental['location_id']),
+            approved_by = dataRental['approved_by'],
+            approved_date = dataRental['approved_date'],
+            pay_type = 1,
+            pay_method = 1,
+            note_kwitansi = dataRental['notes_kwitansi']
+        )
+
+        RODHeader = dataRental.pop('RODHeader', None)
+
+        for x in RODHeader:
+            rental_detail.objects.create(
+                price= x['price'],
+                qty = x['qty'],
+                discount_type = x['discount_type'],
+                discount_method = x['discount_method'],
+                total = x['total'],
+                rental_header_id = rentalHeader,
+                order_detail_id = rental_order_detail(x['order_detail_id']),
+                master_item_id = master_item(x['master_item_id'])
+            )
+
 
 
 # Invoice Management
