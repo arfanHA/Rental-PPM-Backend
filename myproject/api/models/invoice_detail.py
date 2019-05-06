@@ -1,5 +1,6 @@
 from django.db import models
 
+from myproject.api.models import master_item
 from .invoice_header import invoice_header
 from .master_user import master_user
 
@@ -13,6 +14,10 @@ class invoice_detail(models.Model):
     invoice_header_id = models.ForeignKey(invoice_header, on_delete=models.DO_NOTHING, blank=True, null=True, related_name="InvoiceDetails")
     status = models.CharField(max_length=50, blank=True)
     user_id = models.ForeignKey(master_user, on_delete=models.DO_NOTHING, blank=True, null=True)
+    jml_period = models.IntegerField(blank=True, null=True)
+    period = models.CharField(max_length=50, blank=True)
+    harga_rental = models.CharField(max_length=200, blank=True)
+    master_item_id = models.ForeignKey(master_item, on_delete=models.DO_NOTHING, blank=True, null=True, related_name="Items")
 
     class Meta:
         db_table = 'InvoiceDetail'
