@@ -288,6 +288,12 @@ class NestedRentalRegisterDetails(APIView):
     def get(self, request, pk, format=None):
         rentalHeader = self.get_object(pk)
         serializers = NestedRentalHeaderReadSerializer(rentalHeader)
+        snhistory = stock_sn_history.objects.filter(ref_id=pk)
+        if snhistory.count() > 0:
+            SNSHistory = StockSNHistorySerializer(snhistory, many=True)
+            newDict = serializers.data
+            newDict['SNS'] = SNSHistory.data
+            return Response(newDict)
         return Response(serializers.data)
 
     def put(self, request, pk, format=None):
@@ -296,7 +302,7 @@ class NestedRentalRegisterDetails(APIView):
         sns = request.data.pop("SNS", None)
         now = datetime.datetime.today().strftime('%Y-%m-%d')
 
-        rentalHeaderId = request.data['sales_order_id']
+        rentalHeaderId = pk
 
         if request.data['status'] == "APPROVED":
             for sn in sns:
@@ -388,44 +394,43 @@ def addToRentalRegister(sender, **kwargs):
 
         rentalHeader = rental_header.objects.create(
             date=timeNow,
-            number = numberRR,
-            number_prefix = "",
-            counter = counterRR,
-            tax = dataRental['tax'],
-            discount_type = dataRental['discount_type'],
-            discount = dataRental['discount'],
-            delivery_cost = dataRental['delivery_fee'],
-            amount = dataRental['amount'],
-            notes = dataRental['notes'],
-            salesman = dataRental['salesman'],
-            notes_kwitansi = "",
-            status = "DRAFT",
-            rental_start_date = dataRental['rental_start_date'],
-            rental_end_date = dataRental['rental_end_date'],
-            sales_order_id = rental_order_header(dataRental['sales_order_id']),
-            customer_id = master_customer(dataRental['customer_id']),
-            location_id = master_location(dataRental['location_id']),
-            approved_by = dataRental['approved_by'],
-            approved_date = dataRental['approved_date'],
-            pay_type = 1,
-            pay_method = 1,
-            note_kwitansi = dataRental['notes_kwitansi']
+            number=numberRR,
+            number_prefix="",
+            counter=counterRR,
+            tax=dataRental['tax'],
+            discount_type=dataRental['discount_type'],
+            discount=dataRental['discount'],
+            delivery_cost=dataRental['delivery_fee'],
+            amount=dataRental['amount'],
+            notes=dataRental['notes'],
+            salesman=dataRental['salesman'],
+            notes_kwitansi="",
+            status="DRAFT",
+            rental_start_date=dataRental['rental_start_date'],
+            rental_end_date=dataRental['rental_end_date'],
+            sales_order_id=rental_order_header(dataRental['sales_order_id']),
+            customer_id=master_customer(dataRental['customer_id']),
+            location_id=master_location(dataRental['location_id']),
+            approved_by=dataRental['approved_by'],
+            approved_date=dataRental['approved_date'],
+            pay_type=1,
+            pay_method=1,
+            note_kwitansi=dataRental['notes_kwitansi']
         )
 
         RODHeader = dataRental.pop('RODHeader', None)
 
         for x in RODHeader:
             rental_detail.objects.create(
-                price= x['price'],
-                qty = x['qty'],
-                discount_type = x['discount_type'],
-                discount_method = x['discount_method'],
-                total = x['total'],
-                rental_header_id = rentalHeader,
-                order_detail_id = rental_order_detail(x['order_detail_id']),
-                master_item_id = master_item(x['master_item_id'])
+                price=x['price'],
+                qty=x['qty'],
+                discount_type=x['discount_type'],
+                discount_method=x['discount_method'],
+                total=x['total'],
+                rental_header_id=rentalHeader,
+                order_detail_id=rental_order_detail(x['order_detail_id']),
+                master_item_id=master_item(x['master_item_id'])
             )
-
 
 
 # Invoice Management

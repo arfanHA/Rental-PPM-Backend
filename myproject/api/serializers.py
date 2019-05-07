@@ -142,7 +142,6 @@ class RentalOrderDetailReadSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-
 class NestedRentalOrderHeaderReadSerializer(WritableNestedModelSerializer):
     RODHeader = RentalOrderDetailReadSerializer(many=True)
 
@@ -164,55 +163,6 @@ class NestedRentalOrderHeaderWriteSerializer(WritableNestedModelSerializer):
                   'delivery_fee', 'amount', 'notes_kwitansi', 'salesman', 'status', 'rental_start_date',
                   'rental_end_date', 'notes', 'location_id', 'customer_id', 'approved_by', 'approved_date', 'user_id',
                   'RODHeader']
-
-
-# Rental Register
-
-class RentalHeaderSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = rental_header
-        fields = '__all__'
-
-
-class RentalDetailSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = rental_detail
-        fields = '__all__'
-
-
-class RentalDetailReadSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = rental_detail
-        depth = 2
-        fields = '__all__'
-
-
-class RentalDetailWriteSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = rental_detail
-        fields = '__all__'
-
-
-class NestedRentalHeaderReadSerializer(WritableNestedModelSerializer):
-    RentalDetailHeader = RentalDetailReadSerializer(many=True)
-
-    class Meta:
-        model = rental_header
-        fields = ['rental_header_id', 'date', 'user_id', 'number', 'number_prefix', 'counter', 'discount_type',
-                  'discount', 'tax', 'delivery_cost', 'amount', 'notes', 'salesman', 'notes_kwitansi', 'status',
-                  'rental_start_date', 'rental_end_date', 'sales_order_id', 'customer_id', 'location_id',
-                  'approved_by', 'approved_date', 'pay_type', 'pay_method', 'note_kwitansi', 'RentalDetailHeader']
-
-
-class NestedRentalHeaderWriteSerializer(WritableNestedModelSerializer):
-    RentalDetailHeader = RentalDetailWriteSerializer(many=True)
-
-    class Meta:
-        model = rental_header
-        fields = ['rental_header_id', 'date', 'user_id', 'number', 'number_prefix', 'counter', 'discount_type',
-                  'discount', 'tax', 'delivery_cost', 'amount', 'notes', 'salesman', 'notes_kwitansi', 'status',
-                  'rental_start_date', 'rental_end_date', 'sales_order_id', 'customer_id', 'location_id',
-                  'approved_by', 'approved_date', 'pay_type', 'pay_method', 'note_kwitansi', 'RentalDetailHeader']
 
 
 # Stock Management
@@ -272,3 +222,52 @@ class NestedInvoiceSerializer(WritableNestedModelSerializer):
     class Meta:
         model = invoice_header
         fields = ['invoice_header_id', 'date', 'amount', 'customer', 'pay_method', 'rental_header_id', 'InvoiceDetails']
+
+
+# Rental Register
+
+class RentalHeaderSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = rental_header
+        fields = '__all__'
+
+
+class RentalDetailSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = rental_detail
+        fields = '__all__'
+
+
+class RentalDetailReadSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = rental_detail
+        depth = 2
+        fields = '__all__'
+
+
+class RentalDetailWriteSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = rental_detail
+        fields = '__all__'
+
+
+class NestedRentalHeaderReadSerializer(WritableNestedModelSerializer):
+    RentalDetailHeader = RentalDetailReadSerializer(many=True)
+
+    class Meta:
+        model = rental_header
+        fields = ['rental_header_id', 'date', 'user_id', 'number', 'number_prefix', 'counter', 'discount_type',
+                  'discount', 'tax', 'delivery_cost', 'amount', 'notes', 'salesman', 'notes_kwitansi', 'status',
+                  'rental_start_date', 'rental_end_date', 'sales_order_id', 'customer_id', 'location_id',
+                  'approved_by', 'approved_date', 'pay_type', 'pay_method', 'note_kwitansi', 'RentalDetailHeader']
+
+
+class NestedRentalHeaderWriteSerializer(WritableNestedModelSerializer):
+    RentalDetailHeader = RentalDetailWriteSerializer(many=True)
+
+    class Meta:
+        model = rental_header
+        fields = ['rental_header_id', 'date', 'user_id', 'number', 'number_prefix', 'counter', 'discount_type',
+                  'discount', 'tax', 'delivery_cost', 'amount', 'notes', 'salesman', 'notes_kwitansi', 'status',
+                  'rental_start_date', 'rental_end_date', 'sales_order_id', 'customer_id', 'location_id',
+                  'approved_by', 'approved_date', 'pay_type', 'pay_method', 'note_kwitansi', 'RentalDetailHeader']
