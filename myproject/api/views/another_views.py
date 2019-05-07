@@ -486,7 +486,7 @@ def getItemSNs(request, i=1):
 @api_view(['GET'])
 def getItemSNsAvailable(request, i=1):
     sns = rental_stock_sn.objects.filter(stock_card_id__in=(rental_stock_card.objects.filter(item_master_id=i))).filter(
-        status="1")
+        status="MASUK")
     serializers = RentalStockSNSerializer(sns, many=True)
     return Response(serializers.data, status=status.HTTP_200_OK)
 
@@ -502,6 +502,13 @@ def getUnapprovedHeader(request, s=1):
 def getDistinctItem(request):
     stocks = rental_stock_card.objects.distinct('item_master_id')
     serializers = NestedStockCardSerializer(stocks, many=True)
+    return Response(serializers.data, status=status.HTTP_200_OK)
+
+
+@api_view(['GET'])
+def getStockHistoryBySN(request, i=1):
+    SNHistory = stock_sn_history.objects.filter(stock_code_id=i)
+    serializers = StockSNHistorySerializer(SNHistory, many=True)
     return Response(serializers.data, status=status.HTTP_200_OK)
 
 
