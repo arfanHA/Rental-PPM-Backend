@@ -177,7 +177,7 @@ def addToStock(sender, **kwargs):
                     if stockSN:
                         # print("Create Rental Stock SN object success!! the ID of this object is = ", stockSN)
                         stock_sn_history.objects.create(date=todaysDate, status="MASUK",
-                                                        ref_id=ReceivingHeaderData['receiving_header_id'],
+                                                        IncomingRef_id=ReceivingHeaderData['receiving_header_id'],
                                                         stock_code_id=stockSN)
                     else:
                         print("Failed to create Rental Stock SN Object")
@@ -310,7 +310,7 @@ class NestedRentalRegisterDetails(APIView):
                 stock_sn_history.objects.create(
                     date=now,
                     status="KELUAR",
-                    ref_id=rentalHeaderId,
+                    RentalRef_id=rentalHeaderId,
                     stock_code_id=rental_stock_sn(sn['id'])
                 )
 

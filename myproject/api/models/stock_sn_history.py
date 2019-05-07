@@ -7,7 +7,8 @@ class stock_sn_history(models.Model):
     stock_sn_history_id = models.BigAutoField(primary_key=True)
     date = models.DateField()
     status = models.CharField(max_length=50, blank=True)
-    ref_id = models.BigIntegerField(null=True, blank=True)
+    IncomingRef_id = models.BigIntegerField(null=True, blank=True)
+    RentalRef_id = models.BigIntegerField(null=True, blank=True)
     stock_code_id = models.ForeignKey(rental_stock_sn, on_delete=models.DO_NOTHING, blank=True, null=True,
                                       related_name='StockSNHistory')
 
