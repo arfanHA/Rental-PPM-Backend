@@ -4,7 +4,7 @@ from rest_framework.decorators import api_view
 
 from myproject.api.models import receiving_header, receiving_detail, rental_stock_card, rental_stock_sn, \
     stock_sn_history, master_item, rental_header, rental_order_header, invoice_header, master_uom, master_customer, \
-    master_location, rental_order_detail, rental_detail
+    master_location, rental_order_detail, rental_detail, master_group_item
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -14,6 +14,7 @@ from myproject.api.serializers import NestedReceivingHeaderWriteSerializer, Nest
     NestedRentalOrderHeaderWriteSerializer, NestedRentalOrderHeaderReadSerializer, RentalStockSNSerializer, \
     UOMSerializer, StockSNHistorySerializer, ItemReadSerializer, NestedInvoiceSerializer
 import datetime
+from django.db import models
 
 from django.contrib.auth.decorators import login_required
 
@@ -512,6 +513,26 @@ def getStockHistoryBySN(request, i=1):
     return Response(serializers.data, status=status.HTTP_200_OK)
 
 
+@api_view(['POST'])
+def getRentalWithFilter(request):
+    fromDate = request.data['dateFrom']
+    toDate = request.data['dateTo']
+
+    if request.data['locationCheck'] == 1:
+        val = request.data['value']
+        rentalRegister = rental_header.objects.filter(date__gte=fromDate, date__lte=toDate).filter(location_id=val)
+    elif request.data['groupCheck'] == 1:
+        val = request.data['value']
+        rentalRegister = rental_header.objects.filter(date__gte=fromDate, date__lte=toDate).filter(
+            rental_header_id__in=(
+                rental_detail.objects.filter(master_item_id__in=(master_item.objects.filter(master_group_id=val)))))
+    else:
+        rentalRegister = rental_header.objects.filter(date__gte=fromDate, date__lte=toDate)
+
+    serializers = NestedRentalHeaderReadSerializer(rentalRegister, many=True)
+    return Response(serializers.data, status=status.HTTP_200_OK)
+
+
 # @login_required
 @api_view(['GET'])
 def testView(request):
@@ -533,4 +554,15 @@ def testView(request):
     # this is to get the latest data
     # stocks = stock_sn_history.objects.latest('date')
     # serializers = StockSNHistorySerializer(stocks)
+
+    # rentalRegister = rental_header.objects.filter(date__gte=models.DateField().to_python("2019-04-01"),
+    #                                               date__lte=models.DateField().to_python("2019-05-13"))
+    # serializers = NestedRentalHeaderReadSerializer(rentalRegister, many=True)
+    # return Response(serializers.data)
+
+    x = master_item.objects.filter(master_group_id=1)
+    y = rental_detail.objects.filter(master_item_id__in=x)
+    z = rental_header.objects.filter(rental_header_id__in=y)
+    print(y)
+
     return Response("Test")
