@@ -4,7 +4,6 @@
     <list default="true" id="8660eb00-8fae-4ce9-a8e6-d5eaaecd21f7" name="Default Changelist" comment="Update stock history upon rental register approval">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/myproject/api/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/myproject/api/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/myproject/api/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/myproject/api/views/another_views.py" beforeDir="false" afterPath="$PROJECT_DIR$/myproject/api/views/another_views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/myproject/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/myproject/settings.py" afterDir="false" />
     </list>
@@ -26,11 +25,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/myproject/api/views/another_views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="328">
-              <caret line="528" column="9" lean-forward="true" selection-start-line="528" selection-start-column="9" selection-end-line="528" selection-end-column="9" />
+            <state relative-caret-position="226">
+              <caret line="522" column="108" selection-start-line="522" selection-start-column="108" selection-end-line="522" selection-end-column="108" />
               <folding>
                 <element signature="e#0#45#0" expanded="true" />
-                <marker date="1557731766117" expanded="true" signature="22854:22869" ph="..." />
+                <marker date="1557808193080" expanded="true" signature="22847:22862" ph="..." />
               </folding>
             </state>
           </provider>
@@ -39,8 +38,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/myproject/api/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="192">
-              <caret line="56" column="96" lean-forward="true" selection-start-line="56" selection-start-column="96" selection-end-line="56" selection-end-column="96" />
+            <state relative-caret-position="901">
+              <caret line="56" column="96" selection-start-line="56" selection-start-column="96" selection-end-line="56" selection-end-column="96" />
             </state>
           </provider>
         </entry>
@@ -342,14 +341,8 @@
       <workItem from="1557201272494" duration="10079000" />
       <workItem from="1557374378803" duration="640000" />
       <workItem from="1557717328404" duration="1880000" />
-      <workItem from="1557729193686" duration="2707000" />
-    </task>
-    <task id="LOCAL-00025" summary="Minor fix&#10;Changing variable">
-      <created>1551667817244</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1551667817244</updated>
+      <workItem from="1557729193686" duration="3651000" />
+      <workItem from="1557807472755" duration="698000" />
     </task>
     <task id="LOCAL-00026" summary="Add nested serializers to rental order management including rental order header and rental order detail&#10;Add GET and POST request url for nested rental order management&#10;Add GET and PUT request url for specific nested rental order management objects">
       <created>1551669309501</created>
@@ -687,11 +680,18 @@
       <option name="project" value="LOCAL" />
       <updated>1557216901320</updated>
     </task>
-    <option name="localTasksCounter" value="74" />
+    <task id="LOCAL-00074" summary="get Rental Register with date and location filter">
+      <created>1557731996321</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1557731996321</updated>
+    </task>
+    <option name="localTasksCounter" value="75" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="65729000" />
+    <option name="totallyTimeSpent" value="67371000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -706,7 +706,7 @@
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4915254" visible="true" weight="0.24357034" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4915254" visible="true" weight="0.2473525" />
       <window_info id="Structure" order="1" sideWeight="0.5084746" side_tool="true" weight="0.2193646" />
       <window_info id="Favorites" order="2" sideWeight="0.5084746" side_tool="true" weight="0.2193646" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -723,7 +723,7 @@
       <window_info anchor="bottom" id="Database Changes" order="11" weight="0.32838285" />
       <window_info active="true" anchor="bottom" id="Inspection Results" order="12" visible="true" weight="0.32974428" />
       <window_info anchor="bottom" id="Python Console" order="13" weight="0.32673267" />
-      <window_info anchor="bottom" x="98" y="61" width="1201" height="606" id="Terminal" order="14" sideWeight="0.49848714" weight="0.35679215" />
+      <window_info active="true" anchor="bottom" x="98" y="61" width="1201" height="606" id="Terminal" order="14" sideWeight="0.49848714" visible="true" weight="0.35679215" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -766,7 +766,6 @@
     <option name="version" value="1" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Otomatis menambah invoice ketika rental register header berubah status menjadi APPROVED" />
     <MESSAGE value="Add invoice header and detail into admin site" />
     <MESSAGE value="Penambahan depth pada beberapa serializer untuk menampilkan informasi lebih detail terkait suatu foreignkey atau related fields" />
     <MESSAGE value="Perubahan tipe field lokasi dan pelanggan menjadi OneToMany (ForeignKey)" />
@@ -791,7 +790,8 @@
     <MESSAGE value="Update rental register fields" />
     <MESSAGE value="get history by sn" />
     <MESSAGE value="update ref id on stock sn history" />
-    <option name="LAST_COMMIT_MESSAGE" value="update ref id on stock sn history" />
+    <MESSAGE value="get Rental Register with date and location filter" />
+    <option name="LAST_COMMIT_MESSAGE" value="get Rental Register with date and location filter" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/myproject/api/asdasda.py" />
@@ -1114,27 +1114,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/myproject/api/models/stock_sn_history.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="10" column="64" selection-start-line="10" selection-start-column="64" selection-end-line="10" selection-end-column="64" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/myproject/api/models/master_group_item.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="6" column="55" selection-start-line="6" selection-start-column="55" selection-end-line="6" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/myproject/api/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="56" column="96" lean-forward="true" selection-start-line="56" selection-start-column="96" selection-end-line="56" selection-end-column="96" />
         </state>
       </provider>
     </entry>
@@ -1147,11 +1130,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/myproject/api/views/another_views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="328">
-          <caret line="528" column="9" lean-forward="true" selection-start-line="528" selection-start-column="9" selection-end-line="528" selection-end-column="9" />
+        <state relative-caret-position="226">
+          <caret line="522" column="108" selection-start-line="522" selection-start-column="108" selection-end-line="522" selection-end-column="108" />
           <folding>
             <element signature="e#0#45#0" expanded="true" />
-            <marker date="1557731766117" expanded="true" signature="22854:22869" ph="..." />
+            <marker date="1557808193080" expanded="true" signature="22847:22862" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/myproject/api/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="901">
+          <caret line="56" column="96" selection-start-line="56" selection-start-column="96" selection-end-line="56" selection-end-column="96" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/myproject/api/models/stock_sn_history.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="10" column="64" selection-start-line="10" selection-start-column="64" selection-end-line="10" selection-end-column="64" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
           </folding>
         </state>
       </provider>

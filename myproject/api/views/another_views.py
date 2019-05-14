@@ -520,7 +520,7 @@ def getRentalWithFilter(request):
 
     if request.data['locationCheck'] == 1:
         val = request.data['value']
-        rentalRegister = rental_header.objects.filter(date__gte=fromDate, date__lte=toDate).filter(location_id=val)
+        rentalRegister = rental_header.objects.filter(date__gte=fromDate, date__lte=toDate, location_id=val)
     elif request.data['groupCheck'] == 1:
         val = request.data['value']
         rentalRegister = rental_header.objects.filter(date__gte=fromDate, date__lte=toDate).filter(
