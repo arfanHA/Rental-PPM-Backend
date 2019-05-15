@@ -128,7 +128,8 @@ class NestedReceivingManagementDetails(APIView):
         serializer = NestedReceivingHeaderWriteSerializer(header, data=request.data)
         if serializer.is_valid():
             serializer.save()
-            update_on_nested_serializer.send(sender=receiving_header, test=serializer.data)
+            if request.data['status'] == "APPROVED":
+                update_on_nested_serializer.send(sender=receiving_header, test=serializer.data)
             return Response(serializer.data, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
