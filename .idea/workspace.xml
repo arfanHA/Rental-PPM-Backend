@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8660eb00-8fae-4ce9-a8e6-d5eaaecd21f7" name="Default Changelist" comment="Update stock history upon rental register approval">
+    <list default="true" id="8660eb00-8fae-4ce9-a8e6-d5eaaecd21f7" name="Default Changelist" comment="Show qty of sn in stock card">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/myproject/api/migrations/0001_initial.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/myproject/api/views/another_views.py" beforeDir="false" afterPath="$PROJECT_DIR$/myproject/api/views/another_views.py" afterDir="false" />
@@ -25,11 +25,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/myproject/api/views/another_views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="131" column="93" lean-forward="true" selection-start-line="131" selection-start-column="93" selection-end-line="131" selection-end-column="93" />
+            <state relative-caret-position="226">
+              <caret line="511" column="96" selection-start-line="511" selection-start-column="96" selection-end-line="511" selection-end-column="96" />
               <folding>
                 <element signature="e#0#45#0" expanded="true" />
-                <marker date="1557908764647" expanded="true" signature="22904:22919" ph="..." />
+                <marker date="1558339003346" expanded="true" signature="23221:23236" ph="..." />
               </folding>
             </state>
           </provider>
@@ -343,14 +343,8 @@
       <workItem from="1557717328404" duration="1880000" />
       <workItem from="1557729193686" duration="3651000" />
       <workItem from="1557807472755" duration="2006000" />
-      <workItem from="1557908299173" duration="458000" />
-    </task>
-    <task id="LOCAL-00027" summary="Minor Fix">
-      <created>1551682350249</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1551682350249</updated>
+      <workItem from="1557908299173" duration="955000" />
+      <workItem from="1558337912391" duration="1067000" />
     </task>
     <task id="LOCAL-00028" summary="Add new view (get item by category)&#10;url : /getItemByCat/b/ where b is the id of category's id">
       <created>1552361888675</created>
@@ -688,11 +682,18 @@
       <option name="project" value="LOCAL" />
       <updated>1557808323627</updated>
     </task>
-    <option name="localTasksCounter" value="76" />
+    <task id="LOCAL-00076" summary="Minor fix">
+      <created>1557908799484</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1557908799485</updated>
+    </task>
+    <option name="localTasksCounter" value="77" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="69137000" />
+    <option name="totallyTimeSpent" value="70701000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -724,7 +725,7 @@
       <window_info anchor="bottom" id="Database Changes" order="11" weight="0.32838285" />
       <window_info active="true" anchor="bottom" id="Inspection Results" order="12" visible="true" weight="0.32974428" />
       <window_info anchor="bottom" id="Python Console" order="13" weight="0.32673267" />
-      <window_info anchor="bottom" x="98" y="61" width="1201" height="606" id="Terminal" order="14" sideWeight="0.49848714" weight="0.35679215" />
+      <window_info active="true" anchor="bottom" x="98" y="61" width="1201" height="606" id="Terminal" order="14" sideWeight="0.49848714" visible="true" weight="0.35679215" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -776,7 +777,6 @@
     <MESSAGE value="Adding depth into master_item" />
     <MESSAGE value="Kalkulasi amount pada rental register" />
     <MESSAGE value="Change on_delete behaviour on receiving detail sn" />
-    <MESSAGE value="Minor fix" />
     <MESSAGE value="Mencatat history ketika ada rental register yang dibuat" />
     <MESSAGE value="nested invoice management for nesting post/put/get requests" />
     <MESSAGE value="Changes on getAllRentalOrderHeaderApproved (previously getAllRentalRegisterHeader)" />
@@ -792,7 +792,8 @@
     <MESSAGE value="update ref id on stock sn history" />
     <MESSAGE value="get Rental Register with date and location filter" />
     <MESSAGE value="Update AND filter" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update AND filter" />
+    <MESSAGE value="Minor fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="Minor fix" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/myproject/api/asdasda.py" />
@@ -1131,11 +1132,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/myproject/api/views/another_views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="131" column="93" lean-forward="true" selection-start-line="131" selection-start-column="93" selection-end-line="131" selection-end-column="93" />
+        <state relative-caret-position="226">
+          <caret line="511" column="96" selection-start-line="511" selection-start-column="96" selection-end-line="511" selection-end-column="96" />
           <folding>
             <element signature="e#0#45#0" expanded="true" />
-            <marker date="1557908764647" expanded="true" signature="22904:22919" ph="..." />
+            <marker date="1558339003346" expanded="true" signature="23221:23236" ph="..." />
           </folding>
         </state>
       </provider>
