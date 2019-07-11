@@ -290,9 +290,15 @@ class NestedRentalRegisterDetails(APIView):
     def get(self, request, pk, format=None):
         rentalHeader = self.get_object(pk)
         serializers = NestedRentalHeaderReadSerializer(rentalHeader)
-        snhistory = stock_sn_history.objects.filter(ref_id=pk)
-        if snhistory.count() > 0:
-            SNSHistory = StockSNHistorySerializer(snhistory, many=True)
+        snhistoryIncoming = stock_sn_history.objects.filter(IncomingRef_id=pk)
+        snhistoryRental = stock_sn_history.objects.filter(RentalRef_id=pk)
+        if snhistoryRental.count() > 0:
+            SNSHistory = StockSNHistorySerializer(snhistoryRental, many=True)
+            newDict = serializers.data
+            newDict['SNS'] = SNSHistory.data
+            return Response(newDict)
+        elif snhistoryIncoming.count() > 0:
+            SNSHistory = StockSNHistorySerializer(snhistoryIncoming, many=True)
             newDict = serializers.data
             newDict['SNS'] = SNSHistory.data
             return Response(newDict)
@@ -309,7 +315,7 @@ class NestedRentalRegisterDetails(APIView):
         if request.data['status'] == "APPROVED":
             for sn in sns:
                 print(sn['id'])
-                rental_stock_sn.objects.filter(pk=sn['id']).update(status='KELUAR')
+                rental_stock_sn.objects.filter(pk=sn['id']).status = 'KELUAR'
                 rental_stock_sn.save()
                 stock_sn_history.objects.create(
                     date=now,
