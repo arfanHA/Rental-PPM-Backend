@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8660eb00-8fae-4ce9-a8e6-d5eaaecd21f7" name="Default Changelist" comment="Show qty of sn in stock card">
+    <list default="true" id="8660eb00-8fae-4ce9-a8e6-d5eaaecd21f7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/myproject/api/views/generatePDF_views.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/myproject/api/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/myproject/api/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/myproject/api/views/another_views.py" beforeDir="false" afterPath="$PROJECT_DIR$/myproject/api/views/another_views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -32,7 +33,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/myproject/api/admin.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
+            <state relative-caret-position="34">
               <caret line="3" column="36" selection-start-line="3" selection-start-column="36" selection-end-line="3" selection-end-column="36" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
@@ -41,14 +42,35 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/myproject/api/views/another_views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="957">
-              <caret line="576" column="12" lean-forward="true" selection-start-line="576" selection-start-column="12" selection-end-line="576" selection-end-column="12" />
+            <state relative-caret-position="38">
+              <caret line="311" column="83" lean-forward="true" selection-start-line="311" selection-start-column="83" selection-end-line="311" selection-end-column="83" />
               <folding>
                 <element signature="e#0#45#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/myproject/api/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="187">
+              <caret line="29" column="36" selection-start-line="29" selection-start-column="36" selection-end-line="29" selection-end-column="36" />
+              <folding>
+                <element signature="e#0#34#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/myproject/api/models/rental_stock_sn.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="10" column="55" selection-start-line="10" selection-start-column="55" selection-end-line="10" selection-end-column="55" />
             </state>
           </provider>
         </entry>
@@ -139,8 +161,8 @@
         <option value="$PROJECT_DIR$/myproject/api/models/master_item.py" />
         <option value="$PROJECT_DIR$/myproject/api/models/rental_register_detail.py" />
         <option value="$PROJECT_DIR$/myproject/api/models/stock_sn_history.py" />
-        <option value="$PROJECT_DIR$/myproject/api/urls.py" />
         <option value="$PROJECT_DIR$/myproject/api/views/another_views.py" />
+        <option value="$PROJECT_DIR$/myproject/api/urls.py" />
       </list>
     </option>
   </component>
@@ -157,7 +179,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -201,6 +222,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -355,13 +377,7 @@
       <workItem from="1557807472755" duration="2006000" />
       <workItem from="1557908299173" duration="955000" />
       <workItem from="1558337912391" duration="1067000" />
-    </task>
-    <task id="LOCAL-00028" summary="Add new view (get item by category)&#10;url : /getItemByCat/b/ where b is the id of category's id">
-      <created>1552361888675</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1552361888675</updated>
+      <workItem from="1562829743207" duration="292000" />
     </task>
     <task id="LOCAL-00029" summary="File names Changes&#10;Add few new attribute/fields into models&#10;Update to serializers and url">
       <created>1552364317854</created>
@@ -699,11 +715,18 @@
       <option name="project" value="LOCAL" />
       <updated>1557908799485</updated>
     </task>
-    <option name="localTasksCounter" value="77" />
+    <task id="LOCAL-00077" summary="Generate PDF view deletion">
+      <created>1562826863677</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1562826863677</updated>
+    </task>
+    <option name="localTasksCounter" value="78" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="71166000" />
+    <option name="totallyTimeSpent" value="73080000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -718,7 +741,7 @@
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4915254" visible="true" weight="0.20801815" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4915254" visible="true" weight="0.21104388" />
       <window_info id="Structure" order="1" sideWeight="0.5084746" side_tool="true" weight="0.2193646" />
       <window_info id="Favorites" order="2" sideWeight="0.5084746" side_tool="true" weight="0.2193646" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -728,14 +751,14 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3289689" />
-      <window_info active="true" anchor="bottom" id="Version Control" order="7" visible="true" weight="0.32838285" />
+      <window_info anchor="bottom" id="Version Control" order="7" weight="0.32733223" />
       <window_info anchor="bottom" id="Messages" order="8" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5015129" side_tool="true" weight="0.5693069" />
       <window_info anchor="bottom" id="Docker" order="10" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="11" weight="0.32838285" />
       <window_info active="true" anchor="bottom" id="Inspection Results" order="12" visible="true" weight="0.32974428" />
       <window_info anchor="bottom" id="Python Console" order="13" weight="0.32673267" />
-      <window_info anchor="bottom" x="98" y="61" width="1201" height="606" id="Terminal" order="14" sideWeight="0.49848714" weight="0.35679215" />
+      <window_info active="true" anchor="bottom" x="98" y="61" width="1201" height="606" id="Terminal" order="14" sideWeight="0.49848714" visible="true" weight="0.35679215" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -778,7 +801,6 @@
     <option name="version" value="1" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Penambahan depth pada beberapa serializer untuk menampilkan informasi lebih detail terkait suatu foreignkey atau related fields" />
     <MESSAGE value="Perubahan tipe field lokasi dan pelanggan menjadi OneToMany (ForeignKey)" />
     <MESSAGE value="Get distinct item on stocks" />
     <MESSAGE value="Update on serializer both for write and read on incoming and rental register module" />
@@ -803,7 +825,8 @@
     <MESSAGE value="get Rental Register with date and location filter" />
     <MESSAGE value="Update AND filter" />
     <MESSAGE value="Minor fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="Minor fix" />
+    <MESSAGE value="Generate PDF view deletion" />
+    <option name="LAST_COMMIT_MESSAGE" value="Generate PDF view deletion" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/django/db/models/fields/related_descriptors.py">
@@ -1026,13 +1049,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/myproject/api/models/rental_stock_sn.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="10" column="55" selection-start-line="10" selection-start-column="55" selection-end-line="10" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/myproject/api/views/viewsets_views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="325">
@@ -1102,13 +1118,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/myproject/api/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="901">
-          <caret line="56" column="96" selection-start-line="56" selection-start-column="96" selection-end-line="56" selection-end-column="96" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/myproject/api/models/stock_sn_history.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -1129,38 +1138,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/myproject/api/models/user_group.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/myproject/api/models/user_action.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/myproject/api/models/user_menu.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/myproject/api/views/generatePDF_views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-185">
-          <caret line="25" column="33" selection-start-line="25" selection-start-column="33" selection-end-line="25" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/myproject/api/models/user_group.py" />
+    <entry file="file://$PROJECT_DIR$/myproject/api/models/user_action.py" />
+    <entry file="file://$PROJECT_DIR$/myproject/api/models/user_menu.py" />
+    <entry file="file://$PROJECT_DIR$/myproject/api/views/generatePDF_views.py" />
     <entry file="file://$PROJECT_DIR$/../backupp/generatePDF_views.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -1173,7 +1154,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/myproject/api/admin.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
+        <state relative-caret-position="34">
           <caret line="3" column="36" selection-start-line="3" selection-start-column="36" selection-end-line="3" selection-end-column="36" />
           <folding>
             <element signature="e#0#32#0" expanded="true" />
@@ -1181,12 +1162,29 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/myproject/api/models/rental_stock_sn.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="10" column="55" selection-start-line="10" selection-start-column="55" selection-end-line="10" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/myproject/api/views/another_views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="957">
-          <caret line="576" column="12" lean-forward="true" selection-start-line="576" selection-start-column="12" selection-end-line="576" selection-end-column="12" />
+        <state relative-caret-position="38">
+          <caret line="311" column="83" lean-forward="true" selection-start-line="311" selection-start-column="83" selection-end-line="311" selection-end-column="83" />
           <folding>
             <element signature="e#0#45#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/myproject/api/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="29" column="36" selection-start-line="29" selection-start-column="36" selection-end-line="29" selection-end-column="36" />
+          <folding>
+            <element signature="e#0#34#0" expanded="true" />
           </folding>
         </state>
       </provider>
