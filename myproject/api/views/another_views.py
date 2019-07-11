@@ -310,6 +310,7 @@ class NestedRentalRegisterDetails(APIView):
             for sn in sns:
                 print(sn['id'])
                 rental_stock_sn.objects.filter(pk=sn['id']).update(status='KELUAR')
+                rental_stock_sn.save()
                 stock_sn_history.objects.create(
                     date=now,
                     status="KELUAR",
