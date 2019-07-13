@@ -552,6 +552,29 @@ def getRentalWithFilter(request):
     return Response(serializers.data, status=status.HTTP_200_OK)
 
 
+@api_view(['POST'])
+def getPrice(request):
+    rentalHeader = request.data['rental_header_id']
+
+    price1 = 0
+    price2 = 0
+    price3 = 0
+    rentalDetails = rental_detail.objects.filter(rental_header_id=rentalHeader)
+    for rentalDetail in rentalDetails:
+        itemId = rentalDetail['master_item_id']
+        item = master_item.objects.filter(pk=itemId)
+        price1 = price1 + int(item['price1'])
+        price2 = price2 + int(item['price2'])
+        price3 = price3 + int(item['price3'])
+
+    priceDict = {
+        'price1': price1,
+        'price2': price2,
+        'price3': price3
+    }
+    return Response(priceDict)
+
+
 # @login_required
 @api_view(['GET'])
 def testView(request):
