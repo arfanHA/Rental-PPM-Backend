@@ -565,7 +565,8 @@ def getPrice(request):
         item = master_item.objects.get(pk=itemId)
         price1 = price1 + int(float(item.price1))
         price2 = price2 + int(float(item.price2))
-        price3 = price3 + int(float(item.price3))
+        if(item.price3 == ""): price3 = price3
+        else: price3 = price3 + int(float(item.price3))
 
     priceDict = {
         'price1': price1,
