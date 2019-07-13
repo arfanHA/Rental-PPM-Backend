@@ -572,7 +572,7 @@ def getPrice(request):
         'price2': price2,
         'price3': price3
     }
-    return Response(priceDict)
+    return Response(rentalDetails)
 
 
 # @login_required
