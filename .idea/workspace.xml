@@ -4,6 +4,7 @@
     <list default="true" id="8660eb00-8fae-4ce9-a8e6-d5eaaecd21f7" name="Default Changelist" comment="Update on renta upon adding new sn">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/myproject/api/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/myproject/api/views/another_views.py" beforeDir="false" afterPath="$PROJECT_DIR$/myproject/api/views/another_views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -23,8 +24,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/myproject/api/views/another_views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="138">
-              <caret line="561" column="28" selection-start-line="561" selection-start-column="28" selection-end-line="561" selection-end-column="28" />
+            <state relative-caret-position="257">
+              <caret line="570" column="25" lean-forward="true" selection-start-line="570" selection-start-column="25" selection-end-line="570" selection-end-column="25" />
               <folding>
                 <element signature="e#0#45#0" expanded="true" />
               </folding>
@@ -160,8 +161,8 @@
         <option value="$PROJECT_DIR$/myproject/api/models/master_item.py" />
         <option value="$PROJECT_DIR$/myproject/api/models/rental_register_detail.py" />
         <option value="$PROJECT_DIR$/myproject/api/models/stock_sn_history.py" />
-        <option value="$PROJECT_DIR$/myproject/api/views/another_views.py" />
         <option value="$PROJECT_DIR$/myproject/api/urls.py" />
+        <option value="$PROJECT_DIR$/myproject/api/views/another_views.py" />
       </list>
     </option>
   </component>
@@ -378,21 +379,7 @@
       <workItem from="1558337912391" duration="1067000" />
       <workItem from="1562829743207" duration="6107000" />
       <workItem from="1562921322090" duration="588000" />
-      <workItem from="1562995330984" duration="4086000" />
-    </task>
-    <task id="LOCAL-00035" summary="Get SN by Item ID views added">
-      <created>1553115566220</created>
-      <option name="number" value="00035" />
-      <option name="presentableId" value="LOCAL-00035" />
-      <option name="project" value="LOCAL" />
-      <updated>1553115566220</updated>
-    </task>
-    <task id="LOCAL-00036" summary="Few updates&#10;Add new views (getSnsByItemAvailable) to get SNs that available to be rented&#10;Add new views (getUnapprovedHeader) to get incoming header that has not been approved&#10;Add new field into rental_stock_sn (status) to determine what sn status currently is&#10;Changes on rental_stock_sn upon status update in receiving_header">
-      <created>1553494755578</created>
-      <option name="number" value="00036" />
-      <option name="presentableId" value="LOCAL-00036" />
-      <option name="project" value="LOCAL" />
-      <updated>1553494755578</updated>
+      <workItem from="1562995330984" duration="6390000" />
     </task>
     <task id="LOCAL-00037" summary="Minor changes">
       <created>1553501332433</created>
@@ -723,11 +710,25 @@
       <option name="project" value="LOCAL" />
       <updated>1563002516688</updated>
     </task>
-    <option name="localTasksCounter" value="84" />
+    <task id="LOCAL-00084" summary="testing 2">
+      <created>1563002816516</created>
+      <option name="number" value="00084" />
+      <option name="presentableId" value="LOCAL-00084" />
+      <option name="project" value="LOCAL" />
+      <updated>1563002816516</updated>
+    </task>
+    <task id="LOCAL-00085" summary="get all price of each item in defined rental header">
+      <created>1563004656019</created>
+      <option name="number" value="00085" />
+      <option name="presentableId" value="LOCAL-00085" />
+      <option name="project" value="LOCAL" />
+      <updated>1563004656019</updated>
+    </task>
+    <option name="localTasksCounter" value="86" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="83569000" />
+    <option name="totallyTimeSpent" value="85873000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -739,7 +740,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4915254" visible="true" weight="0.21709532" />
@@ -759,7 +760,7 @@
       <window_info anchor="bottom" id="Database Changes" order="11" weight="0.32838285" />
       <window_info active="true" anchor="bottom" id="Inspection Results" order="12" visible="true" weight="0.32974428" />
       <window_info anchor="bottom" id="Python Console" order="13" weight="0.32673267" />
-      <window_info anchor="bottom" x="98" y="61" width="1201" height="606" id="Terminal" order="14" sideWeight="0.49848714" weight="0.33878887" />
+      <window_info anchor="bottom" x="98" y="61" width="1201" height="606" id="Terminal" order="14" sideWeight="0.49848714" weight="0.32569557" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -802,8 +803,6 @@
     <option name="version" value="1" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Kalkulasi amount pada rental register" />
-    <MESSAGE value="Change on_delete behaviour on receiving detail sn" />
     <MESSAGE value="Mencatat history ketika ada rental register yang dibuat" />
     <MESSAGE value="nested invoice management for nesting post/put/get requests" />
     <MESSAGE value="Changes on getAllRentalOrderHeaderApproved (previously getAllRentalRegisterHeader)" />
@@ -827,7 +826,9 @@
     <MESSAGE value="detailed info on ref id" />
     <MESSAGE value="get all price of each header id (testing)" />
     <MESSAGE value="update urls" />
-    <option name="LAST_COMMIT_MESSAGE" value="update urls" />
+    <MESSAGE value="testing 2" />
+    <MESSAGE value="get all price of each item in defined rental header" />
+    <option name="LAST_COMMIT_MESSAGE" value="get all price of each item in defined rental header" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/django/db/models/fields/related_descriptors.py">
@@ -1019,13 +1020,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/myproject/api/models/rental_order_header.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="7" column="18" selection-start-line="7" selection-start-column="4" selection-end-line="7" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/myproject/api/models/rental_order_detail.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -1095,13 +1089,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/myproject/api/serializers.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4284">
-          <caret line="254" column="62" selection-start-line="254" selection-start-column="62" selection-end-line="254" selection-end-column="62" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/myproject/api/admin.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
@@ -1163,6 +1150,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/myproject/api/models/rental_order_header.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="7" column="18" selection-start-line="7" selection-start-column="4" selection-end-line="7" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/myproject/api/serializers.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3762">
+          <caret line="254" column="62" selection-start-line="254" selection-start-column="62" selection-end-line="254" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/myproject/api/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="410">
@@ -1182,8 +1183,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/myproject/api/views/another_views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="561" column="28" selection-start-line="561" selection-start-column="28" selection-end-line="561" selection-end-column="28" />
+        <state relative-caret-position="257">
+          <caret line="570" column="25" lean-forward="true" selection-start-line="570" selection-start-column="25" selection-end-line="570" selection-end-column="25" />
           <folding>
             <element signature="e#0#45#0" expanded="true" />
           </folding>
