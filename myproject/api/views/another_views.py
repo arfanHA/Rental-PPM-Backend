@@ -563,9 +563,9 @@ def getPrice(request):
     for rentalDetail in rentalDetails:
         itemId = rentalDetail.master_item_id_id
         item = master_item.objects.get(pk=itemId)
-        price1 = price1 + int(item.price1)
-        price2 = price2 + int(item.price2)
-        price3 = price3 + int(item.price3)
+        price1 = price1 + int(float(item.price1))
+        price2 = price2 + int(float(item.price2))
+        price3 = price3 + int(float(item.price3))
 
     priceDict = {
         'price1': price1,

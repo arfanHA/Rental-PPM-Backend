@@ -24,8 +24,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/myproject/api/views/another_views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="257">
-              <caret line="570" column="25" lean-forward="true" selection-start-line="570" selection-start-column="25" selection-end-line="570" selection-end-column="25" />
+            <state relative-caret-position="223">
+              <caret line="568" lean-forward="true" selection-start-line="568" selection-end-line="568" />
               <folding>
                 <element signature="e#0#45#0" expanded="true" />
               </folding>
@@ -379,21 +379,7 @@
       <workItem from="1558337912391" duration="1067000" />
       <workItem from="1562829743207" duration="6107000" />
       <workItem from="1562921322090" duration="588000" />
-      <workItem from="1562995330984" duration="6390000" />
-    </task>
-    <task id="LOCAL-00037" summary="Minor changes">
-      <created>1553501332433</created>
-      <option name="number" value="00037" />
-      <option name="presentableId" value="LOCAL-00037" />
-      <option name="project" value="LOCAL" />
-      <updated>1553501332433</updated>
-    </task>
-    <task id="LOCAL-00038" summary="Improved 'getDocumentNumber' and 'getCounter on each header(receiving, rental register, rental order)">
-      <created>1553669500885</created>
-      <option name="number" value="00038" />
-      <option name="presentableId" value="LOCAL-00038" />
-      <option name="project" value="LOCAL" />
-      <updated>1553669500885</updated>
+      <workItem from="1562995330984" duration="6828000" />
     </task>
     <task id="LOCAL-00039" summary="Add new models (invoice_header, invoice_detail)">
       <created>1553744884871</created>
@@ -724,11 +710,25 @@
       <option name="project" value="LOCAL" />
       <updated>1563004656019</updated>
     </task>
-    <option name="localTasksCounter" value="86" />
+    <task id="LOCAL-00086" summary="Change the price conversion from int to float">
+      <created>1563005091032</created>
+      <option name="number" value="00086" />
+      <option name="presentableId" value="LOCAL-00086" />
+      <option name="project" value="LOCAL" />
+      <updated>1563005091032</updated>
+    </task>
+    <task id="LOCAL-00087" summary="change conversion from float to int">
+      <created>1563005238287</created>
+      <option name="number" value="00087" />
+      <option name="presentableId" value="LOCAL-00087" />
+      <option name="project" value="LOCAL" />
+      <updated>1563005238287</updated>
+    </task>
+    <option name="localTasksCounter" value="88" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="85873000" />
+    <option name="totallyTimeSpent" value="86311000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -803,8 +803,6 @@
     <option name="version" value="1" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Mencatat history ketika ada rental register yang dibuat" />
-    <MESSAGE value="nested invoice management for nesting post/put/get requests" />
     <MESSAGE value="Changes on getAllRentalOrderHeaderApproved (previously getAllRentalRegisterHeader)" />
     <MESSAGE value="Adding depth on rental order detail serializer" />
     <MESSAGE value="Update ref_id upon adding stock from receiving/incoming" />
@@ -828,7 +826,9 @@
     <MESSAGE value="update urls" />
     <MESSAGE value="testing 2" />
     <MESSAGE value="get all price of each item in defined rental header" />
-    <option name="LAST_COMMIT_MESSAGE" value="get all price of each item in defined rental header" />
+    <MESSAGE value="Change the price conversion from int to float" />
+    <MESSAGE value="change conversion from float to int" />
+    <option name="LAST_COMMIT_MESSAGE" value="change conversion from float to int" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/django/db/models/fields/related_descriptors.py">
@@ -1183,8 +1183,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/myproject/api/views/another_views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="257">
-          <caret line="570" column="25" lean-forward="true" selection-start-line="570" selection-start-column="25" selection-end-line="570" selection-end-column="25" />
+        <state relative-caret-position="223">
+          <caret line="568" lean-forward="true" selection-start-line="568" selection-end-line="568" />
           <folding>
             <element signature="e#0#45#0" expanded="true" />
           </folding>
