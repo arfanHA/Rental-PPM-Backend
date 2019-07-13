@@ -561,18 +561,20 @@ def getPrice(request):
     price3 = 0
     rentalDetails = rental_detail.objects.filter(rental_header_id=rentalHeader)
     for rentalDetail in rentalDetails:
-        itemId = rentalDetail['master_item_id']
-        item = master_item.objects.filter(pk=itemId)
-        price1 = price1 + int(item['price1'])
-        price2 = price2 + int(item['price2'])
-        price3 = price3 + int(item['price3'])
+        itemId = rentalDetail.master_item_id_id
+        item = master_item.objects.get(pk=itemId)
+        price1 = price1 + int(item.price1)
+        price2 = price2 + int(item.price2)
+        price3 = price3 + int(item.price3)
 
     priceDict = {
         'price1': price1,
         'price2': price2,
         'price3': price3
     }
-    return Response(rentalDetails)
+
+    print(priceDict)
+    return Response(priceDict)
 
 
 # @login_required
