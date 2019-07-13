@@ -1,7 +1,7 @@
 from rest_framework import routers
 from django.conf.urls import include
 from django.conf.urls import url
-from myproject.api.views import viewsets_views, generatePDF_views, another_views
+from myproject.api.views import viewsets_views, another_views
 
 router = routers.DefaultRouter()
 router.register(r'master_kategori', viewsets_views.master_kategori)  # Master management starts here
@@ -28,10 +28,6 @@ router.register(r'invoice_detail', viewsets_views.invoice_detail)
 
 urlpatterns = [
     url(r'^', include(router.urls)),
-    url(r'^generateInvoice/(?P<pk>[0-9]+)/$', generatePDF_views.generateInvoice.as_view()),
-    url(r'^generateKwitansi/(?P<pk>[0-9]+)/$', generatePDF_views.generateKwitansi.as_view()),
-    url(r'^generateReceiving/(?P<pk>[0-9]+)/$', generatePDF_views.generateReceiving.as_view()),
-    url(r'^generateSuratjalan/(?P<pk>[0-9]+)/$', generatePDF_views.generateSuratJalan.as_view()),
     url(r'^testView/', another_views.testView),
     url(r'^NestedReceivingManagement/', another_views.NestedReceivingManagement.as_view()),
     url(r'^NestedReceivingManagementDetails/(?P<pk>\d+)/$',
@@ -55,5 +51,6 @@ urlpatterns = [
     url(r'^getDistinctStocks/', another_views.getDistinctItem, name="GetDistinctStock"),
     url(r'^getHistoryBySN/(?P<i>\d+)/$', another_views.getStockHistoryBySN, name="GetHistoryBySN"),
     url(r'^getRentalWithFilter', another_views.getRentalWithFilter, name="GetRentalWithFilter"),
+    url(r'^getAllPriceForHeader', another_views.getPrice, name="GetPriceForEachItemInHeaders"),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]
