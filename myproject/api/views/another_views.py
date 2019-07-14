@@ -555,6 +555,7 @@ def getRentalWithFilter(request):
 @api_view(['POST'])
 def getPrice(request):
     rentalHeader = request.data['rental_header_id']
+    periode = request.data['periode']
 
     price1 = 0
     price2 = 0
@@ -569,9 +570,9 @@ def getPrice(request):
         else: price3 = price3 + int(float(item.price3))
 
     priceDict = {
-        'price1': price1,
-        'price2': price2,
-        'price3': price3
+        'price1': price1 * int(periode),
+        'price2': price2 * int(periode),
+        'price3': price3 * int(periode)
     }
 
     print(priceDict)
