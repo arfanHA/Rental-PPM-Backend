@@ -315,8 +315,9 @@ class NestedRentalRegisterDetails(APIView):
         if request.data['status'] == "APPROVED":
             for sn in sns:
                 print(sn['id'])
-                rental_stock_sn.objects.filter(pk=sn['id']).status = 'KELUAR'
-                rental_stock_sn.save()
+                targetedRental = rental_stock_sn.objects.get(pk=sn['id'])
+                targetedRental.status = "KELUAR"
+                targetedRental.save()
                 stock_sn_history.objects.create(
                     date=now,
                     status="KELUAR",
