@@ -443,20 +443,20 @@ def addToRentalRegister(sender, **kwargs):
                 master_item_id=master_item(x['master_item_id'])
             )
 
-        sns = dataRental.pop("SNS", None)
-        now = datetime.datetime.today().strftime('%Y-%m-%d')
-
-        for sn in sns:
-            print(sn['id'])
-            targetedRental = rental_stock_sn.objects.get(pk=sn['id'])
-            targetedRental.status = "KELUAR"
-            targetedRental.save()
-            stock_sn_history.objects.create(
-                date=now,
-                status="KELUAR",
-                RentalRef_id=rentalHeader,
-                stock_code_id=rental_stock_sn(sn['id'])
-            )
+        # sns = dataRental.pop("SNS", None)
+        # now = datetime.datetime.today().strftime('%Y-%m-%d')
+        #
+        # for sn in sns:
+        #     print(sn['id'])
+        #     targetedRental = rental_stock_sn.objects.get(pk=sn['id'])
+        #     targetedRental.status = "KELUAR"
+        #     targetedRental.save()
+        #     stock_sn_history.objects.create(
+        #         date=now,
+        #         status="KELUAR",
+        #         RentalRef_id=rentalHeader,
+        #         stock_code_id=rental_stock_sn(sn['id'])
+        #     )
 
 
 # Invoice Management
