@@ -52,5 +52,6 @@ urlpatterns = [
     url(r'^getHistoryBySN/(?P<i>\d+)/$', another_views.getStockHistoryBySN, name="GetHistoryBySN"),
     url(r'^getRentalWithFilter', another_views.getRentalWithFilter, name="GetRentalWithFilter"),
     url(r'^getAllPriceForHeader', another_views.getPrice, name="GetPriceForEachItemInHeaders"),
+    url(r'^returningStock', another_views.returnStock, name="ReturningStock"),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]

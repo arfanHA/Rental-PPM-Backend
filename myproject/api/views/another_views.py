@@ -582,8 +582,10 @@ def getPrice(request):
         item = master_item.objects.get(pk=itemId)
         price1 = price1 + int(float(item.price1))
         price2 = price2 + int(float(item.price2))
-        if(item.price3 == ""): price3 = price3
-        else: price3 = price3 + int(float(item.price3))
+        if (item.price3 == ""):
+            price3 = price3
+        else:
+            price3 = price3 + int(float(item.price3))
 
     priceDict = {
         'price1': price1 * int(periode),
@@ -593,6 +595,37 @@ def getPrice(request):
 
     print(priceDict)
     return Response(priceDict)
+
+
+@api_view(['POST'])
+def returnStock(request):
+    now = datetime.datetime.now().strftime('%Y-%m-%d')
+    IdRentalHeader = request.data['rental_header_id']
+    StockSNS = stock_sn_history.objects.filter(RentalRef_id=IdRentalHeader)
+    if StockSNS.count() > 1:
+        for stock in StockSNS:
+            snId = stock['stock_code_id']
+            rental_stock_sn.objects.get(pk=snId).status = "MASUK"
+            rental_stock_sn.save()
+            stock_sn_history.objects.create(
+                date=now,
+                status="MASUK",
+                stock_code_id=snId
+            )
+    else:
+        stock = stock_sn_history.objects.get(RentalRef_id=IdRentalHeader)
+        snId = stock.stock_code_id.stock_code_id
+        # print(type(snId))
+        sn = rental_stock_sn.objects.get(pk=snId)
+        sn.status = "MASUK"
+        sn.save()
+        stock_sn_history.objects.create(
+            date=now,
+            status="MASUK",
+            stock_code_id=rental_stock_sn(snId)
+        )
+
+    return Response("SUCCESS")
 
 
 # @login_required
@@ -622,9 +655,9 @@ def testView(request):
     # serializers = NestedRentalHeaderReadSerializer(rentalRegister, many=True)
     # return Response(serializers.data)
 
-    x = master_item.objects.filter(master_group_id=1)
-    y = rental_detail.objects.filter(master_item_id__in=x)
-    z = rental_header.objects.filter(rental_header_id__in=y)
-    print(y)
+    # x = master_item.objects.filter(master_group_id=1)
+    # y = rental_detail.objects.filter(master_item_id__in=x)
+    # z = rental_header.objects.filter(rental_header_id__in=y)
+    # print(y)
 
     return Response("Test")
