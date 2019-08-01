@@ -25,7 +25,7 @@ SECRET_KEY = '$o06-_^4$fioukl_%f6^4jj*4_!h-otwe6d*3z=%)londte&y3'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'rest_framework.authtoken',
     'corsheaders',
     'myproject.api'
 ]
@@ -83,14 +84,14 @@ TEMPLATES = [
 WSGI_APPLICATION = 'myproject.wsgi.application'
 
 
-# REST_FRAMEWORK = {
-#     'DEFAULT_AUTHENTICATION_CLASSES' : {
-#         'rest_framework.authentication.TokenAuthentication',
-#     },
-#     'DEFAULT_PERMISSION_CLASSES' : {
-#         'rest_framework.permissions.IsAuthenticated',
-#     }
-# }
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+    'DEFAULT_PERMISSION_CLASSES' : [
+        'rest_framework.permissions.IsAuthenticated',
+    ]
+}
 
 
 # Database

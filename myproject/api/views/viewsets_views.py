@@ -1,4 +1,4 @@
-from rest_framework import viewsets
+from rest_framework import viewsets, permissions
 from myproject.api.serializers import *
 from myproject.api.models import *
 

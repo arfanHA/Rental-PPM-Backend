@@ -1,10 +1,10 @@
-from django.http import Http404, HttpResponse
-from django.views.decorators.csrf import csrf_exempt
+from django.http import Http404
 from rest_framework.decorators import api_view
+from rest_framework.permissions import IsAuthenticated
 
 from myproject.api.models import receiving_header, receiving_detail, rental_stock_card, rental_stock_sn, \
-    stock_sn_history, master_item, rental_header, rental_order_header, invoice_header, master_uom, master_customer, \
-    master_location, rental_order_detail, rental_detail, master_group_item
+    stock_sn_history, master_item, rental_header, rental_order_header, invoice_header, master_customer, \
+    master_location, rental_order_detail, rental_detail
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -12,11 +12,8 @@ from django.dispatch import receiver, Signal
 from myproject.api.serializers import NestedReceivingHeaderWriteSerializer, NestedReceivingHeaderReadSerializer, \
     NestedStockCardSerializer, NestedRentalHeaderReadSerializer, NestedRentalHeaderWriteSerializer, \
     NestedRentalOrderHeaderWriteSerializer, NestedRentalOrderHeaderReadSerializer, RentalStockSNSerializer, \
-    UOMSerializer, StockSNHistorySerializer, ItemReadSerializer, NestedInvoiceSerializer
+    StockSNHistorySerializer, ItemReadSerializer, NestedInvoiceSerializer
 import datetime
-from django.db import models
-
-from django.contrib.auth.decorators import login_required
 
 # This view is purposely used for testing only, improvement is considered and might used in further development
 
@@ -91,6 +88,8 @@ def getCounter(r):
 
 # This view is used to get and post object of incoming management module
 class NestedReceivingManagement(APIView):
+    permission_classes = [IsAuthenticated]
+
     def get(self, request, format=None):
         headers = receiving_header.objects.all()
         serializers = NestedReceivingHeaderReadSerializer(headers, many=True)
@@ -127,9 +126,15 @@ class NestedReceivingManagementDetails(APIView):
             request.data['approval1_date'] = datetime.datetime.today().strftime('%Y-%m-%d')
         serializer = NestedReceivingHeaderWriteSerializer(header, data=request.data)
         if serializer.is_valid():
-            serializer.save()
-            if request.data['status'] == "APPROVED":
+            if request.data['status'] == "APPROVED" and request.user.is_superuser == True:
+                serializer.save()
                 update_on_nested_serializer.send(sender=receiving_header, test=serializer.data)
+                return Response(serializer.data, status=status.HTTP_200_OK)
+            elif request.data['status'] == "DRAFT":
+                serializer.save()
+                return Response(serializer.data, status=status.HTTP_200_OK)
+            elif request.data['status'] == "APPROVED" and request.user.is_superuser == False:
+                return Response("Access Denied", status=status.HTTP_401_UNAUTHORIZED)
             return Response(serializer.data, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
@@ -327,9 +332,15 @@ class NestedRentalRegisterDetails(APIView):
 
         serializers = NestedRentalHeaderWriteSerializer(rentalHeader, data=request.data)
         if serializers.is_valid():
-            serializers.save()
-            update_on_rental_register.send(sender=rental_header, test=serializers.data)
-            return Response(serializers.data, status=status.HTTP_200_OK)
+            if request.data['status'] == "APPROVED" and request.user.is_superuser == True:
+                serializers.save()
+                update_on_rental_register.send(sender=rental_header, test=serializers.data)
+                return Response(serializers.data, status=status.HTTP_200_OK)
+            elif request.data['status'] == "DRAFT":
+                serializers.save()
+                return Response(serializers, status=status.HTTP_200_OK)
+            elif request.data['status'] == "APPROVED" and request.user.is_superuser == False:
+                return Response("Access Denied", status=status.HTTP_401_UNAUTHORIZED)
         return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
@@ -386,9 +397,15 @@ class NestedRentalOrderManagementDetails(APIView):
         rentalOrderHeader = self.get_object(pk)
         serializers = NestedRentalOrderHeaderWriteSerializer(rentalOrderHeader, data=request.data)
         if serializers.is_valid():
-            serializers.save()
-            update_on_rental_order.send(sender=rental_order_header, test=serializers.data)
-            return Response(serializers.data, status=status.HTTP_200_OK)
+            if request.data['status'] == "APPROVED" and request.user.is_superuser == True:
+                serializers.save()
+                update_on_rental_order.send(sender=rental_order_header, test=serializers.data)
+                return Response(serializers.data, status=status.HTTP_200_OK)
+            elif request.data['status'] == "DRAFT":
+                serializers.save()
+                return Response(serializers.data, status=status.HTTP_200_OK)
+            elif request.data['status'] == "APPROVED" and request.user.is_superuser == False:
+                return Response("Access denied", status=status.HTTP_401_UNAUTHORIZED)
         return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
@@ -442,21 +459,6 @@ def addToRentalRegister(sender, **kwargs):
                 order_detail_id=rental_order_detail(x['order_detail_id']),
                 master_item_id=master_item(x['master_item_id'])
             )
-
-        # sns = dataRental.pop("SNS", None)
-        # now = datetime.datetime.today().strftime('%Y-%m-%d')
-        #
-        # for sn in sns:
-        #     print(sn['id'])
-        #     targetedRental = rental_stock_sn.objects.get(pk=sn['id'])
-        #     targetedRental.status = "KELUAR"
-        #     targetedRental.save()
-        #     stock_sn_history.objects.create(
-        #         date=now,
-        #         status="KELUAR",
-        #         RentalRef_id=rentalHeader,
-        #         stock_code_id=rental_stock_sn(sn['id'])
-        #     )
 
 
 # Invoice Management
@@ -628,7 +630,6 @@ def returnStock(request):
     return Response("SUCCESS")
 
 
-# @login_required
 @api_view(['GET'])
 def testView(request):
     # this is to pop out item from a dict / request body
@@ -659,5 +660,13 @@ def testView(request):
     # y = rental_detail.objects.filter(master_item_id__in=x)
     # z = rental_header.objects.filter(rental_header_id__in=y)
     # print(y)
+    # user = request.user
+    #
+    # if user.is_superuser:
+    #     return Response(user.username + " is the admin")
+    # else:
+    #     return Response(user.username + " is not the admin")
+
+    # return Response(request.user.is_active)
 
     return Response("Test")
