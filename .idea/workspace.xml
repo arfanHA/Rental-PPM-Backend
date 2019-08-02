@@ -59,7 +59,19 @@
         <entry file="file://$PROJECT_DIR$/myproject/settings.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="218">
-              <caret line="86" selection-start-line="86" selection-start-column="2" selection-end-line="93" selection-end-column="3" />
+              <caret line="86" selection-start-line="86" selection-end-line="93" selection-end-column="1" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="master_employee.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/myproject/api/models/master_employee.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="221">
+              <caret line="13" column="85" selection-start-line="13" selection-start-column="85" selection-end-line="13" selection-end-column="85" />
+              <folding>
+                <element signature="e#0#43#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -150,10 +162,10 @@
         <option value="$PROJECT_DIR$/myproject/api/views/other_views.py" />
         <option value="$PROJECT_DIR$/myproject/api/urls.py" />
         <option value="$PROJECT_DIR$/myproject/urls.py" />
-        <option value="$PROJECT_DIR$/myproject/api/models/master_employee.py" />
         <option value="$PROJECT_DIR$/myproject/api/models/master_user.py" />
         <option value="$PROJECT_DIR$/myproject/api/views/viewsets_views.py" />
         <option value="$PROJECT_DIR$/myproject/api/views/another_views.py" />
+        <option value="$PROJECT_DIR$/myproject/api/models/master_employee.py" />
         <option value="$PROJECT_DIR$/myproject/settings.py" />
       </list>
     </option>
@@ -366,20 +378,6 @@
       <workItem from="1563121283996" duration="178000" />
       <workItem from="1563309906599" duration="1921000" />
       <workItem from="1563471087955" duration="1731000" />
-    </task>
-    <task id="LOCAL-00049" summary="Add invoice header and detail into admin site">
-      <created>1555924029032</created>
-      <option name="number" value="00049" />
-      <option name="presentableId" value="LOCAL-00049" />
-      <option name="project" value="LOCAL" />
-      <updated>1555924029048</updated>
-    </task>
-    <task id="LOCAL-00050" summary="Penambahan depth pada beberapa serializer untuk menampilkan informasi lebih detail terkait suatu foreignkey atau related fields">
-      <created>1556081111154</created>
-      <option name="number" value="00050" />
-      <option name="presentableId" value="LOCAL-00050" />
-      <option name="project" value="LOCAL" />
-      <updated>1556081111154</updated>
     </task>
     <task id="LOCAL-00051" summary="Perubahan tipe field lokasi dan pelanggan menjadi OneToMany (ForeignKey)">
       <created>1556081307921</created>
@@ -710,7 +708,21 @@
       <option name="project" value="LOCAL" />
       <updated>1564684014251</updated>
     </task>
-    <option name="localTasksCounter" value="98" />
+    <task id="LOCAL-00098" summary="Disabled user management for testing purposes">
+      <created>1564716551310</created>
+      <option name="number" value="00098" />
+      <option name="presentableId" value="LOCAL-00098" />
+      <option name="project" value="LOCAL" />
+      <updated>1564716551310</updated>
+    </task>
+    <task id="LOCAL-00099" summary="Change master employee with relational one to one with user">
+      <created>1564720132741</created>
+      <option name="number" value="00099" />
+      <option name="presentableId" value="LOCAL-00099" />
+      <option name="project" value="LOCAL" />
+      <updated>1564720132742</updated>
+    </task>
+    <option name="localTasksCounter" value="100" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -738,7 +750,7 @@
       <window_info anchor="bottom" id="Python Console" order="13" weight="0.32673267" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32838285" />
       <window_info id="Structure" order="1" sideWeight="0.5084746" side_tool="true" weight="0.2193646" />
-      <window_info anchor="bottom" x="98" y="61" width="1201" height="606" id="Terminal" order="14" sideWeight="0.49848714" visible="true" weight="0.25742576" />
+      <window_info anchor="bottom" x="98" y="61" width="1201" height="606" id="Terminal" order="14" sideWeight="0.49848714" weight="0.44719473" />
       <window_info id="Favorites" order="2" sideWeight="0.5084746" side_tool="true" weight="0.2193646" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -792,8 +804,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="update ref id on stock sn history" />
-    <MESSAGE value="get Rental Register with date and location filter" />
     <MESSAGE value="Update AND filter" />
     <MESSAGE value="Minor fix" />
     <MESSAGE value="Generate PDF view deletion" />
@@ -817,7 +827,9 @@
     <MESSAGE value="Returning stock status API" />
     <MESSAGE value="Update settings file accordance with CORSHEADERS" />
     <MESSAGE value="User management with authentication and authorization using token based" />
-    <option name="LAST_COMMIT_MESSAGE" value="User management with authentication and authorization using token based" />
+    <MESSAGE value="Disabled user management for testing purposes" />
+    <MESSAGE value="Change master employee with relational one to one with user" />
+    <option name="LAST_COMMIT_MESSAGE" value="Change master employee with relational one to one with user" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch.txt" />
@@ -861,13 +873,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/myproject/api/models/master_uom.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="55" selection-start-line="5" selection-start-column="55" selection-end-line="5" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/myproject/api/models/master_vendor.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="5" column="55" selection-start-line="5" selection-start-column="55" selection-end-line="5" selection-end-column="55" />
@@ -1021,20 +1026,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/myproject/api/models/master_employee.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="34" lean-forward="true" selection-start-line="13" selection-start-column="34" selection-end-line="13" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/myproject/api/models/master_user.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="365">
-          <caret line="33" lean-forward="true" selection-start-line="33" selection-end-line="33" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/myproject/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
@@ -1076,10 +1067,37 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/myproject/api/models/master_vendor.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="55" selection-start-line="5" selection-start-column="55" selection-end-line="5" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/myproject/api/models/master_user.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="479">
+          <caret line="33" lean-forward="true" selection-start-line="33" selection-end-line="33" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/myproject/api/models/master_employee.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="85" selection-start-line="13" selection-start-column="85" selection-end-line="13" selection-end-column="85" />
+          <folding>
+            <element signature="e#0#43#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/myproject/settings.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="218">
-          <caret line="86" selection-start-line="86" selection-start-column="2" selection-end-line="93" selection-end-column="3" />
+          <caret line="86" selection-start-line="86" selection-end-line="93" selection-end-column="1" />
         </state>
       </provider>
     </entry>
