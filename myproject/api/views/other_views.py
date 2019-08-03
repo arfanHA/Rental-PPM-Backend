@@ -97,7 +97,7 @@ def createGroup(request):
                     if p.name == "Can view master_user" or p.name == "Can view master_employee":
                         continue
                     group.permissions.add(p)
-    return Response("This works!", status=status.HTTP_200_OK)
+    return Response("Berhasil membuat group!", status=status.HTTP_200_OK)
 
 
 @api_view(['GET'])
@@ -112,7 +112,6 @@ def getAllGroups(request):
 def getUser(request):
     user_name = request.data['name']
     user = User.objects.get(username=user_name)
-    # print(user.user_permissions.all())
     return Response("This functions works!", status=status.HTTP_200_OK)
 
 
@@ -126,4 +125,4 @@ def assignGroupToUser(request):
         g = Group.objects.get(name=group['name'])
         g.user_set.add(u)
 
-    return Response("This functions works", status=status.HTTP_200_OK)
+    return Response("Berhasil menambahkan group ke user " + user_name, status=status.HTTP_200_OK)
