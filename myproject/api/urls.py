@@ -54,5 +54,8 @@ urlpatterns = [
     url(r'^getAllPriceForHeader', another_views.getPrice, name="GetPriceForEachItemInHeaders"),
     url(r'^returningStock', another_views.returnStock, name="ReturningStock"),
     url(r'^signup/', other_views.signup, name='signup'),
+    url(r'^makeGroupPermission/', other_views.createGroup, name="createGroup"),
+    url(r'^getUser/', other_views.getUser, name="GetUser"),
+    url(r'^assignGroup/', other_views.assignGroupToUser, name="AssignGroupToUser"),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]

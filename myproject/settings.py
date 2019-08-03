@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'corsheaders',
-    'myproject.api'
+    'myproject.api',
+    'debug_permissions'
 ]
 
 MIDDLEWARE = [
