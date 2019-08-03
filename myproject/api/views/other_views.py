@@ -1,3 +1,5 @@
+from django.core import serializers
+from django.http import HttpResponse
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
@@ -25,8 +27,6 @@ def signup(request):
 
 @api_view(['POST'])
 def createGroup(request):
-    # user = User.objects.get(username='admin')
-    # print(user.groups)
     group_name = request.data['group_name']
     permissions = request.data['permissions']
     group, created = Group.objects.get_or_create(name=group_name)
@@ -100,13 +100,19 @@ def createGroup(request):
     return Response("This works!", status=status.HTTP_200_OK)
 
 
+@api_view(['GET'])
+def getAllGroups(request):
+    groups = Group.objects.all()
+
+    data = serializers.serialize('json', groups)
+    return HttpResponse(data, content_type='application/json')
+
+
 @api_view(['POST'])
 def getUser(request):
     user_name = request.data['name']
     user = User.objects.get(username=user_name)
-    # print(user.username)
-    # print(user.get_all_permissions)
-    print(user.user_permissions.all())
+    # print(user.user_permissions.all())
     return Response("This functions works!", status=status.HTTP_200_OK)
 
 
