@@ -1,7 +1,7 @@
 from rest_framework import routers
 from django.conf.urls import include
 from django.conf.urls import url
-from myproject.api.views import viewsets_views, another_views
+from myproject.api.views import viewsets_views, another_views, other_views
 
 router = routers.DefaultRouter()
 router.register(r'master_kategori', viewsets_views.master_kategori)  # Master management starts here
@@ -53,5 +53,6 @@ urlpatterns = [
     url(r'^getRentalWithFilter', another_views.getRentalWithFilter, name="GetRentalWithFilter"),
     url(r'^getAllPriceForHeader', another_views.getPrice, name="GetPriceForEachItemInHeaders"),
     url(r'^returningStock', another_views.returnStock, name="ReturningStock"),
+    url(r'^signup/', other_views.signup, name='signup'),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]

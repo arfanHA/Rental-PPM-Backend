@@ -9,25 +9,34 @@ class master_user(models.Model):
     # user_id = models.BigAutoField(primary_key=True)
     # username = models.CharField(max_length=10, unique=True)
     # password = models.CharField(max_length=10)
+    # last_login_date = models.DateField()
+    # employee_id = models.OneToOneField(master_employee, on_delete=models.DO_NOTHING, blank=True, default=1)
+
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     user_level = models.CharField(max_length=10)
     user_type = models.CharField(max_length=10)
-    # last_login_date = models.DateField()
-    # employee_id = models.OneToOneField(master_employee, on_delete=models.DO_NOTHING, blank=True, default=1)
+    employee_id = models.OneToOneField(master_employee, on_delete=models.DO_NOTHING, blank=True, null=True)
 
     class Meta:
         db_table = 'MasterUser'
 
-    # def __str__(self):
-    #     return self.user
+    def __str__(self):
+        return self.user.username
 
 
 @receiver(post_save, sender=User)
-def create_user_profile(sender, instance, created, **kwards):
+def create_user_profile(sender, instance, created, **kwargs):
     if created:
         master_user.objects.create(user=instance)
 
 
 @receiver(post_save, sender=User)
-def save_user_profile(sender, instance, **kwards):
+def save_user_profile(sender, instance, **kwargs):
     instance.master_user.save()
+
+
+# @receiver(post_save, sender=User)
+# def update_user_profile(sender, instance, created, **kwargs):
+#     if created:
+#         master_user.objects.create(user=instance)
+#     instance.master_user.save()
