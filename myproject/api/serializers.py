@@ -57,6 +57,7 @@ class ItemWriteSerializer(serializers.ModelSerializer):
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = master_user
+        depth = 2
         fields = '__all__'
 
 
