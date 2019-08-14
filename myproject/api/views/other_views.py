@@ -25,6 +25,7 @@ def signup(request):
         return Response(form.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+# Create or Edit Group
 @api_view(['POST'])
 def createGroup(request):
     group_name = request.data['group_name']
@@ -100,6 +101,103 @@ def createGroup(request):
     return Response("Berhasil membuat group!", status=status.HTTP_200_OK)
 
 
+# Remove permission from group
+@api_view(['POST'])
+def editGroup(request):
+    group_name = request.data['group_name']
+    group = Group.objects.get(name=group_name)
+    jenis_akses = request.data['jenis_akses']
+    kategori = request.data['kategori']
+    jenis_aksi = request.data['jenis_aksi']
+
+    k = 0
+    ja = 0
+
+    if jenis_akses == "Proses Data":
+        ja = 2
+    elif jenis_akses == "Hanya Lihat":
+        ja = 1
+
+    if kategori == "Manajemen Pengguna":
+        k = 4
+    elif kategori == "Manajemen Kerja":
+        k = 3
+    elif kategori == "Manajemen Inventori":
+        k = 2
+    elif kategori == "Manajemen Master":
+        k = 1
+
+    if jenis_aksi == "REMOVE":
+        if k == 4:
+            if ja == 1:
+                listOfPermissions = Permission.objects.filter(
+                    Q(name__contains="Can view master_user") | Q(name__contains="Can view master_employee"))
+                for p in listOfPermissions:
+                    group.permissions.remove(p)
+            elif ja == 2:
+                listOfPermissions = Permission.objects.filter(
+                    Q(name__contains="master_user") | Q(name__contains="master_employee"))
+                for p in listOfPermissions:
+                    if p.name == "Can view master_user" or p.name == "Can view master_employee":
+                        continue
+                    group.permissions.remove(p)
+        elif k == 3:
+            if ja == 1:
+                listOfPermissions = Permission.objects.filter(name__contains="Can view rental")
+                for p in listOfPermissions:
+                    group.permissions.remove(p)
+            elif ja == 2:
+                listOfPermissions = Permission.objects.filter(name__contains="Can add rental")
+                for p in listOfPermissions:
+                    group.permissions.remove(p)
+                listOfPermissions = Permission.objects.filter(name__contains="Can change rental")
+                for p in listOfPermissions:
+                    group.permissions.remove(p)
+                listOfPermissions = Permission.objects.filter(name__contains="Can delete rental")
+                for p in listOfPermissions:
+                    group.permissions.remove(p)
+        elif k == 2:
+            if ja == 1:
+                listOfPermissions = Permission.objects.filter(name__contains="Can view receiving")
+                for p in listOfPermissions:
+                    group.permissions.remove(p)
+            elif ja == 2:
+                listOfPermissions = Permission.objects.filter(name__contains="Can add receiving")
+                for p in listOfPermissions:
+                    group.permissions.remove(p)
+                listOfPermissions = Permission.objects.filter(name__contains="Can change receiving")
+                for p in listOfPermissions:
+                    group.permissions.remove(p)
+                listOfPermissions = Permission.objeccts.filter(name__contains="Can delete receiving")
+                for p in listOfPermissions:
+                    group.permissions.remove(p)
+        elif k == 1:
+            if ja == 1:
+                listOfPermissions = Permission.objects.filter(name__contains="Can view master")
+                for p in listOfPermissions:
+                    if p.name == "Can view master_user" or p.name == "Can view master_employee":
+                        continue
+                    group.permissions.remove(p)
+            elif ja == 2:
+                listOfPermissions = Permission.objects.filter(name__contains="Can add master")
+                for p in listOfPermissions:
+                    if p.name == "Can add master_user" or p.name == "Can add master_employee":
+                        continue
+                    group.permissions.remove(p)
+                listOfPermissions = Permission.objects.filter(name__contains="Can change master")
+                for p in listOfPermissions:
+                    if p.name == "Can change master_user" or p.name == "Can change master_employee":
+                        continue
+                    group.permissions.remove(p)
+                listOfPermissions = Permission.objects.filter(name__contains="Can delete master")
+                for p in listOfPermissions:
+                    if p.name == "Can delete master_user" or p.name == "Can delete master_employee":
+                        continue
+                    group.permissions.remove(p)
+    return Response("Berhasil menghapus permission!", status=status.HTTP_200_OK)
+
+
+# Get list of all group
 @api_view(['GET'])
 def getAllGroups(request):
     groups = Group.objects.all()
@@ -126,3 +224,17 @@ def assignGroupToUser(request):
         g.user_set.add(u)
 
     return Response("Berhasil menambahkan group ke user " + user_name, status=status.HTTP_200_OK)
+
+
+@api_view(['POST'])
+def removeGroupFromUser(request):
+    user_name = request.data['username']
+    groups = request.data['groups']
+    u = User.objects.get(username=user_name)
+
+    for g in groups:
+        group_name = g['group_name']
+        x = Group.objects.get(name=group_name)
+        x.user_set.remove(u)
+
+    return Response("Berhasil menghapus group dari user " + user_name, status=status.HTTP_200_OK)
