@@ -100,6 +100,7 @@ def createGroup(request):
                     group.permissions.add(p)
     return Response("Berhasil membuat group!", status=status.HTTP_200_OK)
 
+
 # Remove permission from group
 @api_view(['POST'])
 def editGroup(request):

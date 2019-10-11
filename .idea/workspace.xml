@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8660eb00-8fae-4ce9-a8e6-d5eaaecd21f7" name="Default Changelist" comment="Update on renta upon adding new sn">
+    <list default="true" id="8660eb00-8fae-4ce9-a8e6-d5eaaecd21f7" name="Default Changelist" comment="Testing upload ke server">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/myproject/api/migrations/0001_initial.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/myproject/api/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/myproject/api/urls.py" afterDir="false" />
@@ -226,7 +226,7 @@
       <workItem from="1563121283996" duration="178000" />
       <workItem from="1563309906599" duration="1921000" />
       <workItem from="1563471087955" duration="1731000" />
-      <workItem from="1570773532369" duration="2261000" />
+      <workItem from="1570773532369" duration="2677000" />
     </task>
     <task id="LOCAL-00057" summary="Adding depth into master_item">
       <created>1556499433017</created>
@@ -598,7 +598,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="detailed info on ref id" />
     <MESSAGE value="get all price of each header id (testing)" />
     <MESSAGE value="update urls" />
     <MESSAGE value="testing 2" />
@@ -623,7 +622,8 @@
     <MESSAGE value="Creating group of permissions&#10;Assigning group to users" />
     <MESSAGE value="Get a list of groups API" />
     <MESSAGE value="Modified success message upon adding groups&#10;Modified success message upon assigning group to user" />
-    <option name="LAST_COMMIT_MESSAGE" value="Modified success message upon adding groups&#10;Modified success message upon assigning group to user" />
+    <MESSAGE value="Testing upload ke server" />
+    <option name="LAST_COMMIT_MESSAGE" value="Testing upload ke server" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/ion_rental_backend$another_views.coverage" NAME="another_views Coverage Results" MODIFIED="1570775268890" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/myproject/api/views" />
