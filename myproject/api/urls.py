@@ -44,6 +44,7 @@ urlpatterns = [
     url(r'^NestedInvoiceManagement/', another_views.NestedInvoiceManagement.as_view()),
     url(r'^NestedInvoiceManagementDetails/(?P<pk>[0-9]+)/$', another_views.NestedInvoiceManagementDetails.as_view()),
     url(r'getItemByCat/(?P<b>\d+)/$', another_views.getItemByCategory, name='GetItemByCategory'),
+    url(r'getItemByBarcode/(?P<b>\d+)/$', another_views.getItemByBarcode, name='GetItemByBarcode'),
     url(r'getItemSNs/(?P<i>\d+)/$', another_views.getItemSNs, name='GetSNsByItem'),
     url(r'getRentalOrderHeaderApproved/', another_views.getAllRentalOrderApproved, name="GetAllRentalRegisterApproved"),
     url(r'getItemSNsAvailable/(?P<i>\d+)/$', another_views.getItemSNsAvailable, name='GetSNsByItemAvailable'),

@@ -30,26 +30,6 @@
       </list>
     </option>
   </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>master_barang</find>
-      <find>pengguna</find>
-      <find>one_to_many</find>
-      <find>master_ka</find>
-      <find>font-size: 15px;</find>
-      <find>RODHEADER</find>
-      <find>RODH</find>
-      <find>RODHeader</find>
-      <find>stocksn</find>
-      <find>update</find>
-      <find>depth</find>
-      <find>Approved</find>
-      <find>getAll</find>
-    </findStrings>
-    <dirStrings>
-      <dir>D:\ION\BackEnd\myproject\api\models</dir>
-    </dirStrings>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -66,7 +46,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="TEXT" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="D:/PYTHON/ion-rental-backend" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -226,7 +206,9 @@
       <workItem from="1563121283996" duration="178000" />
       <workItem from="1563309906599" duration="1921000" />
       <workItem from="1563471087955" duration="1731000" />
-      <workItem from="1570773532369" duration="2677000" />
+      <workItem from="1570773532369" duration="3607000" />
+      <workItem from="1571041746907" duration="2528000" />
+      <workItem from="1571105497446" duration="5296000" />
     </task>
     <task id="LOCAL-00057" summary="Adding depth into master_item">
       <created>1556499433017</created>
@@ -591,7 +573,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>

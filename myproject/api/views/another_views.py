@@ -505,6 +505,13 @@ def getItemByCategory(request, b=1):
 
 
 @api_view(['GET'])
+def getItemByBarcode(request, b=1):
+    item = master_item.objects.filter(barcode=b)
+    serializer = ItemReadSerializer(item, many=True)
+    return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+@api_view(['GET'])
 def getItemSNs(request, i=1):
     sns = rental_stock_sn.objects.filter(stock_card_id__in=(rental_stock_card.objects.filter(item_master_id=i)))
     serializers = RentalStockSNSerializer(sns, many=True)
