@@ -4,10 +4,12 @@ from rest_framework.permissions import IsAuthenticated
 
 from myproject.api.models import receiving_header, receiving_detail, rental_stock_card, rental_stock_sn, \
     stock_sn_history, master_item, rental_header, rental_order_header, invoice_header, master_customer, \
-    master_location, rental_order_detail, rental_detail
+    master_location, rental_order_detail, rental_detail,master_user
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.authtoken.views import ObtainAuthToken
+from rest_framework.authtoken.models import Token
 from django.dispatch import receiver, Signal
 from myproject.api.serializers import NestedReceivingHeaderWriteSerializer, NestedReceivingHeaderReadSerializer, \
     NestedStockCardSerializer, NestedRentalHeaderReadSerializer, NestedRentalHeaderWriteSerializer, \
@@ -677,3 +679,19 @@ def testView(request):
     # return Response(request.user.is_active)
 
     return Response("Test")
+
+class CustomAuthToken(ObtainAuthToken):
+    def post(self, request, *args, **kwargs):
+        serializer = self.serializer_class(data=request.data,
+                                           context={'request': request})
+        serializer.is_valid(raise_exception=True)
+        user = serializer.validated_data['user']
+        employee, created = master_user.objects.get_or_create(user=user)
+        token, created = Token.objects.get_or_create(user=user)
+        return Response({
+            'token': token.key,
+            'user_id': user.pk,
+            'nama': user.username,
+            'user_level':employee.user_level,
+            'email': user.email
+        })
