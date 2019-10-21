@@ -7,6 +7,7 @@ from myproject.api.forms import SignUpForm
 from django.contrib.auth.models import User, Group, Permission
 from myproject.api.models import *
 from django.db.models import Q
+from myproject.api.models.master_employee import *
 
 
 @api_view(['POST'])
@@ -99,6 +100,23 @@ def createGroup(request):
                         continue
                     group.permissions.add(p)
     return Response("Berhasil membuat group!", status=status.HTTP_200_OK)
+
+@api_view(['POST'])
+def createNewGroup(request):
+    group_name = request.data['group_name']
+    permissions = request.data['permissions']
+    group, created = Group.objects.get_or_create(name=group_name)
+    cekPermissionGroup = groupPermission.objects.filter(group_name=group_name).__len__()
+    if cekPermissionGroup == 0:
+        for perm in permissions:
+            groupPermission(group_name=group_name,kategori=perm['kategori'],jenis_akses=perm['jenis_akses']).save()
+            result = "Berhasil membuat group baru"
+    else:
+        for perm in permissions:
+            groupPermission.objects.filter(group_name=group_name,kategori=perm['kategori']).update(jenis_akses=perm['jenis_akses'])
+            result = "Update permission "+group_name
+    return Response(result, status=status.HTTP_200_OK)
+
 
 
 # Remove permission from group

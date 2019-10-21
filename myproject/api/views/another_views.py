@@ -1,21 +1,25 @@
 from django.http import Http404
 from rest_framework.decorators import api_view
 from rest_framework.permissions import IsAuthenticated
-
+from django.contrib.auth.models import User, Group, Permission
 from myproject.api.models import receiving_header, receiving_detail, rental_stock_card, rental_stock_sn, \
     stock_sn_history, master_item, rental_header, rental_order_header, invoice_header, master_customer, \
     master_location, rental_order_detail, rental_detail,master_user
+from myproject.api.models.master_employee import *
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
 from django.dispatch import receiver, Signal
+from django.core import serializers
+from django.core.serializers.json import DjangoJSONEncoder
 from myproject.api.serializers import NestedReceivingHeaderWriteSerializer, NestedReceivingHeaderReadSerializer, \
     NestedStockCardSerializer, NestedRentalHeaderReadSerializer, NestedRentalHeaderWriteSerializer, \
     NestedRentalOrderHeaderWriteSerializer, NestedRentalOrderHeaderReadSerializer, RentalStockSNSerializer, \
     StockSNHistorySerializer, ItemReadSerializer, NestedInvoiceSerializer
 import datetime
+from django.contrib.contenttypes.models import ContentType
 
 # This view is purposely used for testing only, improvement is considered and might used in further development
 
@@ -695,3 +699,20 @@ class CustomAuthToken(ObtainAuthToken):
             'user_level':employee.user_level,
             'email': user.email
         })
+
+class UserLevelPermission(ObtainAuthToken):
+    def post(self, request, *args, **kwargs):
+        serializer = self.serializer_class(data=request.data,
+                                           context={'request': request})
+        serializer.is_valid(raise_exception=True)
+        user = serializer.validated_data['user']
+        employee,created = master_user.objects.get_or_create(user=user)
+        permission = groupPermission.objects.filter(group_name=employee.user_level)
+        a=[]
+        for p in permission:
+            b = {'kategori':p.kategori,'jenis_akses':p.jenis_akses}
+            a.append(b)        
+        return Response({
+            'group_name':employee.user_level,
+            "permissions":a
+            })

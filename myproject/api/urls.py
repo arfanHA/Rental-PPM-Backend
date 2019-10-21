@@ -61,5 +61,8 @@ urlpatterns = [
     url(r'^removeGroupFromUser/', other_views.removeGroupFromUser, name="RemoveGroupFromUser"),
     url(r'^editGroup/', other_views.editGroup, name="EditGroup"),
     url(r'^getAllGroup/', other_views.getAllGroups, name="GetAllGroups"),
-    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    #url baru
+    url(r'^UserLevelPermission/', another_views.UserLevelPermission.as_view(), name="UserLevelPermission"),
+    url(r'^createNewGroup/', other_views.createNewGroup, name="createNewGroup"),
 ]
