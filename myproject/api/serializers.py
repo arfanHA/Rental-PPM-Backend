@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from .models import *
+from .models.rental_register_detail import rental_detail_sn
 from drf_writable_nested import WritableNestedModelSerializer
 
 
@@ -227,33 +228,53 @@ class NestedInvoiceSerializer(WritableNestedModelSerializer):
 
 # Rental Register
 
+
+# class RentalDetailReadSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = rental_detail
+#         depth = 2
+#         fields = '__all__'
+
+# mulai dari sini
+#tambah
+class RentalDetailSnSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = rental_detail_sn
+        fields = '__all__'
+
+class RentalDetailSerializer(serializers.ModelSerializer):    
+    class Meta:
+        model = rental_detail
+        fields = '__all__'
+
+
 class RentalHeaderSerializer(serializers.ModelSerializer):
     class Meta:
         model = rental_header
         fields = '__all__'
+#tambah
 
+class NestedRentalDetailReadSerializer(WritableNestedModelSerializer):
+    RDSN = RentalDetailSnSerializer(many=True)
 
-class RentalDetailSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = rental_detail
-        fields = '__all__'
-
-
-class RentalDetailReadSerializer(serializers.ModelSerializer):
     class Meta:
         model = rental_detail
         depth = 2
-        fields = '__all__'
+        fields = ['rental_detail_id', 'price', 'qty', 'discount_type', 'discount_method', 'discount', 'total',
+        'rental_header_id','order_detail_id','master_item_id','RDSN']
 
+class NestedRentalDetailWriteSerializer(WritableNestedModelSerializer):
+    # menambahkan ini 
+    RDSN = RentalDetailSnSerializer(many=True)
 
-class RentalDetailWriteSerializer(serializers.ModelSerializer):
     class Meta:
         model = rental_detail
-        fields = '__all__'
+        fields = ['rental_detail_id', 'price', 'qty', 'discount_type', 'discount_method', 'discount', 'total',
+        'rental_header_id','order_detail_id','master_item_id','RDSN']
 
 
 class NestedRentalHeaderReadSerializer(WritableNestedModelSerializer):
-    RentalDetailHeader = RentalDetailReadSerializer(many=True)
+    RentalDetailHeader = NestedRentalDetailReadSerializer(many=True)
 
     class Meta:
         model = rental_header
@@ -261,10 +282,9 @@ class NestedRentalHeaderReadSerializer(WritableNestedModelSerializer):
                   'discount', 'tax', 'delivery_cost', 'amount', 'notes', 'salesman', 'notes_kwitansi', 'status',
                   'rental_start_date', 'rental_end_date', 'sales_order_id', 'customer_id', 'location_id',
                   'approved_by', 'approved_date', 'pay_type', 'pay_method', 'note_kwitansi', 'RentalDetailHeader']
-
-
+# tambah
 class NestedRentalHeaderWriteSerializer(WritableNestedModelSerializer):
-    RentalDetailHeader = RentalDetailWriteSerializer(many=True)
+    RentalDetailHeader = NestedRentalDetailWriteSerializer(many=True)    
 
     class Meta:
         model = rental_header
@@ -272,3 +292,14 @@ class NestedRentalHeaderWriteSerializer(WritableNestedModelSerializer):
                   'discount', 'tax', 'delivery_cost', 'amount', 'notes', 'salesman', 'notes_kwitansi', 'status',
                   'rental_start_date', 'rental_end_date', 'sales_order_id', 'customer_id', 'location_id',
                   'approved_by', 'approved_date', 'pay_type', 'pay_method', 'note_kwitansi', 'RentalDetailHeader']
+
+# bkp
+# class NestedRentalHeaderWriteSerializer(WritableNestedModelSerializer):
+#     RentalDetailHeader = RentalDetailWriteSerializer(many=True)    
+
+#     class Meta:
+#         model = rental_header
+#         fields = ['rental_header_id', 'date', 'user_id', 'number', 'number_prefix', 'counter', 'discount_type',
+#                   'discount', 'tax', 'delivery_cost', 'amount', 'notes', 'salesman', 'notes_kwitansi', 'status',
+#                   'rental_start_date', 'rental_end_date', 'sales_order_id', 'customer_id', 'location_id',
+#                   'approved_by', 'approved_date', 'pay_type', 'pay_method', 'note_kwitansi', 'RentalDetailHeader']

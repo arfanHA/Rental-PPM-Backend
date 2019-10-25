@@ -25,3 +25,10 @@ class rental_detail(models.Model):
 
     def __str__(self):
         return str(self.rental_detail_id)
+
+class rental_detail_sn(models.Model):
+    rental_detail_sn_id = models.BigAutoField(primary_key=True)
+    rental_detail_id = models.ForeignKey(rental_detail, on_delete=models.DO_NOTHING,null=True,blank=True, related_name='RDSN')
+    
+    def __str__(self):
+        return str(self.rental_detail_sn_id)
