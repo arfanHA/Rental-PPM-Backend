@@ -227,16 +227,9 @@ class NestedInvoiceSerializer(WritableNestedModelSerializer):
 
 
 # Rental Register
-
-
-# class RentalDetailReadSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = rental_detail
-#         depth = 2
-#         fields = '__all__'
-
 # mulai dari sini
 #tambah
+
 class RentalDetailSnSerializer(serializers.ModelSerializer):
     class Meta:
         model = rental_detail_sn
@@ -253,9 +246,15 @@ class RentalHeaderSerializer(serializers.ModelSerializer):
         model = rental_header
         fields = '__all__'
 #tambah
+class NestedRentalDetailSNReadSerializer(WritableNestedModelSerializer):
+
+    class Meta:
+        model = rental_detail_sn
+        depth = 2
+        fields = ['rental_detail_sn_id', 'rental_detail_id', 'stock_code_id']
 
 class NestedRentalDetailReadSerializer(WritableNestedModelSerializer):
-    RDSN = RentalDetailSnSerializer(many=True)
+    RDSN = NestedRentalDetailSNReadSerializer(many=True)    
 
     class Meta:
         model = rental_detail
@@ -265,7 +264,7 @@ class NestedRentalDetailReadSerializer(WritableNestedModelSerializer):
 
 class NestedRentalDetailWriteSerializer(WritableNestedModelSerializer):
     # menambahkan ini 
-    RDSN = RentalDetailSnSerializer(many=True)
+    RDSN = NestedRentalDetailSNReadSerializer(many=True)
 
     class Meta:
         model = rental_detail
