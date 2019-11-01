@@ -277,7 +277,7 @@ class NestedRentalRegister(APIView):
 
         # return Response(request.data)
         serializers = NestedRentalHeaderWriteSerializer(data=request.data)
-        if serializers.is_valid():
+        if serializers.is_valid():        
             serializers.save()
             return Response(serializers.data, status=status.HTTP_201_CREATED)
         return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
@@ -344,7 +344,8 @@ class NestedRentalRegisterDetails(APIView):
                 return Response(serializers.data, status=status.HTTP_200_OK)
             elif request.data['status'] == "DRAFT":
                 serializers.save()
-                return Response(serializers, status=status.HTTP_200_OK)
+                update_on_rental_register.send(sender=rental_header, test=serializers.data)
+                return Response(serializers.data, status=status.HTTP_200_OK)
             elif request.data['status'] == "APPROVED" and request.user.is_superuser == False:
                 return Response("Access Denied", status=status.HTTP_401_UNAUTHORIZED)
         return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
@@ -407,9 +408,9 @@ class NestedRentalOrderManagementDetails(APIView):
                 serializers.save()
                 update_on_rental_order.send(sender=rental_order_header, test=serializers.data)
                 return Response(serializers.data, status=status.HTTP_200_OK)
-            elif request.data['status'] == "DRAFT":
+            elif request.data['status'] == "DRAFT" and request.user.is_superuser == True:
                 serializers.save()
-                return Response(serializers.data, status=status.HTTP_200_OK)
+                return Response(serializers.data, status=status.HTTP_200_OK)                
             elif request.data['status'] == "APPROVED" and request.user.is_superuser == False:
                 return Response("Access denied", status=status.HTTP_401_UNAUTHORIZED)
         return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
