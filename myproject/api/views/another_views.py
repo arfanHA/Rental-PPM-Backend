@@ -4,7 +4,7 @@ from rest_framework.permissions import IsAuthenticated
 from django.contrib.auth.models import User, Group, Permission
 from myproject.api.models import receiving_header, receiving_detail, rental_stock_card, rental_stock_sn, \
     stock_sn_history, master_item, rental_header, rental_order_header, invoice_header, master_customer, \
-    master_location, rental_order_detail, rental_detail,master_user
+    master_location, rental_order_detail, rental_detail,master_user,invoice_detail
 from myproject.api.models.master_employee import *
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -20,6 +20,7 @@ from myproject.api.serializers import NestedReceivingHeaderWriteSerializer, Nest
     StockSNHistorySerializer, ItemReadSerializer, NestedInvoiceSerializer
 import datetime
 from django.contrib.contenttypes.models import ContentType
+from django.db.models import Sum
 
 # This view is purposely used for testing only, improvement is considered and might used in further development
 
@@ -469,11 +470,15 @@ def addToRentalRegister(sender, **kwargs):
 
 
 # Invoice Management
+
 class NestedInvoiceManagement(APIView):
     def get(self, request, format=None):
-        invoiceHeader = invoice_header.objects.all()
-        serializer = NestedInvoiceSerializer(invoiceHeader, many=True)
-        return Response(serializer.data)
+        # bkp
+        # invoiceHeader = invoice_header.objects.all()
+        # serializer = NestedInvoiceSerializer(invoiceHeader, many=True)
+        # return Response(serializer.data)
+        dataInvoice = invoice_header.objects.values('date','amount','invoice_header_id','rental_header_id').annotate(t_terbayar=Sum('InvoiceDetails__pay_amount')).order_by('invoice_header_id')
+        return Response(dataInvoice)
 
     def post(self, request, format=None):
         serializer = NestedInvoiceSerializer(data=request.data)
