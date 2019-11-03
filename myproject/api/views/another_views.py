@@ -361,12 +361,12 @@ def addToInvoice(sender, **kwargs):
         print("This is DRAFT, nothing happen")
     else:
         print("APPROVED")
-
         timeNow = datetime.datetime.now().strftime('%Y-%m-%d')
         invoice_header.objects.create(date=timeNow,
                                       amount=RentalRegisterData['amount'],
                                       customer=RentalRegisterData['customer_id'],
                                       pay_method=RentalRegisterData['pay_method'],
+                                      status="ON PROGRESS",
                                       rental_header_id=rental_header(RentalRegisterData['rental_header_id']))
 
 
@@ -472,11 +472,7 @@ def addToRentalRegister(sender, **kwargs):
 # Invoice Management
 
 class NestedInvoiceManagement(APIView):
-    def get(self, request, format=None):
-        # bkp
-        # invoiceHeader = invoice_header.objects.all()
-        # serializer = NestedInvoiceSerializer(invoiceHeader, many=True)
-        # return Response(serializer.data)
+    def get(self, request, format=None):    
         dataInvoice = invoice_header.objects.values('date','amount','invoice_header_id','rental_header_id').annotate(t_terbayar=Sum('InvoiceDetails__pay_amount')).order_by('invoice_header_id')
         return Response(dataInvoice)
 
