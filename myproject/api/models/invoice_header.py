@@ -9,6 +9,7 @@ class invoice_header(models.Model):
     amount = models.CharField(max_length=100, blank=True)
     customer = models.BigIntegerField(blank=True)
     pay_method = models.IntegerField(blank=True)
+    status = models.CharField(max_length=50, blank=True)
     rental_header_id = models.ForeignKey(rental_header, on_delete=models.DO_NOTHING, blank=True, null=True)
 
     class Meta:
