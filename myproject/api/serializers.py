@@ -218,12 +218,11 @@ class InvoiceDetailSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class NestedInvoiceSerializer(WritableNestedModelSerializer):
-    InvoiceDetails = InvoiceDetailSerializer(many=True)
+class NestedInvoiceSerializer(WritableNestedModelSerializer):    
 
     class Meta:
-        model = invoice_header
-        fields = ['invoice_header_id', 'date', 'amount', 'customer', 'pay_method', 'rental_header_id', 'InvoiceDetails']
+        model = invoice_detail
+        fields = '__all__'
 
 
 # Rental Register
