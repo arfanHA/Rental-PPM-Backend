@@ -17,7 +17,7 @@ from django.core.serializers.json import DjangoJSONEncoder
 from myproject.api.serializers import NestedReceivingHeaderWriteSerializer, NestedReceivingHeaderReadSerializer, \
     NestedStockCardSerializer, NestedRentalHeaderReadSerializer, NestedRentalHeaderWriteSerializer, \
     NestedRentalOrderHeaderWriteSerializer, NestedRentalOrderHeaderReadSerializer, RentalStockSNSerializer, \
-    StockSNHistorySerializer, ItemReadSerializer, NestedInvoiceSerializer
+    StockSNHistorySerializer, ItemReadSerializer,NestedInvoiceReadSerializer
 import datetime
 from django.contrib.contenttypes.models import ContentType
 from django.db.models import Sum
@@ -321,9 +321,7 @@ class NestedRentalRegisterDetails(APIView):
 
         sns = request.data.pop("SNS", None)
         now = datetime.datetime.today().strftime('%Y-%m-%d')
-
         rentalHeaderId = pk
-
         if request.data['status'] == "APPROVED":
             for sn in sns:
                 print(sn['id'])
@@ -333,6 +331,18 @@ class NestedRentalRegisterDetails(APIView):
                 stock_sn_history.objects.create(
                     date=now,
                     status="KELUAR",
+                    RentalRef_id=rentalHeaderId,
+                    stock_code_id=rental_stock_sn(sn['id'])
+                )
+        elif request.data['status'] == "KEMBALI RENTAL":
+            for sn in sns:
+                print(sn['id'])
+                targetedRental = rental_stock_sn.objects.get(pk=sn['id'])
+                targetedRental.status = "MASUK"
+                targetedRental.save()
+                stock_sn_history.objects.create(
+                    date=now,
+                    status="MASUK",
                     RentalRef_id=rentalHeaderId,
                     stock_code_id=rental_stock_sn(sn['id'])
                 )
@@ -473,7 +483,7 @@ def addToRentalRegister(sender, **kwargs):
 
 class NestedInvoiceManagement(APIView):
     def get(self, request, format=None):    
-        dataInvoice = invoice_header.objects.values('date','amount','invoice_header_id','rental_header_id').annotate(t_terbayar=Sum('InvoiceDetails__pay_amount')).order_by('invoice_header_id')
+        dataInvoice = invoice_header.objects.values('date','amount','invoice_header_id','rental_header_id','status').annotate(t_terbayar=Sum('InvoiceDetails__pay_amount')).order_by('invoice_header_id')
         return Response(dataInvoice)
 
     def post(self, request, format=None):
@@ -492,8 +502,8 @@ class NestedInvoiceManagementDetails(APIView):
             raise Http404
 
     def get(self, request, pk, format=None):
-        invoiceHeader = self.get_object(pk)
-        serializer = NestedInvoiceSerializer(invoiceHeader)
+        invoiceHeader= self.get_object(pk)
+        serializer = NestedInvoiceReadSerializer(invoiceHeader)
         return Response(serializer.data)
 
     def put(self, request, pk, format=None):
