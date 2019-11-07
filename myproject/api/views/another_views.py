@@ -17,7 +17,7 @@ from django.core.serializers.json import DjangoJSONEncoder
 from myproject.api.serializers import NestedReceivingHeaderWriteSerializer, NestedReceivingHeaderReadSerializer, \
     NestedStockCardSerializer, NestedRentalHeaderReadSerializer, NestedRentalHeaderWriteSerializer, \
     NestedRentalOrderHeaderWriteSerializer, NestedRentalOrderHeaderReadSerializer, RentalStockSNSerializer, \
-    StockSNHistorySerializer, ItemReadSerializer,NestedInvoiceReadSerializer
+    StockSNHistorySerializer, ItemReadSerializer,NestedInvoiceReadSerializer,NestedInvoiceReadSerializerNew,NestedInvoiceSerializer
 import datetime
 from django.contrib.contenttypes.models import ContentType
 from django.db.models import Sum
@@ -353,6 +353,10 @@ class NestedRentalRegisterDetails(APIView):
                 serializers.save()
                 update_on_rental_register.send(sender=rental_header, test=serializers.data)
                 return Response(serializers.data, status=status.HTTP_200_OK)
+            elif request.data['status'] == "KEMBALI RENTAL" and request.user.is_superuser == True:
+                serializers.save()
+                update_on_rental_register.send(sender=rental_header, test=serializers.data)
+                return Response(serializers.data, status=status.HTTP_200_OK)
             elif request.data['status'] == "DRAFT":
                 serializers.save()
                 update_on_rental_register.send(sender=rental_header, test=serializers.data)
@@ -484,7 +488,9 @@ def addToRentalRegister(sender, **kwargs):
 class NestedInvoiceManagement(APIView):
     def get(self, request, format=None):    
         dataInvoice = invoice_header.objects.values('date','amount','invoice_header_id','rental_header_id','status').annotate(t_terbayar=Sum('InvoiceDetails__pay_amount')).order_by('invoice_header_id')
-        return Response(dataInvoice)
+        serializer = NestedInvoiceReadSerializerNew(dataInvoice)
+        # return Response(dataInvoice)
+        return Response(serializer.data)
 
     def post(self, request, format=None):
         serializer = NestedInvoiceSerializer(data=request.data)
