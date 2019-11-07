@@ -45,7 +45,7 @@ class CustomerSerializer(serializers.ModelSerializer):
 class ItemReadSerializer(serializers.ModelSerializer):
     class Meta:
         model = master_item
-        depth = 2
+        # depth = 2
         fields = '__all__'
 
 
@@ -218,31 +218,38 @@ class InvoiceDetailSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class NestedInvoiceSerializer(WritableNestedModelSerializer):
-    InvoiceDetails = InvoiceDetailSerializer(many=True)
+    InvoiceDetails = InvoiceDetailSerializer(many=True,read_only=True)
 
     class Meta:
         model = invoice_header
         fields = ['invoice_header_id', 'date', 'amount', 'customer', 'pay_method', 'rental_header_id', 'InvoiceDetails']
 
+class NestedInvoiceDetailReadSerializer(WritableNestedModelSerializer):
+
+    class Meta:
+        model = invoice_detail
+        depth = 2
+        fields = ['invoice_detail_id', 'date', 'type_payment', 'pay_amount', 'pay_method', 'noted',
+        'user_id','jml_period','period','harga_rental','master_item_id']
+
 class NestedInvoiceReadSerializer(WritableNestedModelSerializer):
-    InvoiceDetails = InvoiceDetailSerializer(many=True)
+    InvoiceDetails = NestedInvoiceDetailReadSerializer(many=True)
 
     class Meta:
         model = invoice_header
         fields = ['invoice_header_id','InvoiceDetails']
 
+#proses perbaikan
 class NestedInvoiceReadSerializerNew(WritableNestedModelSerializer):
-    # InvoiceDetails = InvoiceDetailSerializer(many=True)
+    InvoiceDetails = InvoiceDetailSerializer(many=True)
 
     class Meta:
-        # model = invoice_header
-        fields = ['invoice_header_id']
-
+        model = invoice_header
+        fields = ['date','amount','invoice_header_id','rental_header_id','status','InvoiceDetails']
+#proses perbaikan
 
 # Rental Register
 # mulai dari sini
-#tambah
-# RentalStockSNSerializer
 
 class RentalDetailWriteSnSerializer(serializers.ModelSerializer):
     StokCode = RentalStockSNSerializer(many=True)
