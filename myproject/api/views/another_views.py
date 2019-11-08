@@ -306,7 +306,7 @@ class NestedRentalRegisterDetails(APIView):
     def put(self, request, pk, format=None):
         rentalHeader = self.get_object(pk)
 
-        sns = request.data.pop("SNS", None)
+        sns = request.data.pop("SNS", None)        
         now = datetime.datetime.today().strftime('%Y-%m-%d')
         rentalHeaderId = pk
         if request.data['status'] == "APPROVED":
@@ -358,7 +358,7 @@ def addToInvoice(sender, **kwargs):
     RentalRegisterData = kwargs['test']
 
     # print(RentalRegisterData['status'])
-    if "DRAFT" == RentalRegisterData['status']:
+    if "DRAFT" == RentalRegisterData['status'] or "KEMBALI RENTAL" == RentalRegisterData['status']:
         print("This is DRAFT, nothing happen")
     else:
         print("APPROVED")
@@ -368,7 +368,7 @@ def addToInvoice(sender, **kwargs):
                                       customer=RentalRegisterData['customer_id'],
                                       pay_method=RentalRegisterData['pay_method'],
                                       status="ON PROGRESS",
-                                      rental_header_id=rental_header(RentalRegisterData['rental_header_id']))
+                                      rental_header_id=rental_header(RentalRegisterData['rental_header_id']))                                               
 
 
 # Rental Order Management
