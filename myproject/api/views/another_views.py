@@ -263,20 +263,7 @@ class NestedRentalRegister(APIView):
                     x['total'] = (float(x['price']) * x['qty']) - discount
             amount = amount + float(x['total'])
 
-        request.data['amount'] = str(amount)
-
-        # sns = request.data.pop("SNS", None)
-        # now = datetime.datetime.today().strftime('%Y-%m-%d')
-        # for sn in sns:
-        #     print(sn['id'])
-        #     stock_sn_history.objects.create(
-        #         date=now,
-        #         status="KELUAR",
-        #         ref_id=None,
-        #         stock_code_id=rental_stock_sn(sn['id'])
-        #     )
-
-        # return Response(request.data)
+        request.data['amount'] = str(amount)        
         serializers = NestedRentalHeaderWriteSerializer(data=request.data)
         if serializers.is_valid():        
             serializers.save()
@@ -488,9 +475,10 @@ def addToRentalRegister(sender, **kwargs):
 class NestedInvoiceManagement(APIView):
     def get(self, request, format=None):    
         dataInvoice = invoice_header.objects.values('date','amount','invoice_header_id','rental_header_id','status').annotate(t_terbayar=Sum('InvoiceDetails__pay_amount')).order_by('invoice_header_id')
-        serializer = NestedInvoiceReadSerializerNew(dataInvoice)
-        # return Response(dataInvoice)
-        return Response(serializer.data)
+        # dataInvoice = invoice_header.objects.all().annotate(t_terbayar=Sum('InvoiceDetails__pay_amount')).order_by('invoice_header_id')
+        # serializer = NestedInvoiceReadSerializerNew(dataInvoice,many=True)
+        return Response(dataInvoice)
+        # return Response(serializer.data)
 
     def post(self, request, format=None):
         serializer = NestedInvoiceSerializer(data=request.data)
