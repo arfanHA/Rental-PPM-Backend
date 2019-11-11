@@ -474,11 +474,10 @@ def addToRentalRegister(sender, **kwargs):
 
 class NestedInvoiceManagement(APIView):
     def get(self, request, format=None):    
-        dataInvoice = invoice_header.objects.values('date','amount','invoice_header_id','rental_header_id','status').annotate(t_terbayar=Sum('InvoiceDetails__pay_amount')).order_by('invoice_header_id')
-        # dataInvoice = invoice_header.objects.all().annotate(t_terbayar=Sum('InvoiceDetails__pay_amount')).order_by('invoice_header_id')
-        # serializer = NestedInvoiceReadSerializerNew(dataInvoice,many=True)
-        return Response(dataInvoice)
-        # return Response(serializer.data)
+        dataInvoice = invoice_header.objects.all().annotate(t_terbayar=Sum('InvoiceDetails__pay_amount')).order_by('invoice_header_id')        
+        serializer = NestedInvoiceReadSerializerNew(dataInvoice,many=True)
+        # return Response(dataInvoice)
+        return Response(serializer.data)
 
     def post(self, request, format=None):
         serializer = NestedInvoiceSerializer(data=request.data)

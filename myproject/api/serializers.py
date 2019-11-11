@@ -241,11 +241,13 @@ class NestedInvoiceReadSerializer(WritableNestedModelSerializer):
 
 #proses perbaikan
 class NestedInvoiceReadSerializerNew(WritableNestedModelSerializer):
-    InvoiceDetails = InvoiceDetailSerializer(many=True)
+    t_terbayar = serializers.IntegerField()
+    # rental_header_id = serializers.IntegerField()
 
     class Meta:
         model = invoice_header
-        fields = ['date','amount','invoice_header_id','rental_header_id','status','InvoiceDetails']
+        depth = 5
+        fields = ['date','amount','invoice_header_id','status','t_terbayar','rental_header_id']
 #proses perbaikan
 
 # Rental Register
