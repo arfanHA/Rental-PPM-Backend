@@ -107,7 +107,14 @@ class invoice_header(viewsets.ModelViewSet):
     queryset = invoice_header.objects.all()
     serializer_class = InvoiceHeaderSerializer
 
-
 class invoice_detail(viewsets.ModelViewSet):
     queryset = invoice_detail.objects.all()
     serializer_class = InvoiceDetailSerializer
+
+# class InvoiceHeaderViewSet(viewsets.ModelViewSet):
+#     queryset = invoice_header.objects.all()
+#     serializer_class = NestedInvoiceReadSerializerNew
+#     def get_queryset(self):
+#         return invoice_header.objects.values('date','amount','invoice_header_id','rental_header_id','status').annotate(
+#             t_terbayar=Sum('InvoiceDetails__pay_amount')
+#             ).order_by('invoice_header_id')
