@@ -342,12 +342,12 @@ class NestedRentalRegisterDetails(APIView):
                     RentalRef_id=rentalHeaderId,
                     stock_code_id=rental_stock_sn(sn['new_stock_code_id'])
                 )
-        # rentaldetailheader = request.data["RentalDetailHeader"]['RDSN']
-        rentaldetailheader = request.data.pop("RentalDetailHeader", None)
-        for rental in rentaldetailheader:
-            rdsn = rental['RDSN']
-            for rd in rdsn:
-                rental_detail_sn.objects.filter(rental_detail_sn_id=rd['rental_detail_sn_id']).update(stock_code_id_id=rd['stock_code_id'])
+            rentaldetailheader = request.data["RentalDetailHeader"]
+            # rentaldetailheader = request.data.pop("RentalDetailHeader", None)
+            for rental in rentaldetailheader:
+                rdsn = rental['RDSN']
+                for rd in rdsn:
+                    rental_detail_sn.objects.filter(rental_detail_sn_id=rd['rental_detail_sn_id']).update(stock_code_id_id=rd['stock_code_id'])
 
 
         serializers = NestedRentalHeaderWriteSerializer(rentalHeader, data=request.data)
