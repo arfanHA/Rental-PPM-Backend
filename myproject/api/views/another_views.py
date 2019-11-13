@@ -323,24 +323,29 @@ class NestedRentalRegisterDetails(APIView):
                 )
         elif request.data['status'] == "KEMBALI RENTAL":
             for sn in sns:
-                print(sn['stock_code_id'])
-                targetedRental = rental_stock_sn.objects.get(pk=sn['stock_code_id'])
+                # print(sn['stock_code_id'])
+                targetedRental = rental_stock_sn.objects.get(pk=sn['old_stock_code_id'])
                 targetedRental.status = "MASUK"
                 targetedRental.save()
                 stock_sn_history.objects.create(
                     date=now,
                     status="MASUK",
                     RentalRef_id=rentalHeaderId,
-                    stock_code_id=rental_stock_sn(sn['stock_code_id'])
+                    stock_code_id=rental_stock_sn(sn['old_stock_code_id'])
+                )
+                targetedRental = rental_stock_sn.objects.get(pk=sn['new_stock_code_id'])
+                targetedRental.status = "KELUAR"
+                targetedRental.save()
+                stock_sn_history.objects.create(
+                    date=now,
+                    status="KELUAR",
+                    RentalRef_id=rentalHeaderId,
+                    stock_code_id=rental_stock_sn(sn['new_stock_code_id'])
                 )
 
         serializers = NestedRentalHeaderWriteSerializer(rentalHeader, data=request.data)
         if serializers.is_valid():
             if request.data['status'] == "APPROVED" and request.user.is_superuser == True:
-                serializers.save()
-                update_on_rental_register.send(sender=rental_header, test=serializers.data)
-                return Response(serializers.data, status=status.HTTP_200_OK)
-            elif request.data['status'] == "KEMBALI RENTAL" and request.user.is_superuser == True:
                 serializers.save()
                 update_on_rental_register.send(sender=rental_header, test=serializers.data)
                 return Response(serializers.data, status=status.HTTP_200_OK)
