@@ -361,7 +361,7 @@ class NestedRentalRegisterDetails(APIView):
                 update_on_rental_register.send(sender=rental_header, test=serializers.data)
                 return Response(serializers.data, status=status.HTTP_200_OK)
             elif request.data['status'] == "KEMBALI RENTAL" and request.user.is_superuser == True:                        
-                return Response("Berhasil",status=status.HTTP_200_OK)
+                return Response(serializers.data,status=status.HTTP_200_OK)
             elif request.data['status'] == "APPROVED" and request.user.is_superuser == False:
                 return Response("Access Denied", status=status.HTTP_401_UNAUTHORIZED)
         return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
