@@ -21,6 +21,7 @@ from myproject.api.serializers import NestedReceivingHeaderWriteSerializer, Nest
 import datetime
 from django.contrib.contenttypes.models import ContentType
 from django.db.models import Sum
+from myproject.api.models.rental_register_detail import rental_detail_sn
 
 # This view is purposely used for testing only, improvement is considered and might used in further development
 
@@ -305,7 +306,6 @@ class NestedRentalRegisterDetails(APIView):
 
     def put(self, request, pk, format=None):
         rentalHeader = self.get_object(pk)
-
         sns = request.data.pop("SNS", None)        
         now = datetime.datetime.today().strftime('%Y-%m-%d')
         rentalHeaderId = pk
@@ -342,6 +342,13 @@ class NestedRentalRegisterDetails(APIView):
                     RentalRef_id=rentalHeaderId,
                     stock_code_id=rental_stock_sn(sn['new_stock_code_id'])
                 )
+        # rentaldetailheader = request.data["RentalDetailHeader"]['RDSN']
+        rentaldetailheader = request.data.pop("RentalDetailHeader", None)
+        for rental in rentaldetailheader:
+            rdsn = rental['RDSN']
+            for rd in rdsn:
+                rental_detail_sn.objects.filter(rental_detail_sn_id=rd['rental_detail_sn_id']).update(stock_code_id_id=rd['stock_code_id'])
+
 
         serializers = NestedRentalHeaderWriteSerializer(rentalHeader, data=request.data)
         if serializers.is_valid():
