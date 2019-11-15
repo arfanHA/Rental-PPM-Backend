@@ -1,4 +1,4 @@
-from django.http import Http404
+from django.http import Http404,HttpResponse
 from rest_framework.decorators import api_view
 from rest_framework.permissions import IsAuthenticated
 from django.contrib.auth.models import User, Group, Permission
@@ -488,7 +488,7 @@ def addToRentalRegister(sender, **kwargs):
 
 class NestedInvoiceManagement(APIView):
     def get(self, request, format=None):    
-        dataInvoice = invoice_header.objects.all().annotate(t_terbayar=Sum('InvoiceDetails__pay_amount')).order_by('invoice_header_id')        
+        dataInvoice = invoice_header.objects.all().annotate(t_terbayar=Sum('InvoiceDetails__pay_amount')).order_by('invoice_header_id')
         serializer = NestedInvoiceReadSerializerNew(dataInvoice,many=True)
         # return Response(dataInvoice)
         return Response(serializer.data)
@@ -515,6 +515,21 @@ class NestedInvoiceManagementDetails(APIView):
 
     def put(self, request, pk, format=None):
         invoiceHeader = self.get_object(pk)
+        now = datetime.datetime.today().strftime('%Y-%m-%d')
+        inv_header = request.data["invoice_header_id"]
+        header_id = invoice_header.objects.filter(invoice_header_id=inv_header).values('rental_header_id_id')[0]['rental_header_id_id']
+        rent_detail = rental_detail.objects.filter(rental_header_id_id=header_id)        
+        for r in rent_detail:
+            stock_codeid = rental_detail_sn.objects.filter(rental_detail_id_id=r.rental_detail_id).values('stock_code_id')[0]['stock_code_id']        
+            targetedRental = rental_stock_sn.objects.get(pk=stock_codeid)
+            targetedRental.status = "MASUK"
+            targetedRental.save()
+            stock_sn_history.objects.create(
+                date=now,
+                status="MASUK",
+                RentalRef_id=r.rental_header_id_id,
+                stock_code_id=rental_stock_sn(stock_codeid)
+            )
         serializers = NestedInvoiceSerializer(invoiceHeader, data=request.data)
         if serializers.is_valid():
             serializers.save()
