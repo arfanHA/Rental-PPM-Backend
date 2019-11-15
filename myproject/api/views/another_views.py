@@ -517,6 +517,7 @@ class NestedInvoiceManagementDetails(APIView):
         invoiceHeader = self.get_object(pk)
         now = datetime.datetime.today().strftime('%Y-%m-%d')
         inv_header = request.data["invoice_header_id"]
+        inv_detail = request.data["InvoiceDetails"]
         header_id = invoice_header.objects.filter(invoice_header_id=inv_header).values('rental_header_id_id')[0]['rental_header_id_id']
         rent_detail = rental_detail.objects.filter(rental_header_id_id=header_id)        
         for r in rent_detail:
@@ -530,11 +531,12 @@ class NestedInvoiceManagementDetails(APIView):
                 RentalRef_id=r.rental_header_id_id,
                 stock_code_id=rental_stock_sn(stock_codeid)
             )
-        serializers = NestedInvoiceSerializer(invoiceHeader, data=request.data)
-        if serializers.is_valid():
-            serializers.save()
-            return Response(serializers.data, status=status.HTTP_200_OK)
-        return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+        for i in inv_detail:
+            invoice_detail.objects.create(date=now,noted=i['noted'],type_payment=i['type_payment'],
+            jml_period=i['jml_period'],period=i['period'],harga_rental=i['harga_rental']
+            ,pay_amount=i['pay_amount'],pay_method=i['pay_method'],invoice_header_id_id=inv_header)
+        invoice_header.objects.filter(invoice_header_id=inv_header).update(status="COMPLETE")
+        return Response({"invoice_header_id":inv_header,"status":"COMPLETE","InvoiceDetails":inv_detail}, status=status.HTTP_200_OK)        
 
 
 @api_view(['GET'])
