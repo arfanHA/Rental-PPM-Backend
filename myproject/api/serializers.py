@@ -241,8 +241,7 @@ class NestedInvoiceReadSerializer(WritableNestedModelSerializer):
 
 #proses perbaikan
 class NestedInvoiceReadSerializerNew(WritableNestedModelSerializer):
-    t_terbayar = serializers.IntegerField()
-    # rental_header_id = serializers.IntegerField()
+    t_terbayar = serializers.IntegerField()    
 
     class Meta:
         model = invoice_header
@@ -283,7 +282,6 @@ class NestedRentalDetailSNReadSerializer(WritableNestedModelSerializer):
         fields = ['rental_detail_sn_id', 'rental_detail_id', 'stock_code_id']
 
 class NestedRentalDetailSNWriteSerializer(WritableNestedModelSerializer):
-
     class Meta:
         model = rental_detail_sn        
         fields = ['rental_detail_sn_id', 'rental_detail_id', 'stock_code_id']
@@ -296,6 +294,13 @@ class NestedRentalDetailReadSerializer(WritableNestedModelSerializer):
         depth = 2
         fields = ['rental_detail_id', 'price', 'qty', 'discount_type', 'discount_method', 'discount', 'total',
         'rental_header_id','order_detail_id','master_item_id','RDSN']
+
+
+class NestedReadRentalDetail(WritableNestedModelSerializer):
+    class Meta:
+        model = rental_detail
+        depth = 1
+        fields = ['rental_detail_id','master_item_id']
 
 class NestedRentalDetailWriteSerializer(WritableNestedModelSerializer):
     # menambahkan ini 

@@ -17,7 +17,8 @@ from django.core.serializers.json import DjangoJSONEncoder
 from myproject.api.serializers import NestedReceivingHeaderWriteSerializer, NestedReceivingHeaderReadSerializer, \
     NestedStockCardSerializer, NestedRentalHeaderReadSerializer, NestedRentalHeaderWriteSerializer, \
     NestedRentalOrderHeaderWriteSerializer, NestedRentalOrderHeaderReadSerializer, RentalStockSNSerializer, \
-    StockSNHistorySerializer, ItemReadSerializer,NestedInvoiceReadSerializer,NestedInvoiceReadSerializerNew,NestedInvoiceSerializer
+    StockSNHistorySerializer, ItemReadSerializer,NestedInvoiceReadSerializer,NestedInvoiceReadSerializerNew,NestedInvoiceSerializer,\
+    NestedReadRentalDetail
 import datetime
 from django.contrib.contenttypes.models import ContentType
 from django.db.models import Sum
@@ -538,6 +539,13 @@ class NestedInvoiceManagementDetails(APIView):
         invoice_header.objects.filter(invoice_header_id=inv_header).update(status="COMPLETE")
         return Response({"invoice_header_id":inv_header,"status":"COMPLETE","InvoiceDetails":inv_detail}, status=status.HTTP_200_OK)        
 
+class getPriceMasterItem(APIView):
+    def post(self, request, format=None):
+        r_header = request.data['rental_header_id']
+        stockmanagement = rental_detail.objects.filter(rental_header_id_id=r_header)
+        serializers = NestedReadRentalDetail(stockmanagement, many=True)
+        return Response(serializers.data)
+        # return Response(stockmanagement)
 
 @api_view(['GET'])
 def getItemByCategory(request, b=1):
@@ -623,29 +631,34 @@ def getRentalWithFilter(request):
 def getPrice(request):
     rentalHeader = request.data['rental_header_id']
     periode = request.data['periode']
+    # r_header = self.get_object(rentalHeader)
+    # serializers = InvoiceHeaderSerializer(r_header, data=request.data)
+    
+    # rentalDetails = rental_detail.objects.filter(rental_header_id=rentalHeader)
+    # for r in rentalDetails:
+    #     itemId = rentalDetail.master_item_id_id
+    #     item = master_item.objects.get(pk=itemId)
+    #     price1 = price1 + int(float(item.price1))
+    #     price2 = price2 + int(float(item.price2))
+    #     if (item.price3 == ""):
+    #         price3 = price3
+    #     else:
+    #         price3 = price3 + int(float(item.price3))
 
-    price1 = 0
-    price2 = 0
-    price3 = 0
-    rentalDetails = rental_detail.objects.filter(rental_header_id=rentalHeader)
-    for rentalDetail in rentalDetails:
-        itemId = rentalDetail.master_item_id_id
-        item = master_item.objects.get(pk=itemId)
-        price1 = price1 + int(float(item.price1))
-        price2 = price2 + int(float(item.price2))
-        if (item.price3 == ""):
-            price3 = price3
-        else:
-            price3 = price3 + int(float(item.price3))
+    # priceDict = {
+    #     'price1': price1 * int(periode),
+    #     'price2': price2 * int(periode),
+    #     'price3': price3 * int(periode)
+    # }
+    # for r in rentalDetails:
+    #     priceDict = {
+    #         'price1': r.price1,
+    #         'price2': r.price2,
+    #         'price3': r.price3
+    #     }
 
-    priceDict = {
-        'price1': price1 * int(periode),
-        'price2': price2 * int(periode),
-        'price3': price3 * int(periode)
-    }
-
-    print(priceDict)
-    return Response(priceDict)
+    # print(priceDict)
+    return Response(rentalHeader)
 
 
 @api_view(['POST'])

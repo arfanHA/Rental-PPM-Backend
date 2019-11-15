@@ -53,6 +53,7 @@ urlpatterns = [
     url(r'^getHistoryBySN/(?P<i>\d+)/$', another_views.getStockHistoryBySN, name="GetHistoryBySN"),
     url(r'^getRentalWithFilter', another_views.getRentalWithFilter, name="GetRentalWithFilter"),
     url(r'^getAllPriceForHeader', another_views.getPrice, name="GetPriceForEachItemInHeaders"),
+    url(r'^getAllPriceItem', another_views.getPriceMasterItem.as_view(), name="getAllPriceItem"),
     url(r'^returningStock', another_views.returnStock, name="ReturningStock"),
     url(r'^signup/', other_views.signup, name='signup'),
     url(r'^makeGroupPermission/', other_views.createGroup, name="createGroup"),
