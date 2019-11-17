@@ -543,8 +543,7 @@ class NestedInvoiceManagementDetails(APIView):
         else:
             for i in inv_detail:
                 invoice_detail.objects.create(date=now,noted=i['noted'],type_payment=i['type_payment'],
-                jml_period=i['jml_period'],period=i['period'],harga_rental=i['harga_rental']
-                ,pay_amount=i['pay_amount'],pay_method=i['pay_method'],invoice_header_id_id=inv_header)            
+                pay_amount=i['pay_amount'],pay_method=i['pay_method'],invoice_header_id_id=inv_header)
             return Response({"invoice_header_id":inv_header,"InvoiceDetails":inv_detail}, status=status.HTTP_200_OK)
 
 class getPriceMasterItem(APIView):
