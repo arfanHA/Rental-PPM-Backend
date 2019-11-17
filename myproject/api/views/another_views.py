@@ -18,7 +18,7 @@ from myproject.api.serializers import NestedReceivingHeaderWriteSerializer, Nest
     NestedStockCardSerializer, NestedRentalHeaderReadSerializer, NestedRentalHeaderWriteSerializer, \
     NestedRentalOrderHeaderWriteSerializer, NestedRentalOrderHeaderReadSerializer, RentalStockSNSerializer, \
     StockSNHistorySerializer, ItemReadSerializer,NestedInvoiceReadSerializer,NestedInvoiceReadSerializerNew,NestedInvoiceSerializer,\
-    NestedReadRentalDetail
+    NestedReadRentalDetail,InvoiceDetailSerializer
 import datetime
 from django.contrib.contenttypes.models import ContentType
 from django.db.models import Sum
@@ -519,25 +519,33 @@ class NestedInvoiceManagementDetails(APIView):
         now = datetime.datetime.today().strftime('%Y-%m-%d')
         inv_header = request.data["invoice_header_id"]
         inv_detail = request.data["InvoiceDetails"]
+        stat = request.data["status"]
         header_id = invoice_header.objects.filter(invoice_header_id=inv_header).values('rental_header_id_id')[0]['rental_header_id_id']
-        rent_detail = rental_detail.objects.filter(rental_header_id_id=header_id)        
-        for r in rent_detail:
-            stock_codeid = rental_detail_sn.objects.filter(rental_detail_id_id=r.rental_detail_id).values('stock_code_id')[0]['stock_code_id']        
-            targetedRental = rental_stock_sn.objects.get(pk=stock_codeid)
-            targetedRental.status = "MASUK"
-            targetedRental.save()
-            stock_sn_history.objects.create(
-                date=now,
-                status="MASUK",
-                RentalRef_id=r.rental_header_id_id,
-                stock_code_id=rental_stock_sn(stock_codeid)
-            )
-        for i in inv_detail:
-            invoice_detail.objects.create(date=now,noted=i['noted'],type_payment=i['type_payment'],
-            jml_period=i['jml_period'],period=i['period'],harga_rental=i['harga_rental']
-            ,pay_amount=i['pay_amount'],pay_method=i['pay_method'],invoice_header_id_id=inv_header)
-        invoice_header.objects.filter(invoice_header_id=inv_header).update(status="COMPLETE")
-        return Response({"invoice_header_id":inv_header,"status":"COMPLETE","InvoiceDetails":inv_detail}, status=status.HTTP_200_OK)        
+        rent_detail = rental_detail.objects.filter(rental_header_id_id=header_id)
+        if stat == "BERHENTI RENTAL":
+            for r in rent_detail:
+                stock_codeid = rental_detail_sn.objects.filter(rental_detail_id_id=r.rental_detail_id).values('stock_code_id')[0]['stock_code_id']        
+                targetedRental = rental_stock_sn.objects.get(pk=stock_codeid)
+                targetedRental.status = "MASUK"
+                targetedRental.save()
+                stock_sn_history.objects.create(
+                    date=now,
+                    status="MASUK",
+                    RentalRef_id=r.rental_header_id_id,
+                    stock_code_id=rental_stock_sn(stock_codeid)
+                )
+            for i in inv_detail:
+                invoice_detail.objects.create(date=now,noted=i['noted'],type_payment=i['type_payment'],
+                jml_period=i['jml_period'],period=i['period'],harga_rental=i['harga_rental']
+                ,pay_amount=i['pay_amount'],pay_method=i['pay_method'],invoice_header_id_id=inv_header)
+            invoice_header.objects.filter(invoice_header_id=inv_header).update(status="COMPLETE")
+            return Response({"invoice_header_id":inv_header,"status":"COMPLETE","InvoiceDetails":inv_detail}, status=status.HTTP_200_OK)
+        else:
+            for i in inv_detail:
+                invoice_detail.objects.create(date=now,noted=i['noted'],type_payment=i['type_payment'],
+                jml_period=i['jml_period'],period=i['period'],harga_rental=i['harga_rental']
+                ,pay_amount=i['pay_amount'],pay_method=i['pay_method'],invoice_header_id_id=inv_header)            
+            return Response({"invoice_header_id":inv_header,"InvoiceDetails":inv_detail}, status=status.HTTP_200_OK)
 
 class getPriceMasterItem(APIView):
     def post(self, request, format=None):
