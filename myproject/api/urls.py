@@ -50,6 +50,7 @@ urlpatterns = [
     url(r'getItemSNsAvailable/(?P<i>\d+)/$', another_views.getItemSNsAvailable, name='GetSNsByItemAvailable'),
     url(r'^getUnapprovedHeader/(\d+)/', another_views.getUnapprovedHeader, name="GetUnapprovedHeader"),
     url(r'^getDistinctStocks/', another_views.getDistinctItem, name="GetDistinctStock"),
+    url(r'^MasterEmployee/', another_views.MasterEmployee.as_view(), name="MasterEmployee"),
     url(r'^getHistoryBySN/(?P<i>\d+)/$', another_views.getStockHistoryBySN, name="GetHistoryBySN"),
     url(r'^getRentalWithFilter', another_views.getRentalWithFilter, name="GetRentalWithFilter"),
     url(r'^getAllPriceForHeader', another_views.getPrice, name="GetPriceForEachItemInHeaders"),

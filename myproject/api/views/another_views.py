@@ -18,7 +18,7 @@ from myproject.api.serializers import NestedReceivingHeaderWriteSerializer, Nest
     NestedStockCardSerializer, NestedRentalHeaderReadSerializer, NestedRentalHeaderWriteSerializer, \
     NestedRentalOrderHeaderWriteSerializer, NestedRentalOrderHeaderReadSerializer, RentalStockSNSerializer, \
     StockSNHistorySerializer, ItemReadSerializer,NestedInvoiceReadSerializer,NestedInvoiceReadSerializerNew,NestedInvoiceSerializer,\
-    NestedReadRentalDetail,InvoiceDetailSerializer
+    NestedReadRentalDetail,InvoiceDetailSerializer,NestedReadMasterUser
 import datetime
 from django.contrib.contenttypes.models import ContentType
 from django.db.models import Sum
@@ -540,7 +540,7 @@ class NestedInvoiceManagementDetails(APIView):
                 ,pay_amount=i['pay_amount'],pay_method=i['pay_method'],invoice_header_id_id=inv_header)
             invoice_header.objects.filter(invoice_header_id=inv_header).update(status="COMPLETE")
             return Response({"invoice_header_id":inv_header,"status":"COMPLETE","InvoiceDetails":inv_detail}, status=status.HTTP_200_OK)
-        else:
+        if stat == "":
             for i in inv_detail:
                 invoice_detail.objects.create(date=now,noted=i['noted'],type_payment=i['type_payment'],
                 pay_amount=i['pay_amount'],pay_method=i['pay_method'],invoice_header_id_id=inv_header)
@@ -772,3 +772,16 @@ class UserLevelPermission(ObtainAuthToken):
             'group_name':employee.user_level,
             "permissions":a
             })
+
+class MasterEmployee(APIView):
+    def get(self, request, format=None):
+        m_user = master_user.objects.all()        
+        on_list_user = [[m.employee_id_id for m in m_user]][0]
+        a = [2, 3, 4, 1]
+        # onlist = [int(b) for b in on_list_user]
+        m_employee = master_employee.objects.exclude(employee_id__in=on_list_user)
+        a=[]
+        for p in m_employee:
+            b = {'nama':p.name}
+            a.append(b)  
+        return Response({'nama_pegawai':a})
