@@ -18,7 +18,7 @@ from myproject.api.serializers import NestedReceivingHeaderWriteSerializer, Nest
     NestedStockCardSerializer, NestedRentalHeaderReadSerializer, NestedRentalHeaderWriteSerializer, \
     NestedRentalOrderHeaderWriteSerializer, NestedRentalOrderHeaderReadSerializer, RentalStockSNSerializer, \
     StockSNHistorySerializer, ItemReadSerializer,NestedInvoiceReadSerializer,NestedInvoiceReadSerializerNew,NestedInvoiceSerializer,\
-    NestedReadRentalDetail,InvoiceDetailSerializer,NestedReadMasterUser
+    NestedReadRentalDetail,InvoiceDetailSerializer
 import datetime
 from django.contrib.contenttypes.models import ContentType
 from django.db.models import Sum
