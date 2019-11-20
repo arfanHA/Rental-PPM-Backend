@@ -785,4 +785,4 @@ class MasterEmployee(APIView):
                 'dob':p.dob,'phone_number':p.phone_number
             }
             a.append(b)  
-        return Response({'nama_pegawai':a})
+        return Response(a)
