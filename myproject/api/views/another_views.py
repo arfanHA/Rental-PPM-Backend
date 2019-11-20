@@ -776,12 +776,13 @@ class UserLevelPermission(ObtainAuthToken):
 class MasterEmployee(APIView):
     def get(self, request, format=None):
         m_user = master_user.objects.all()        
-        on_list_user = [[m.employee_id_id for m in m_user]][0]
-        a = [2, 3, 4, 1]
-        # onlist = [int(b) for b in on_list_user]
+        on_list_user = [[m.employee_id_id for m in m_user]][0]        
         m_employee = master_employee.objects.exclude(employee_id__in=on_list_user)
         a=[]
         for p in m_employee:
-            b = {'nama':p.name}
+            b = {'nama':p.name,'address':p.address,'id_type':p.id_type,
+                'id_number':p.id_number,'employee_status':p.employee_status,
+                'dob':p.dob,'phone_number':p.phone_number
+            }
             a.append(b)  
         return Response({'nama_pegawai':a})
