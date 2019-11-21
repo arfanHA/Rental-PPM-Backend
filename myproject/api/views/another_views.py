@@ -241,31 +241,6 @@ class NestedRentalRegister(APIView):
     def post(self, request, format=None):
         request.data['number'] = getDocumentNumber(2)  # get document number for this request
         request.data['counter'] = getCounter(2)  # get counter for this request
-
-        RDH = request.data['RentalDetailHeader']
-        discount = float(request.data['discount'])
-        amount = 0
-
-        for x in RDH:
-            if x['discount_method'] == "By Item":
-                if x['discount_type'] == "Percent":
-                    # print("Percent is used from By Item")
-                    subTotal = float(x['price']) * (discount / 100)
-                    x['total'] = (float(x['price']) - subTotal) * x['qty']
-                elif x['discount_type'] == "Value":
-                    # print("Value is used from By Item")
-                    x['total'] = (float(x['price']) - discount) * x['qty']
-            elif x['discount_method'] == "By Total Item":
-                if x['discount_type'] == "Percent":
-                    # print("Percent is used from By Total Item")
-                    subTotal = float(x['price']) * (discount / 100)
-                    x['total'] = (float(x['price']) * x['qty']) - subTotal
-                elif x['discount_type'] == "Value":
-                    # print("Value is used from By Total Item")
-                    x['total'] = (float(x['price']) * x['qty']) - discount
-            amount = amount + float(x['total'])
-
-        request.data['amount'] = str(amount)        
         serializers = NestedRentalHeaderWriteSerializer(data=request.data)
         if serializers.is_valid():        
             serializers.save()
