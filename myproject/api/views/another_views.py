@@ -234,7 +234,7 @@ class NestedStockManagementDetails(APIView):
 # Rental Register
 class NestedRentalRegister(APIView):
     def get(self, request, format=None):
-        rentalHeader = rental_header.objects.filter(status="APPROVED")
+        rentalHeader = rental_header.objects.all()
         serializers = NestedRentalHeaderReadSerializer(rentalHeader, many=True)
         return Response(serializers.data)
 
@@ -246,6 +246,12 @@ class NestedRentalRegister(APIView):
             serializers.save()
             return Response(serializers.data, status=status.HTTP_201_CREATED)
         return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class NestedKembaliRentalRegister(APIView):
+    def get(self, request, format=None):
+        rentalHeader = rental_header.objects.filter(status="APPROVED")
+        serializers = NestedRentalHeaderReadSerializer(rentalHeader, many=True)
+        return Response(serializers.data)    
 
 
 @api_view(['GET'])

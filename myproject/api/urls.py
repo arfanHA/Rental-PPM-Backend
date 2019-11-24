@@ -36,6 +36,7 @@ urlpatterns = [
     url(r'^NestedStockManagementDetails/(?P<pk>\d+)/$',
         another_views.NestedStockManagementDetails.as_view()),
     url(r'^NestedRentalRegister/', another_views.NestedRentalRegister.as_view()),
+    url(r'^NestedKembaliRentalRegister/', another_views.NestedKembaliRentalRegister.as_view()),
     url(r'^NestedRentalRegisterDetails/(?P<pk>[0-9]+)/$',
         another_views.NestedRentalRegisterDetails.as_view()),
     url(r'^NestedRentalOrderManagement/', another_views.NestedRentalOrderManagement.as_view()),
