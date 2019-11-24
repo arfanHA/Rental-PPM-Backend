@@ -234,7 +234,7 @@ class NestedStockManagementDetails(APIView):
 # Rental Register
 class NestedRentalRegister(APIView):
     def get(self, request, format=None):
-        rentalHeader = rental_header.objects.all()
+        rentalHeader = rental_header.objects.filter(status="APPROVED")
         serializers = NestedRentalHeaderReadSerializer(rentalHeader, many=True)
         return Response(serializers.data)
 
@@ -514,6 +514,7 @@ class NestedInvoiceManagementDetails(APIView):
                 jml_period=i['jml_period'],period=i['period'],harga_rental=i['harga_rental']
                 ,pay_amount=i['pay_amount'],pay_method=i['pay_method'],invoice_header_id_id=inv_header)
             invoice_header.objects.filter(invoice_header_id=inv_header).update(status="COMPLETE")
+            rental_header.objects.filter(rental_header_id=header_id).update(status="COMPLETE")
             return Response({"invoice_header_id":inv_header,"status":"COMPLETE","InvoiceDetails":inv_detail}, status=status.HTTP_200_OK)
         if stat == "":
             for i in inv_detail:
