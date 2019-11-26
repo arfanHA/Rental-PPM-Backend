@@ -335,7 +335,7 @@ class NestedRentalRegisterDetails(APIView):
                     rdsn = rental['RDSN']
                     for rd in rdsn:
                         rental_detail_sn.objects.filter(rental_detail_sn_id=rd['rental_detail_sn_id']).update(stock_code_id_id=rd['stock_code_id'])
-        serializers = NestedRentalHeaderWriteSerializer(rentalHeader, data=request.data)
+        serializers = NestedRentalHeaderWriteSerializer(rentalHeader, data=request.data)        
         if serializers.is_valid():
             if request.data['status'] == "APPROVED" and request.user.is_superuser == True:
                 serializers.save()
@@ -347,6 +347,7 @@ class NestedRentalRegisterDetails(APIView):
                 return Response(serializers.data, status=status.HTTP_200_OK)
             elif request.data['status'] == "KEMBALI RENTAL" and request.user.is_superuser == True:
                 serializers.save()
+                rental_header.objects.filter(rental_header_id=pk).update(status="APPROVED")
                 return Response(serializers.data,status=status.HTTP_200_OK)
             elif request.data['status'] == "APPROVED" and request.user.is_superuser == False:
                 return Response("Access Denied", status=status.HTTP_401_UNAUTHORIZED)
