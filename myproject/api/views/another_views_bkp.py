@@ -324,17 +324,13 @@ class NestedRentalRegisterDetails(APIView):
                     RentalRef_id=rentalHeaderId,
                     stock_code_id=rental_stock_sn(sn['new_stock_code_id'])
                 )
-            rentaldetailheader = request.data["RentalDetailHeader"]            
+            rentaldetailheader = request.data["RentalDetailHeader"]
+            # rentaldetailheader = request.data.pop("RentalDetailHeader", None)
             for rental in rentaldetailheader:
-                now_masteritem = rental_detail.objects.filter(rental_header_id_id=pk).values('master_item_id')[0]['master_item_id']
-                if rental['master_item_id'] == now_masteritem:                    
-                    rdsn = rental['RDSN']
-                    for rd in rdsn:
-                        rental_detail_sn.objects.filter(rental_detail_sn_id=rd['rental_detail_sn_id']).update(stock_code_id_id=rd['stock_code_id'])
-                else:
-                    rdsn = rental['RDSN']
-                    for rd in rdsn:
-                        rental_detail_sn.objects.filter(rental_detail_sn_id=rd['rental_detail_sn_id']).update(stock_code_id_id=rd['stock_code_id'])
+                rdsn = rental['RDSN']
+                for rd in rdsn:
+                    rental_detail_sn.objects.filter(rental_detail_sn_id=rd['rental_detail_sn_id']).update(stock_code_id_id=rd['stock_code_id'])
+
         serializers = NestedRentalHeaderWriteSerializer(rentalHeader, data=request.data)
         if serializers.is_valid():
             if request.data['status'] == "APPROVED" and request.user.is_superuser == True:
