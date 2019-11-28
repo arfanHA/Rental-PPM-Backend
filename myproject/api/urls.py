@@ -68,4 +68,5 @@ urlpatterns = [
     #url baru
     url(r'^UserLevelPermission/', another_views.UserLevelPermission.as_view(), name="UserLevelPermission"),
     url(r'^createNewGroup/', other_views.createNewGroup, name="createNewGroup"),
+    url(r'^MasterUser/(?P<pk>\d+)/$', another_views.MasterUser.as_view(), name="MasterUser"),
 ]

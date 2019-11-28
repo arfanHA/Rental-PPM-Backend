@@ -115,7 +115,6 @@ class NestedReceivingManagement(APIView):
             return Response(serializers.data, status=status.HTTP_201_CREATED)
         return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
 
-
 # This view is use to get and update specific object of incoming management module
 class NestedReceivingManagementDetails(APIView):
     def get_object(self, pk):
@@ -174,7 +173,6 @@ def addToStock(sender, **kwargs):
             if stockCardData:
                 # print(stockCardData)
                 sn = []
-
                 # Move all SN in RDISN of each Detail into a variable called sn, then create rental stock sn objects for each rental stock card
                 for EachSNArray in EachDetail['RDISN']:
                     temp = {}
@@ -183,7 +181,6 @@ def addToStock(sender, **kwargs):
                         # print("This is inside EachSNArray.items() = ", keys, values)
                         temp[keys] = values
                     sn.append(temp)
-
                 for SN in sn:
                     stockSN = rental_stock_sn.objects.create(first_sn=SN['first_serial_number'],
                                                              new_sn=SN['new_serial_number'],
@@ -773,3 +770,15 @@ class MasterEmployee(APIView):
             }
             a.append(b)  
         return Response(a)
+
+class MasterUser(APIView):
+    def get_object(self, pk):
+        try:
+            return User.objects.get(pk=pk)
+        except User.DoesNotExist:
+            raise Http404
+    def put(self, request, pk, format=None):
+        # iduser = self.get_object(pk)
+        User.objects.filter(id=pk).update(is_active=False)
+        master_user.objects.filter(user_id=pk).delete()
+        return Response("Data pengguna berhasil dihapus", status=status.HTTP_201_CREATED)        
