@@ -332,6 +332,18 @@ class NestedRentalRegisterDetails(APIView):
                     rdsn = rental['RDSN']
                     for rd in rdsn:
                         rental_detail_sn.objects.filter(rental_detail_sn_id=rd['rental_detail_sn_id']).update(stock_code_id_id=rd['stock_code_id'])
+        elif request.data['status'] == "SELESAI":
+            for sn in sns:
+                print(sn['stock_code_id'])
+                targetedRental = rental_stock_sn.objects.get(pk=sn['stock_code_id'])
+                targetedRental.status = "MASUK"
+                targetedRental.save()
+                stock_sn_history.objects.create(
+                    date=now,
+                    status="MASUK",
+                    RentalRef_id=rentalHeaderId,
+                    stock_code_id=rental_stock_sn(sn['stock_code_id'])
+                )
         serializers = NestedRentalHeaderWriteSerializer(rentalHeader, data=request.data)        
         if serializers.is_valid():
             if request.data['status'] == "APPROVED" and request.user.is_superuser == True:
@@ -345,6 +357,10 @@ class NestedRentalRegisterDetails(APIView):
             elif request.data['status'] == "KEMBALI RENTAL" and request.user.is_superuser == True:
                 serializers.save()
                 rental_header.objects.filter(rental_header_id=pk).update(status="APPROVED")
+                return Response(serializers.data,status=status.HTTP_200_OK)
+            elif request.data['status'] == "SELESAI" and request.user.is_superuser == True:
+                serializers.save()
+                rental_header.objects.filter(rental_header_id=pk).update(status="SELESAI")
                 return Response(serializers.data,status=status.HTTP_200_OK)
             elif request.data['status'] == "APPROVED" and request.user.is_superuser == False:
                 return Response("Access Denied", status=status.HTTP_401_UNAUTHORIZED)
@@ -365,7 +381,7 @@ def addToInvoice(sender, **kwargs):
                                       amount=RentalRegisterData['amount'],
                                       customer=RentalRegisterData['customer_id'],
                                       pay_method=RentalRegisterData['pay_method'],
-                                      status="ON PROGRESS",
+                                      status="MASIH BERJALAN",
                                       rental_header_id=rental_header(RentalRegisterData['rental_header_id']))                                               
 
 
@@ -521,9 +537,9 @@ class NestedInvoiceManagementDetails(APIView):
                 invoice_detail.objects.create(date=now,noted=i['noted'],type_payment=i['type_payment'],
                 jml_period=i['jml_period'],period=i['period'],harga_rental=i['harga_rental']
                 ,pay_amount=i['pay_amount'],pay_method=i['pay_method'],invoice_header_id_id=inv_header)
-            invoice_header.objects.filter(invoice_header_id=inv_header).update(status="COMPLETE")
-            rental_header.objects.filter(rental_header_id=header_id).update(status="COMPLETE")
-            return Response({"invoice_header_id":inv_header,"status":"COMPLETE","InvoiceDetails":inv_detail}, status=status.HTTP_200_OK)
+            invoice_header.objects.filter(invoice_header_id=inv_header).update(status="LUNAS")
+            rental_header.objects.filter(rental_header_id=header_id).update(status="LUNAS")
+            return Response({"invoice_header_id":inv_header,"status":"LUNAS","InvoiceDetails":inv_detail}, status=status.HTTP_200_OK)
         if stat == "":
             for i in inv_detail:
                 invoice_detail.objects.create(date=now,noted=i['noted'],type_payment=i['type_payment'],
