@@ -285,7 +285,7 @@ class NestedRentalRegisterDetails(APIView):
 
     def put(self, request, pk, format=None):
         rentalHeader = self.get_object(pk)
-        sns = request.data.pop("SNS", None)        
+        sns = request.data.pop("SNS", None)
         now = datetime.datetime.today().strftime('%Y-%m-%d')
         rentalHeaderId = pk
         if request.data['status'] == "APPROVED":
@@ -540,11 +540,25 @@ class NestedInvoiceManagementDetails(APIView):
             invoice_header.objects.filter(invoice_header_id=inv_header).update(status="LUNAS")
             rental_header.objects.filter(rental_header_id=header_id).update(status="LUNAS")
             return Response({"invoice_header_id":inv_header,"status":"LUNAS","InvoiceDetails":inv_detail}, status=status.HTTP_200_OK)
-        if stat == "":
+        if stat == "":            
+            total_tagihan = int(invoice_header.objects.filter(invoice_header_id=inv_header).values('amount')[0]['amount'])
+            # return HttpResponse(total_tagihan)
             for i in inv_detail:
-                invoice_detail.objects.create(date=now,noted=i['noted'],type_payment=i['type_payment'],
-                pay_amount=i['pay_amount'],pay_method=i['pay_method'],invoice_header_id_id=inv_header)
-            return Response({"invoice_header_id":inv_header,"InvoiceDetails":inv_detail}, status=status.HTTP_200_OK)
+                t_terbayar = invoice_detail.objects.filter(invoice_header_id_id=inv_header).values('invoice_header_id_id').annotate(t_terbayar=Sum('pay_amount'))[0]['t_terbayar']
+                total_bayar  = int(t_terbayar + int(i['pay_amount']))
+                if total_bayar < total_tagihan:                    
+                    invoice_detail.objects.create(date=now,noted=i['noted'],type_payment=i['type_payment'],
+                    pay_amount=i['pay_amount'],pay_method=i['pay_method'],invoice_header_id_id=inv_header)
+                    return Response({"pesan":"Tagihan Terbayar","invoice_header_id":inv_header,"InvoiceDetails":inv_detail}, status=status.HTTP_200_OK)
+                elif total_bayar > total_tagihan:                
+                    return Response({"pesan":"Nominal pembayaran melebihi tagihan"}, status=status.HTTP_200_OK)
+                elif total_bayar == total_tagihan:                    
+                    invoice_detail.objects.create(date=now,noted=i['noted'],type_payment=i['type_payment'],
+                    pay_amount=i['pay_amount'],pay_method=i['pay_method'],invoice_header_id_id=inv_header)
+                    invoice_header.objects.filter(invoi_header_id=inv_header).update(status="LUNAS")
+                    return Response({"pesan":"Tagihan Terbayar","Status Tagihan":"LUNAS","invoice_header_id":inv_header,"InvoiceDetails":inv_detail}, status=status.HTTP_200_OK)
+                else:                    
+                    return Response({"pesan":"Terjadi kesalahan"}, status=status.HTTP_200_OK)
 
 class getPriceMasterItem(APIView):
     def post(self, request, format=None):
