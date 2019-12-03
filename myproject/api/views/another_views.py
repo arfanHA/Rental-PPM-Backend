@@ -555,7 +555,7 @@ class NestedInvoiceManagementDetails(APIView):
                 elif total_bayar == total_tagihan:                    
                     invoice_detail.objects.create(date=now,noted=i['noted'],type_payment=i['type_payment'],
                     pay_amount=i['pay_amount'],pay_method=i['pay_method'],invoice_header_id_id=inv_header)
-                    invoice_header.objects.filter(invoi_header_id=inv_header).update(status="LUNAS")
+                    invoice_header.objects.filter(invoice_header_id=inv_header).update(status="LUNAS")
                     return Response({"pesan":"Tagihan Terbayar","Status Tagihan":"LUNAS","invoice_header_id":inv_header,"InvoiceDetails":inv_detail}, status=status.HTTP_200_OK)
                 else:                    
                     return Response({"pesan":"Terjadi kesalahan"}, status=status.HTTP_200_OK)
