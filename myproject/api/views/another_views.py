@@ -238,9 +238,21 @@ class NestedRentalRegister(APIView):
     def post(self, request, format=None):
         request.data['number'] = getDocumentNumber(2)  # get document number for this request
         request.data['counter'] = getCounter(2)  # get counter for this request
+        pay_type = request.data['pay_type']    
         serializers = NestedRentalHeaderWriteSerializer(data=request.data)
         if serializers.is_valid():        
-            serializers.save()
+            ids=serializers.save()
+            if pay_type == 1:
+                rental_header.objects.filter(rental_header_id=str(ids)).update(status="LUNAS")
+                timeNow = datetime.datetime.now().strftime('%Y-%m-%d')
+                invoice_header.objects.create(date=timeNow,
+                                              amount=request.data['amount'],
+                                              customer=request.data['customer_id'],
+                                              pay_method=request.data['pay_method'],
+                                              status="LUNAS",
+                                              rental_header_id=ids)                
+            else:
+                pass
             return Response(serializers.data, status=status.HTTP_201_CREATED)
         return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
 
@@ -382,7 +394,7 @@ def addToInvoice(sender, **kwargs):
                                       customer=RentalRegisterData['customer_id'],
                                       pay_method=RentalRegisterData['pay_method'],
                                       status="MASIH BERJALAN",
-                                      rental_header_id=rental_header(RentalRegisterData['rental_header_id']))                                               
+                                      rental_header_id=rental_header(RentalRegisterData['rental_header_id']))
 
 
 # Rental Order Management
