@@ -238,21 +238,9 @@ class NestedRentalRegister(APIView):
     def post(self, request, format=None):
         request.data['number'] = getDocumentNumber(2)  # get document number for this request
         request.data['counter'] = getCounter(2)  # get counter for this request
-        pay_type = request.data['pay_type']    
         serializers = NestedRentalHeaderWriteSerializer(data=request.data)
         if serializers.is_valid():        
-            ids=serializers.save()
-            if pay_type == 1:
-                rental_header.objects.filter(rental_header_id=str(ids)).update(status="LUNAS")
-                timeNow = datetime.datetime.now().strftime('%Y-%m-%d')
-                invoice_header.objects.create(date=timeNow,
-                                              amount=request.data['amount'],
-                                              customer=request.data['customer_id'],
-                                              pay_method=request.data['pay_method'],
-                                              status="LUNAS",
-                                              rental_header_id=ids)                
-            else:
-                pass
+            ids=serializers.save()            
             return Response(serializers.data, status=status.HTTP_201_CREATED)
         return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
 
@@ -300,7 +288,8 @@ class NestedRentalRegisterDetails(APIView):
         sns = request.data.pop("SNS", None)
         now = datetime.datetime.today().strftime('%Y-%m-%d')
         rentalHeaderId = pk
-        if request.data['status'] == "APPROVED":
+        pay_type = request.data['pay_type']
+        if request.data['status'] == "APPROVED":        
             for sn in sns:
                 print(sn['stock_code_id'])
                 targetedRental = rental_stock_sn.objects.get(pk=sn['stock_code_id'])
@@ -360,7 +349,16 @@ class NestedRentalRegisterDetails(APIView):
         if serializers.is_valid():
             if request.data['status'] == "APPROVED" and request.user.is_superuser == True:
                 serializers.save()
-                update_on_rental_register.send(sender=rental_header, test=serializers.data)
+                if pay_type == 1:
+                    rental_header.objects.filter(rental_header_id=pk).update(status="LUNAS")
+                    timeNow = datetime.datetime.now().strftime('%Y-%m-%d')
+                    invoice_header.objects.create(date=timeNow,
+                                              amount=request.data['amount'],
+                                              customer=request.data['customer_id'],
+                                              pay_method=request.data['pay_method'],
+                                              status="LUNAS",
+                                              rental_header_id=rentalHeader)
+                # update_on_rental_register.send(sender=rental_header, test=serializers.data)
                 return Response(serializers.data, status=status.HTTP_200_OK)
             elif request.data['status'] == "DRAFT":
                 serializers.save()
