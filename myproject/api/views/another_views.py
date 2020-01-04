@@ -18,11 +18,12 @@ from myproject.api.serializers import NestedReceivingHeaderWriteSerializer, Nest
     NestedStockCardSerializer, NestedRentalHeaderReadSerializer, NestedRentalHeaderWriteSerializer, \
     NestedRentalOrderHeaderWriteSerializer, NestedRentalOrderHeaderReadSerializer, RentalStockSNSerializer, \
     StockSNHistorySerializer, ItemReadSerializer,NestedInvoiceReadSerializer,NestedInvoiceReadSerializerNew,NestedInvoiceSerializer,\
-    NestedReadRentalDetail,InvoiceDetailSerializer
+    NestedReadRentalDetail,InvoiceDetailSerializer,GroupSerializer,GroupPermission
 import datetime
 from django.contrib.contenttypes.models import ContentType
-from django.db.models import Sum
+from django.db.models import Sum,Count
 from myproject.api.models.rental_register_detail import rental_detail_sn
+from django.db.models import Q
 
 # This view is purposely used for testing only, improvement is considered and might used in further development
 
@@ -246,7 +247,8 @@ class NestedRentalRegister(APIView):
 
 class NestedKembaliRentalRegister(APIView):
     def get(self, request, format=None):
-        rentalHeader = rental_header.objects.filter(status="APPROVED")
+        rentalHeader = rental_header.objects.filter(Q(status="APPROVED") | Q(status="LUNAS"))
+        # rentalHeader = rental_header.objects.filter(status="APPROVED")
         serializers = NestedRentalHeaderReadSerializer(rentalHeader, many=True)
         return Response(serializers.data)    
 
@@ -840,4 +842,54 @@ class MasterUser(APIView):
         # iduser = self.get_object(pk)
         User.objects.filter(id=pk).update(is_active=False)
         master_user.objects.filter(user_id=pk).delete()
-        return Response("Data pengguna berhasil dihapus", status=status.HTTP_201_CREATED)        
+        return Response("Data pengguna berhasil dihapus", status=status.HTTP_201_CREATED)
+
+class NestedGroup(APIView):
+    def get(self, request, format=None):
+        groupManagement = Group.objects.all()
+        serializers = GroupSerializer(groupManagement, many=True)
+        return Response(serializers.data)
+
+    def post(self, request, format=None):
+        serializers = NestedStockCardSerializer(data=request.data)
+        if serializers.is_valid():
+            serializers.save()
+            return Response(serializers.data, status=status.HTTP_201_CREATED)
+        return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class NestedGroupPermission(APIView):
+    def get(self, request, pk, format=None):
+        g_name = Group.objects.filter(id=pk).values('name')[0]['name']
+        GPermission = groupPermission.objects.filter(group_name=g_name)
+        a=[]
+        for p in GPermission:
+            b = {'kategori':p.kategori,'jenis_akses':p.jenis_akses}
+            a.append(b)        
+        return Response({
+            'group_name':g_name,
+            "permissions":a
+            })
+
+    def put(self, request, pk, format=None):
+        status = request.data['status']
+        if status == "update":            
+            name = request.data['group_name']
+            permission = request.data['permissions']
+            cek_data = Group.objects.filter(name=name,id=pk).__len__()
+            if cek_data == 1:                
+                cek_GPermission = groupPermission.objects.filter(group_name=name).delete()
+                for perm in permission:
+                    groupPermission(group_name=name,kategori=perm['kategori'],jenis_akses=perm['jenis_akses']).save()
+                respon = 'Hak akses berhasil di update'
+            elif cek_data == 0:
+                cek_name = Group.objects.filter(name=name).__len__()
+                if cek_name == 1:
+                    permission = request.data['permissions']
+                    respon = 'Nama hak akses sudah digunakan'
+                else:
+                    Group.objects.filter(id=pk).update(name=name)
+                    cek_GPermission = groupPermission.objects.filter(group_name=name).delete()
+                    for perm in permission:
+                        groupPermission(group_name=name,kategori=perm['kategori'],jenis_akses=perm['jenis_akses']).save()
+                    respon = 'Hak akses berhasil di update'
+        return Response({'status':respon})        

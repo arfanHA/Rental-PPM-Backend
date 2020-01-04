@@ -64,9 +64,12 @@ urlpatterns = [
     url(r'^removeGroupFromUser/', other_views.removeGroupFromUser, name="RemoveGroupFromUser"),
     url(r'^editGroup/', other_views.editGroup, name="EditGroup"),
     url(r'^getAllGroup/', other_views.getAllGroups, name="GetAllGroups"),
+    url(r'^PermissiongetAllGroup/', other_views.getAllGroupsPermission, name="getAllGroupsPermission"),
+    url(r'^NestedGroupPermission/(?P<pk>\d+)/$', another_views.NestedGroupPermission.as_view(), name="NestedGroupPermission"),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     #url baru
     url(r'^UserLevelPermission/', another_views.UserLevelPermission.as_view(), name="UserLevelPermission"),
     url(r'^createNewGroup/', other_views.createNewGroup, name="createNewGroup"),
     url(r'^MasterUser/(?P<pk>\d+)/$', another_views.MasterUser.as_view(), name="MasterUser"),
+    url(r'^NestedGroup', another_views.NestedGroup.as_view(), name="NestedGroup"),
 ]
