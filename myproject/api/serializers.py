@@ -1,10 +1,16 @@
 from rest_framework import serializers
 from .models import *
 from .models.rental_register_detail import rental_detail_sn
+from .models.master_employee import groupPermission
 from drf_writable_nested import WritableNestedModelSerializer
+from django.contrib.auth.models import User, Group, Permission
 
 
 # Master Management
+class GroupSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Group
+        fields = '__all__'
 
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
@@ -87,6 +93,10 @@ class ReceivingHeaderSerializer(serializers.ModelSerializer):
         model = receiving_header
         fields = '__all__'
 
+class GroupPermission(serializers.ModelSerializer):
+    class Meta:
+        model = groupPermission
+        fields = '__all__'
 
 class NestedReceivingDetailReadSerializer(WritableNestedModelSerializer):
     RDISN = ReceivingDetailSNSerializer(many=True)
@@ -268,7 +278,6 @@ class RentalDetailSerializer(serializers.ModelSerializer):
         model = rental_detail
         fields = '__all__'
 
-
 class RentalHeaderSerializer(serializers.ModelSerializer):
     class Meta:
         model = rental_header
@@ -301,6 +310,12 @@ class NestedReadRentalDetail(WritableNestedModelSerializer):
         model = rental_detail
         depth = 1
         fields = ['rental_detail_id','master_item_id']
+
+# class NestedReadMasterUser(WritableNestedModelSerializer):
+#     class Meta:
+#         model = master_user
+#         depth = 2
+#         fields = ['user_level','user_type','user']
 
 class NestedRentalDetailWriteSerializer(WritableNestedModelSerializer):
     # menambahkan ini 
