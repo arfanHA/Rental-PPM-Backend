@@ -15,7 +15,7 @@ def signup(request):
     form = SignUpForm(request.data)
     print(request.data)
     if form.is_valid():
-        user = form.save()
+        user = form.save()        
         user.refresh_from_db()
         user.master_user.user_level = form.cleaned_data.get('user_level')
         user.master_user.user_type = form.cleaned_data.get('user_type')
@@ -219,8 +219,13 @@ def editGroup(request):
 @api_view(['GET'])
 def getAllGroups(request):
     groups = Group.objects.all()
-
     data = serializers.serialize('json', groups)
+    return HttpResponse(data, content_type='application/json')
+
+@api_view(['GET'])
+def getAllGroupsPermission(request):    
+    permission = groupPermission.objects.all()
+    data = serializers.serialize('json', permission)
     return HttpResponse(data, content_type='application/json')
 
 
