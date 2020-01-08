@@ -18,7 +18,7 @@ from myproject.api.serializers import NestedReceivingHeaderWriteSerializer, Nest
     NestedStockCardSerializer, NestedRentalHeaderReadSerializer, NestedRentalHeaderWriteSerializer, \
     NestedRentalOrderHeaderWriteSerializer, NestedRentalOrderHeaderReadSerializer, RentalStockSNSerializer, \
     StockSNHistorySerializer, ItemReadSerializer,NestedInvoiceReadSerializer,NestedInvoiceReadSerializerNew,NestedInvoiceSerializer,\
-    NestedReadRentalDetail,InvoiceDetailSerializer,GroupSerializer,GroupPermission
+    NestedReadRentalDetail,InvoiceDetailSerializer,GroupSerializer,GroupPermission,NestedMasterItemReadSerializer
 import datetime
 from django.contrib.contenttypes.models import ContentType
 from django.db.models import Sum,Count
@@ -214,6 +214,31 @@ class NestedStockManagement(APIView):
             return Response(serializers.data, status=status.HTTP_201_CREATED)
         return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
 
+class NestedMasterItem(APIView):
+    def get(self, request, format=None):
+        masteritem = master_item.objects.all()
+        serializers = NestedMasterItemReadSerializer(masteritem, many=True)
+        return Response(serializers.data)
+
+class NestedMasterItemDetails(APIView):
+    def get_object(self, pk):
+        try:
+            return master_item.objects.get(pk=pk)
+        except master_item.DoesNotExist:
+            raise Http404
+
+    def get(self, request, pk, format=None):
+        header = self.get_object(pk)
+        serializer = NestedMasterItemReadSerializer(header)
+        return Response(serializer.data)
+
+    def put(self, request, pk, format=None):
+        header = self.get_object(pk)
+        serializer = NestedMasterItemReadSerializer(header, data=request.data)
+        if serializer.is_valid():            
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 # This view is used to get rental stock card, rental stock sn, and stock sn history
 class NestedStockManagementDetails(APIView):

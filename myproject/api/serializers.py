@@ -106,6 +106,13 @@ class NestedReceivingDetailReadSerializer(WritableNestedModelSerializer):
         depth = 2
         fields = ['receiving_detail_id', 'qty', 'note', 'receiving_header_id', 'master_item_id', 'uom_id', 'RDISN']
 
+class NestedMasterItemReadSerializer(WritableNestedModelSerializer):    
+    class Meta:
+        model = master_item
+        depth = 2
+        fields = ['master_item_id', 'code', 'counter', 'barcode', 'name', 'alias_name', 'price1',
+        'price2','price3','master_group_id','uom_id','merk_id']            
+
 
 class NestedReceivingDetailWriteSerializer(WritableNestedModelSerializer):
     RDISN = ReceivingDetailSNSerializer(many=True)

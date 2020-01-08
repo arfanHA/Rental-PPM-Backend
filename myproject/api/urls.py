@@ -72,4 +72,7 @@ urlpatterns = [
     url(r'^createNewGroup/', other_views.createNewGroup, name="createNewGroup"),
     url(r'^MasterUser/(?P<pk>\d+)/$', another_views.MasterUser.as_view(), name="MasterUser"),
     url(r'^NestedGroup', another_views.NestedGroup.as_view(), name="NestedGroup"),
+    url(r'^NestedMasterItem', another_views.NestedMasterItem.as_view(), name="NestedMasterItem"),
+    url(r'^DetailsNestedMasterItem/(?P<pk>\d+)/$', another_views.NestedMasterItemDetails.as_view(), name="NestedMasterItemDetails"),
+
 ]
