@@ -385,6 +385,15 @@ class NestedRentalRegisterDetails(APIView):
                                               pay_method=request.data['pay_method'],
                                               status="LUNAS",
                                               rental_header_id=rentalHeader)
+                elif pay_type == 2:
+                    rental_header.objects.filter(rental_header_id=pk).update(status="APPROVED")
+                    timeNow = datetime.datetime.now().strftime('%Y-%m-%d')
+                    invoice_header.objects.create(date=timeNow,
+                                              amount=request.data['amount'],
+                                              customer=request.data['customer_id'],
+                                              pay_method=request.data['pay_method'],
+                                              status="SEDANG BERJALAN",
+                                              rental_header_id=rentalHeader)
                 # update_on_rental_register.send(sender=rental_header, test=serializers.data)
                 return Response(serializers.data, status=status.HTTP_200_OK)
             elif request.data['status'] == "DRAFT":
