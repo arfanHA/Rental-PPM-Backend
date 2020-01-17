@@ -18,7 +18,8 @@ from myproject.api.serializers import NestedReceivingHeaderWriteSerializer, Nest
     NestedStockCardSerializer, NestedRentalHeaderReadSerializer, NestedRentalHeaderWriteSerializer, \
     NestedRentalOrderHeaderWriteSerializer, NestedRentalOrderHeaderReadSerializer, RentalStockSNSerializer, \
     StockSNHistorySerializer, ItemReadSerializer,NestedInvoiceReadSerializer,NestedInvoiceReadSerializerNew,NestedInvoiceSerializer,\
-    NestedReadRentalDetail,InvoiceDetailSerializer,GroupSerializer,GroupPermission,NestedMasterItemReadSerializer
+    NestedReadRentalDetail,InvoiceDetailSerializer,GroupSerializer,GroupPermission,NestedMasterItemReadSerializer,\
+    NestedStockSNHistorySerializer
 import datetime
 from django.contrib.contenttypes.models import ContentType
 from django.db.models import Sum,Count
@@ -214,6 +215,12 @@ class NestedStockManagement(APIView):
             return Response(serializers.data, status=status.HTTP_201_CREATED)
         return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
 
+class NestedStockSNhistory(APIView):
+    def get(self, request, format=None):
+        stocksnhistory = stock_sn_history.objects.all()
+        serializers = NestedStockSNHistorySerializer(stocksnhistory, many=True)
+        return Response(serializers.data)    
+
 class NestedMasterItem(APIView):
     def get(self, request, format=None):
         masteritem = master_item.objects.all()
@@ -325,7 +332,7 @@ class NestedRentalRegisterDetails(APIView):
                 stock_sn_history.objects.create(
                     date=now,
                     status="KELUAR",
-                    RentalRef_id=rentalHeaderId,
+                    RentalRef_id=rental_header(pk),
                     stock_code_id=rental_stock_sn(sn['stock_code_id'])
                 )
         elif request.data['status'] == "KEMBALI RENTAL":
@@ -337,7 +344,7 @@ class NestedRentalRegisterDetails(APIView):
                 stock_sn_history.objects.create(
                     date=now,
                     status="MASUK",
-                    RentalRef_id=rentalHeaderId,
+                    RentalRef_id=rental_header(pk),
                     stock_code_id=rental_stock_sn(sn['old_stock_code_id'])
                 )
                 targetedRental = rental_stock_sn.objects.get(pk=sn['new_stock_code_id'])
@@ -346,7 +353,7 @@ class NestedRentalRegisterDetails(APIView):
                 stock_sn_history.objects.create(
                     date=now,
                     status="KELUAR",
-                    RentalRef_id=rentalHeaderId,
+                    RentalRef_id=rental_header(pk),
                     stock_code_id=rental_stock_sn(sn['new_stock_code_id'])
                 )
             rentaldetailheader = request.data["RentalDetailHeader"]            
@@ -369,7 +376,7 @@ class NestedRentalRegisterDetails(APIView):
                 stock_sn_history.objects.create(
                     date=now,
                     status="MASUK",
-                    RentalRef_id=rentalHeaderId,
+                    RentalRef_id=rental_header(pk),
                     stock_code_id=rental_stock_sn(sn['stock_code_id'])
                 )
         serializers = NestedRentalHeaderWriteSerializer(rentalHeader, data=request.data)        
