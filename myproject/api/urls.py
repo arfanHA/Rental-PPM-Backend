@@ -75,5 +75,6 @@ urlpatterns = [
     url(r'^NestedMasterItem', another_views.NestedMasterItem.as_view(), name="NestedMasterItem"),
     url(r'^StockNestedSNhistory', another_views.NestedStockSNhistory.as_view(), name="NestedStockSNhistory"),
     url(r'^DetailsNestedMasterItem/(?P<pk>\d+)/$', another_views.NestedMasterItemDetails.as_view(), name="NestedMasterItemDetails"),
+    url(r'^ByIDNestedInvoiceManagement/(?P<pk>\d+)/$', another_views.NestedInvoiceManagementByID.as_view(), name="NestedInvoiceManagementByID"),
 
 ]

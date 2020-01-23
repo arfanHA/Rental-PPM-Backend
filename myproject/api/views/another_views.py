@@ -543,7 +543,7 @@ class NestedInvoiceManagement(APIView):
     def get(self, request, format=None):    
         dataInvoice = invoice_header.objects.all().annotate(t_terbayar=Sum('InvoiceDetails__pay_amount')).order_by('invoice_header_id')
         serializer = NestedInvoiceReadSerializerNew(dataInvoice,many=True)
-        # return Response(dataInvoice)
+        #return Response(dataInvoice)
         return Response(serializer.data)
 
     def post(self, request, format=None):
@@ -552,6 +552,19 @@ class NestedInvoiceManagement(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class NestedInvoiceManagementByID(APIView):
+    def get_object(self, pk):
+        try:
+            return invoice_header.objects.get(pk=pk)
+        except ValueError:
+            raise Http404
+    def get(self, request,pk, format=None):
+        invoiceHeader = self.get_object(pk)
+        dataInvoice = invoice_header.objects.filter(invoice_header_id=pk).annotate(t_terbayar=Sum('InvoiceDetails__pay_amount')).order_by('invoice_header_id')
+        serializer = NestedInvoiceReadSerializerNew(dataInvoice,many=True)
+        #return Response(dataInvoice)
+        return Response(serializer.data)
 
 
 class NestedInvoiceManagementDetails(APIView):
