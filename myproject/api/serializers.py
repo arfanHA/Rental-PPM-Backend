@@ -111,7 +111,7 @@ class NestedMasterItemReadSerializer(WritableNestedModelSerializer):
         model = master_item
         depth = 2
         fields = ['master_item_id', 'code', 'counter', 'barcode', 'name', 'alias_name', 'price1',
-        'price2','price3','master_group_id','uom_id','merk_id']            
+        'price2','price3','master_group_id','uom_id','merk_id', 'serial_number']            
 
 
 class NestedReceivingDetailWriteSerializer(WritableNestedModelSerializer):

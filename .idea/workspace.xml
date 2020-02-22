@@ -2,12 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8660eb00-8fae-4ce9-a8e6-d5eaaecd21f7" name="Default Changelist" comment="Testing upload ke server">
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/myproject.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/myproject.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/myproject/api/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vscode/settings.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/myproject/api/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/myproject/api/serializers.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/myproject/api/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/myproject/api/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/myproject/api/views/other_views.py" beforeDir="false" afterPath="$PROJECT_DIR$/myproject/api/views/other_views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/myproject/api/views/another_views.py" beforeDir="false" afterPath="$PROJECT_DIR$/myproject/api/views/another_views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/myproject/api/views/another_views_bkp.py" beforeDir="false" afterPath="$PROJECT_DIR$/myproject/api/views/another_views_bkp.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/myproject/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/myproject/settings.py" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -42,7 +47,13 @@
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="1" id="Add" />
   </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="TEXT" />
@@ -64,18 +75,6 @@
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\ION\BackEnd\templates" />
     </key>
-  </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
   </component>
   <component name="RunManager" selected="Python.another_views">
     <configuration name="another_views" type="PythonConfigurationType" factoryName="Python" temporary="true">
@@ -145,9 +144,9 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.asdasda" />
-      <item itemvalue="Python.asdasd" />
       <item itemvalue="Python.another_views" />
+      <item itemvalue="Python.asdasd" />
+      <item itemvalue="Python.asdasda" />
     </list>
     <recent_temporary>
       <list>
@@ -609,7 +608,52 @@
     <MESSAGE value="Testing upload ke server" />
     <option name="LAST_COMMIT_MESSAGE" value="Testing upload ke server" />
   </component>
-  <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/ion_rental_backend$another_views.coverage" NAME="another_views Coverage Results" MODIFIED="1570775268890" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/myproject/api/views" />
+  <component name="WindowStateProjectService">
+    <state x="462" y="124" key="FileChooserDialogImpl" timestamp="1581008097677">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="462" y="124" key="FileChooserDialogImpl/0.0.1366.738/-1366.0.1366.768@0.0.1366.738" timestamp="1581008097677" />
+    <state width="1345" height="227" key="GridCell.Tab.0.bottom" timestamp="1581009513065">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state width="1345" height="227" key="GridCell.Tab.0.bottom/0.0.1366.738/-1366.0.1366.768@0.0.1366.738" timestamp="1581009513065" />
+    <state width="1345" height="227" key="GridCell.Tab.0.center" timestamp="1581009513065">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state width="1345" height="227" key="GridCell.Tab.0.center/0.0.1366.738/-1366.0.1366.768@0.0.1366.738" timestamp="1581009513065" />
+    <state width="1345" height="227" key="GridCell.Tab.0.left" timestamp="1581009513065">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state width="1345" height="227" key="GridCell.Tab.0.left/0.0.1366.738/-1366.0.1366.768@0.0.1366.738" timestamp="1581009513065" />
+    <state width="1345" height="227" key="GridCell.Tab.0.right" timestamp="1581009513065">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state width="1345" height="227" key="GridCell.Tab.0.right/0.0.1366.738/-1366.0.1366.768@0.0.1366.738" timestamp="1581009513065" />
+    <state width="1345" height="227" key="GridCell.Tab.1.bottom" timestamp="1581009513066">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state width="1345" height="227" key="GridCell.Tab.1.bottom/0.0.1366.738/-1366.0.1366.768@0.0.1366.738" timestamp="1581009513066" />
+    <state width="1345" height="227" key="GridCell.Tab.1.center" timestamp="1581009513066">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state width="1345" height="227" key="GridCell.Tab.1.center/0.0.1366.738/-1366.0.1366.768@0.0.1366.738" timestamp="1581009513066" />
+    <state width="1345" height="227" key="GridCell.Tab.1.left" timestamp="1581009513065">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state width="1345" height="227" key="GridCell.Tab.1.left/0.0.1366.738/-1366.0.1366.768@0.0.1366.738" timestamp="1581009513065" />
+    <state width="1345" height="227" key="GridCell.Tab.1.right" timestamp="1581009513066">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state width="1345" height="227" key="GridCell.Tab.1.right/0.0.1366.738/-1366.0.1366.768@0.0.1366.738" timestamp="1581009513066" />
+    <state x="184" y="12" key="SettingsEditor" timestamp="1581646321815">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="184" y="12" key="SettingsEditor/0.0.1366.738/-1366.0.1366.768@0.0.1366.738" timestamp="1581646321815" />
+    <state x="384" y="194" key="com.intellij.ide.util.TipDialog" timestamp="1581754645813">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="384" y="194" key="com.intellij.ide.util.TipDialog/0.0.1366.738/-1366.0.1366.768@0.0.1366.738" timestamp="1581646244883" />
+    <state x="384" y="194" key="com.intellij.ide.util.TipDialog/0.0.1366.738/1366.0.1920.1080@0.0.1366.738" timestamp="1581239001738" />
+    <state x="384" y="194" key="com.intellij.ide.util.TipDialog/0.0.1366.738@0.0.1366.738" timestamp="1581754645813" />
   </component>
 </project>

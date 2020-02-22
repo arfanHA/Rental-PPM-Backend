@@ -290,6 +290,7 @@ class NestedRentalRegisterDetails(APIView):
         rentalHeader = self.get_object(pk)
         sns = request.data.pop("SNS", None)        
         now = datetime.datetime.today().strftime('%Y-%m-%d')
+
         rentalHeaderId = pk
         if request.data['status'] == "APPROVED":
             for sn in sns:

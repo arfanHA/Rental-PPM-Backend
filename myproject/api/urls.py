@@ -26,7 +26,7 @@ router.register(r'stock_sn_history', viewsets_views.stock_sn_history)
 router.register(r'invoice_header', viewsets_views.invoice_header)
 router.register(r'invoice_detail', viewsets_views.invoice_detail)
 
-urlpatterns = [
+urlpatterns = {
     url(r'^', include(router.urls)),
     url(r'^testView/', another_views.testView),
     url(r'^NestedReceivingManagement/', another_views.NestedReceivingManagement.as_view()),
@@ -42,6 +42,7 @@ urlpatterns = [
     url(r'^NestedRentalOrderManagement/', another_views.NestedRentalOrderManagement.as_view()),
     url(r'^NestedRentalOrderManagementDetails/(?P<pk>[0-9]+)/$',
         another_views.NestedRentalOrderManagementDetails.as_view()),
+    url(r'^NestedRentalExtend/(?P<pk>[0-9]+)/$', another_views.NestedRentalExtend, name='rentalExtend'),
     url(r'^NestedInvoiceManagement/', another_views.NestedInvoiceManagement.as_view()),
     url(r'^NestedInvoiceManagementDetails/(?P<pk>[0-9]+)/$', another_views.NestedInvoiceManagementDetails.as_view()),
     url(r'getItemByCat/(?P<b>\d+)/$', another_views.getItemByCategory, name='GetItemByCategory'),
@@ -65,16 +66,19 @@ urlpatterns = [
     url(r'^editGroup/', other_views.editGroup, name="EditGroup"),
     url(r'^getAllGroup/', other_views.getAllGroups, name="GetAllGroups"),
     url(r'^PermissiongetAllGroup/', other_views.getAllGroupsPermission, name="getAllGroupsPermission"),
-    url(r'^NestedGroupPermission/(?P<pk>\d+)/$', another_views.NestedGroupPermission.as_view(), name="NestedGroupPermission"),
+    url(r'^NestedGroupPermission/(?P<pk>\d+)/$', another_views.NestedGroupPermission.as_view(),
+        name="NestedGroupPermission"),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    #url baru
+    # url baru
     url(r'^UserLevelPermission/', another_views.UserLevelPermission.as_view(), name="UserLevelPermission"),
     url(r'^createNewGroup/', other_views.createNewGroup, name="createNewGroup"),
     url(r'^MasterUser/(?P<pk>\d+)/$', another_views.MasterUser.as_view(), name="MasterUser"),
     url(r'^NestedGroup', another_views.NestedGroup.as_view(), name="NestedGroup"),
     url(r'^NestedMasterItem', another_views.NestedMasterItem.as_view(), name="NestedMasterItem"),
     url(r'^StockNestedSNhistory', another_views.NestedStockSNhistory.as_view(), name="NestedStockSNhistory"),
-    url(r'^DetailsNestedMasterItem/(?P<pk>\d+)/$', another_views.NestedMasterItemDetails.as_view(), name="NestedMasterItemDetails"),
-    url(r'^ByIDNestedInvoiceManagement/(?P<pk>\d+)/$', another_views.NestedInvoiceManagementByID.as_view(), name="NestedInvoiceManagementByID"),
+    url(r'^DetailsNestedMasterItem/(?P<pk>\d+)/$', another_views.NestedMasterItemDetails.as_view(),
+        name="NestedMasterItemDetails"),
+    url(r'^ByIDNestedInvoiceManagement/(?P<pk>\d+)/$', another_views.NestedInvoiceManagementByID.as_view(),
+        name="NestedInvoiceManagementByID"),
 
-]
+}
