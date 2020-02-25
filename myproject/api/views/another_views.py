@@ -400,16 +400,19 @@ class NestedRentalRegisterDetails(APIView):
         pay_type = request.data['pay_type']
         if request.data['status'] == "APPROVED":        
             for sn in sns:
-                print(sn['stock_code_id'])
-                targetedRental = rental_stock_sn.objects.get(pk=sn['stock_code_id'])
-                targetedRental.status = "KELUAR"
-                targetedRental.save()
-                stock_sn_history.objects.create(
-                    date=now,
-                    status="KELUAR",
-                    RentalRef_id=rental_header(pk),
-                    stock_code_id=rental_stock_sn(sn['stock_code_id'])
-                )
+                 if sn['stock_code_id'] == None:
+                    pass
+                 elif sn['stock_code_id'] != None:
+                    print(sn['stock_code_id'])
+                    targetedRental = rental_stock_sn.objects.get(pk=sn['stock_code_id'])
+                    targetedRental.status = "KELUAR"
+                    targetedRental.save()
+                    stock_sn_history.objects.create(
+                        date=now,
+                        status="KELUAR",
+                        RentalRef_id=rental_header(pk),
+                        stock_code_id=rental_stock_sn(sn['stock_code_id'])
+                    )
         elif request.data['status'] == "KEMBALI RENTAL":
             for sn in sns:
                 # print(sn['stock_code_id'])
