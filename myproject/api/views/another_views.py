@@ -19,8 +19,9 @@ from myproject.api.serializers import NestedReceivingHeaderWriteSerializer, Nest
     NestedRentalOrderHeaderWriteSerializer, NestedRentalOrderHeaderReadSerializer, RentalStockSNSerializer, \
     StockSNHistorySerializer, ItemReadSerializer,NestedInvoiceReadSerializer,NestedInvoiceReadSerializerNew,NestedInvoiceSerializer,\
     NestedReadRentalDetail,InvoiceDetailSerializer,GroupSerializer,GroupPermission,NestedMasterItemReadSerializer,\
-    NestedStockSNHistorySerializer
+    NestedStockSNHistorySerializer, NestedRentalDetailReadSerializer
 import datetime
+import itertools
 from django.contrib.contenttypes.models import ContentType
 from django.db.models import Sum,Count
 from myproject.api.models.rental_register_detail import rental_detail_sn
@@ -155,7 +156,7 @@ def addToStock(sender, **kwargs):
     ReceivingHeaderData = kwargs['test']
     Detail_from_ReceivingHeaderData = ReceivingHeaderData['RDHeader']
 
-    if "DRAFT" is ReceivingHeaderData['status']:
+    if "DRAFT" == ReceivingHeaderData['status']:
         print('DRAFT, because the status is still DRAFT, so nothing happened XD')
     else:
         print('APPROVED')
@@ -293,79 +294,6 @@ def getAllRentalOrderApproved(request):
     serializers = NestedRentalOrderHeaderReadSerializer(rentalOrderHeader, many=True)
     return Response(serializers.data)
 
-# Rental Perpanjang
-@api_view(['PUT'])
-def NestedRentalExtend(request, pk):
-    rentalHeader = request.data.get('pk')
-    sns = request.data.pop("SNS", None)
-    now = datetime.datetime.today().strftime('%Y-%m-%d')
-    rentalHeaderId = pk
-    pay_type = request.data['pay_type']
-    if request.data['status'] == "PERPANJANG RENTAL":
-        for sn in sns:
-            # print(sn['stock_code_id'])
-            targetedRental = rental_stock_sn.objects.get(pk=sn['stock_code_id'])
-            targetedRental.status = "MASUK"
-            targetedRental.save()
-            stock_sn_history.objects.create(
-                date=now,
-                status="MASUK",
-                RentalRef_id=rental_header(pk),
-                stock_code_id=rental_stock_sn(sn['stock_code_id'])
-            )
-            targetedRental = rental_stock_sn.objects.get(pk=sn['stock_code_id'])
-            targetedRental.status = "KELUAR"
-            targetedRental.save()
-            stock_sn_history.objects.create(
-                date=now,
-                status="KELUAR",
-                RentalRef_id=rental_header(pk),
-                stock_code_id=rental_stock_sn(sn['stock_code_id'])
-            )
-        rentaldetailheader = request.data["RentalDetailHeader"]            
-        for rental in rentaldetailheader:
-            now_masteritem = rental_detail.objects.filter(rental_header_id_id=pk).values('master_item_id')[0]['master_item_id']
-            if rental['master_item_id'] == now_masteritem:                    
-                rdsn = rental['RDSN']
-                for rd in rdsn:
-                    rental_detail_sn.objects.filter(rental_detail_sn_id=rd['rental_detail_sn_id']).update(stock_code_id_id=rd['stock_code_id'])
-            else:
-                rdsn = rental['RDSN']
-                for rd in rdsn:
-                    rental_detail_sn.objects.filter(rental_detail_sn_id=rd['rental_detail_sn_id']).update(stock_code_id_id=rd['stock_code_id'])
-
-    serializers = NestedRentalHeaderWriteSerializer(rentalHeader, data=request.data)        
-    if serializers.is_valid():
-        if request.data['status'] == "APPROVED" and request.user.is_superuser == True:
-            serializers.save()
-            if pay_type == 1:
-                rental_header.objects.filter(rental_header_id=pk).update(status="LUNAS")
-                timeNow = datetime.datetime.now().strftime('%Y-%m-%d')
-                invoice_header.objects.create(date=timeNow,
-                                          amount=request.data['amount'],
-                                          customer=request.data['customer_id'],
-                                          pay_method=request.data['pay_method'],
-                                          status="LUNAS",
-                                          rental_header_id=rentalHeader)
-            elif pay_type == 2:
-                rental_header.objects.filter(rental_header_id=pk).update(status="APPROVED")
-                timeNow = datetime.datetime.now().strftime('%Y-%m-%d')
-                invoice_header.objects.create(date=timeNow,
-                                          amount=request.data['amount'],
-                                          customer=request.data['customer_id'],
-                                          pay_method=request.data['pay_method'],
-                                          status="SEDANG BERJALAN",
-                                          rental_header_id=rentalHeader)
-            # update_on_rental_register.send(sender=rental_header, test=serializers.data)
-            return Response(serializers.data, status=status.HTTP_200_OK)
-        elif request.data['status'] == "KEMBALI RENTAL" and request.user.is_superuser == True:
-            serializers.save()
-            rental_header.objects.filter(rental_header_id=pk).update(status="APPROVED")
-            return Response(serializers.data,status=status.HTTP_200_OK)
-        elif request.data['status'] == "APPROVED" and request.user.is_superuser == False:
-            return Response("Access Denied", status=status.HTTP_401_UNAUTHORIZED)
-    return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
-
 
 # Rental Register Details
 class NestedRentalRegisterDetails(APIView):
@@ -493,6 +421,18 @@ class NestedRentalRegisterDetails(APIView):
             elif request.data['status'] == "APPROVED" and request.user.is_superuser == False:
                 return Response("Access Denied", status=status.HTTP_401_UNAUTHORIZED)
         return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+# Rental Perpanjang
+# class ExtendRentalRegister(APIView):
+#     def get_object(self, pk):
+#         try:
+#             return rental_header.objects.get(pk=pk)
+#         except rental_header.DoesNotExist:
+#             raise Http404
+
+#     def post(self, request, pk, format=None):
+#         rentalHeader = self.get_object(pk)
 
 
 @receiver(update_on_rental_register)
@@ -720,6 +660,7 @@ class NestedInvoiceManagementDetails(APIView):
                         return Response({"pesan":"Terjadi kesalahan"}, status=status.HTTP_200_OK)
         else:
             return HttpResponse('t_terbayar')
+            
 class getPriceMasterItem(APIView):
     def post(self, request, format=None):
         r_header = request.data['rental_header_id']
@@ -871,6 +812,19 @@ def returnStock(request):
         )
 
     return Response("SUCCESS")
+
+
+
+@api_view(['GET', 'POST'])
+def extendRental(request):
+    request.data['number'] = getDocumentNumber(2)
+    request.data['counter'] = getCounter(2)
+    serializers = NestedRentalHeaderWriteSerializer(data=request.data)
+    if serializers.is_valid():
+        ids=serializers.save()
+        return Response(serializers.data, status=status.HTTP_201_CREATED)
+    return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 
 @api_view(['GET'])
