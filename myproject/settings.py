@@ -102,11 +102,11 @@ REST_FRAMEWORK = {
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'rentalppm',
+        'NAME': 'rentalapp_db',
         'USER': 'postgres',
-        'PASSWORD': '020',
+        'PASSWORD': 'postgres',
         'HOST': 'localhost',
-        'PORT': '5432'
+        'PORT': ''
     }
 }
 
