@@ -822,6 +822,9 @@ def returnStock(request):
 def extendRental(request):
     request.data['number'] = getDocumentNumber(2)
     request.data['counter'] = getCounter(2)
+    request.data['status'] = "DRAFT"
+    request.data['date'] = datetime.datetime.today().strftime('%Y-%m-%d')
+    # request.data['user_id'] = request.user
     serializers = NestedRentalHeaderWriteSerializer(data=request.data)
     if serializers.is_valid():
         ids=serializers.save()
