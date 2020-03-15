@@ -270,7 +270,7 @@ class NestedRentalRegister(APIView):
         return Response(serializers.data)
 
     def post(self, request, format=None):
-        request.data['number'] = getDocumentNumber(2)  # get document number for this request
+        # request.data['number'] = getDocumentNumber(2)  # get document number for this request
         request.data['counter'] = getCounter(2)  # get counter for this request
         serializers = NestedRentalHeaderWriteSerializer(data=request.data)
         if serializers.is_valid():        
@@ -464,7 +464,7 @@ class NestedRentalOrderManagement(APIView):
         return Response(serializer.data)
 
     def post(self, request, format=None):
-        request.data['number'] = getDocumentNumber(1)  # get document number for this request
+        # request.data['number'] = getDocumentNumber(1)  # get document number for this request
         request.data['counter'] = getCounter(1)  # get counter for this request
 
         serializers = NestedRentalOrderHeaderWriteSerializer(data=request.data)
